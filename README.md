@@ -1,1 +1,1 @@
-Singularity
+Singularity is an open source mod for Terraria, made for fun.
