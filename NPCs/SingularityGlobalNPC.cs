@@ -14,15 +14,15 @@ class SingularityGlobalNPC : GlobalNPC {
 		}
 
 		if(npc.type == NPCID.Crab) { //temp - oyster enemy eventually
-			if (Main.rand.NextFloat() < 0.1f) { Item.NewItem(npc.getRect(), mod.ItemType("Pearl")); }
+			if (Main.rand.NextFloat() < 0.11f) { Item.NewItem(npc.getRect(), mod.ItemType("Pearl")); }
 		}
 
 		if(npc.type == NPCID.Antlion) {
-			if (Main.rand.NextFloat() < 0.05f) { Item.NewItem(npc.getRect(), ItemID.Amber); }
+			if (Main.rand.NextFloat() < 0.07f) { Item.NewItem(npc.getRect(), ItemID.Amber); }
 		}
 
 		if(npc.type == NPCID.IceSlime) {
-			if (Main.rand.NextFloat() < 0.04f) { Item.NewItem(npc.getRect(), mod.ItemType("Opal")); }
+			if (Main.rand.NextFloat() < 0.09f) { Item.NewItem(npc.getRect(), mod.ItemType("Opal")); }
 		}
 
 		if(npc.type == NPCID.Snatcher || npc.type == NPCID.ManEater) {
@@ -30,7 +30,7 @@ class SingularityGlobalNPC : GlobalNPC {
 		}
 
 		if(npc.type == NPCID.Demon) {
-			if (Main.rand.NextFloat() < 0.09f) { Item.NewItem(npc.getRect(), mod.ItemType("Onyx")); }
+			if (Main.rand.NextFloat() < 0.11f) { Item.NewItem(npc.getRect(), mod.ItemType("Onyx")); }
 		}
 		if(npc.type == NPCID.Hellbat) {
 			if (Main.rand.NextFloat() < 0.09f) { Item.NewItem(npc.getRect(), mod.ItemType("Onyx")); }
