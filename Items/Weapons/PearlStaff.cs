@@ -1,3 +1,4 @@
+using Singularity.Projectiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -21,8 +22,8 @@ namespace Singularity.Items.Weapons {
 			item.rare = 1;
 			item.UseSound = SoundID.Item20;
 			item.autoReuse = true;
-			item.shoot = 597; //Amber staff
-			item.shootSpeed = 9f;
+			item.shoot = mod.ProjectileType("PearlBolt");
+			item.shootSpeed = 7f;
 		}
 
 		public override void AddRecipes() {
