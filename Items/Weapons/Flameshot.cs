@@ -10,7 +10,7 @@ namespace Singularity.Items.Weapons {
 		}
 
 		public override void SetDefaults() {
-			item.damage = 8;
+			item.damage = 23;
 			item.useTime = 45;
 			item.useAnimation = 45;
 			item.useStyle = 5;
@@ -19,7 +19,7 @@ namespace Singularity.Items.Weapons {
 			item.value = Singularity.ToCopper(0, 5, 0, 0);
 			item.rare = 1;
 			item.UseSound = SoundID.Item20;
-			item.autoReuse = false;
+			item.autoReuse = true;
 			item.shoot = 85; //Flamethrower
 			item.shootSpeed = 5f;
 			item.useAmmo = AmmoID.Gel;
