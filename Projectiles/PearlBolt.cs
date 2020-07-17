@@ -1,28 +1,21 @@
-using Singularity.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
-namespace Singularity.Projectiles
-{
-	public class PearlBolt : ModProjectile
-	{
+namespace Singularity.Projectiles {
+	public class PearlBolt : ModProjectile {
 		public override void SetDefaults() {
-			projectile.width = 16;
-			projectile.height = 16;
 			projectile.friendly = true;
 			projectile.magic = true;
 			projectile.penetrate = 2;
 			projectile.timeLeft = 600;
+			projectile.aiStyle = 0;
 		}
 
 		public override void AI() {
-			projectile.velocity.Y += projectile.ai[0];
-			if (Main.rand.NextBool(3)) {
-				Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, DustType<Sparkle>(), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
-			}
+			Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 56, projectile.velocity.X * 0.01f, projectile.velocity.Y * 0.01f, 0, default(Color), 1);
 		}
 
 		public override bool OnTileCollide(Vector2 oldVelocity) {
@@ -31,15 +24,10 @@ namespace Singularity.Projectiles
         }   
 
 		public override void Kill(int timeLeft) {
-			for (int k = 0; k < 5; k++) {
-				Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, DustType<Sparkle>(), projectile.oldVelocity.X * 0.5f, projectile.oldVelocity.Y * 0.5f);
+			for (int k = 0; k < 15; k++) {
+				Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 56, projectile.velocity.X * 0.1f, projectile.velocity.Y * 0.1f, 0, default(Color), 1);
 			}
 			Main.PlaySound(SoundID.Item25, projectile.position);
-		}
-
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit) {
-			projectile.ai[0] += 0.1f;
-			projectile.velocity *= 0.75f;
 		}
 	}
 }

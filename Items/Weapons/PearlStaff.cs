@@ -22,8 +22,8 @@ namespace Singularity.Items.Weapons {
 			item.rare = 1;
 			item.UseSound = SoundID.Item20;
 			item.autoReuse = true;
-			item.shoot = ProjectileType<PearlBolt>(); //Amber staff
-			item.shootSpeed = 9f;
+			item.shoot = mod.ProjectileType("PearlBolt");
+			item.shootSpeed = 7f;
 		}
 
 		public override void AddRecipes() {
