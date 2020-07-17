@@ -36,6 +36,17 @@ class SingularityGlobalNPC : GlobalNPC {
 			if (Main.rand.NextFloat() < 0.09f) { Item.NewItem(npc.getRect(), mod.ItemType("Onyx")); }
 		}
 
-		
+		if(npc.type == NPCID.Harpy) {
+			if (Main.rand.NextFloat() < 0.09f) { Item.NewItem(npc.getRect(), mod.ItemType("Lodestone")); }
+			//temp
+			if (Main.rand.NextFloat() < 0.09f) { Item.NewItem(npc.getRect(), mod.ItemType("EnchantedBar")); }
+		}
+
+		if(npc.type == NPCID.WallCreeper) {
+			if (Main.rand.NextFloat() < 0.5f) { Item.NewItem(npc.getRect(), mod.ItemType("ToughSilk")); }
+		}
+		if(npc.type == NPCID.WallCreeperWall) {
+			if (Main.rand.NextFloat() < 0.5f) { Item.NewItem(npc.getRect(), mod.ItemType("ToughSilk")); }
+		}
 	}
 }

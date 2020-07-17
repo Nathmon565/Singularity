@@ -14,6 +14,7 @@ namespace Singularity.Items.Weapons {
 			item.useTime = 45;
 			item.useAnimation = 45;
 			item.useStyle = 5;
+			item.ranged = true;
 			item.noMelee = true;
 			item.knockBack = 0.3f;
 			item.value = Singularity.ToCopper(0, 5, 0, 0);
