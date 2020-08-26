@@ -13,8 +13,11 @@ class SingularityGlobalNPC : GlobalNPC {
 			if (Main.rand.NextFloat() < 0.07f) { Item.NewItem(npc.getRect(), mod.ItemType("Sulfur")); }
 		}
 
-		if(npc.type == NPCID.Crab) { //temp - oyster enemy eventually
+		if(npc.type == NPCID.Crab) { //temp, using 1.4 pearl when released
 			if (Main.rand.NextFloat() < 0.11f) { Item.NewItem(npc.getRect(), mod.ItemType("Pearl")); }
+		}
+		if(npc.type == NPCID.Crab) { 
+			if (Main.rand.NextFloat() < 0.17f) { Item.NewItem(npc.getRect(), mod.ItemType("Nacre")); }
 		}
 
 		if(npc.type == NPCID.Antlion) {

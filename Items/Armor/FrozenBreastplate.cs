@@ -13,8 +13,9 @@ namespace Singularity.Items.Armor {
 			item.value = Singularity.ToCopper(0, 0, 30, 0);
 			item.defense = 4;
 		}
-		public override void UpdateArmorSet(Player player) {
-			player.meleeSpeed += 0.02f;
+		public override void UpdateEquip(Player player) {
+			player.meleeSpeed += 0.30f;
+			player.AddBuff(BuffID.Shine, 2); //shine potion buff
 		}
 
 		public override void AddRecipes() {

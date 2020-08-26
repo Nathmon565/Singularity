@@ -11,23 +11,18 @@ namespace Singularity.Projectiles {
 			projectile.magic = true;
 			projectile.penetrate = 2;
 			projectile.timeLeft = 600;
-			projectile.aiStyle = 0;
+			projectile.aiStyle = 29;
+			projectile.alpha = 30;
 		}
-
+		
 		public override void AI() {
-			Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 56, projectile.velocity.X * 0.01f, projectile.velocity.Y * 0.01f, 0, default(Color), 1);
+			Lighting.AddLight(projectile.Center, 0.6f, 0.5f, 0.9f); // R G B values from 0 to 1f. This is the red from the Crimson Heart pet
+			Dust.NewDust(projectile.position, projectile.width, projectile.height, 173, projectile.velocity.X * 0.7f, projectile.velocity.Y * 0.7f, 150, default(Color), 1);
 		}
 
 		public override bool OnTileCollide(Vector2 oldVelocity) {
             projectile.Kill();
             return false;
         }   
-
-		public override void Kill(int timeLeft) {
-			for (int k = 0; k < 15; k++) {
-				Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 56, projectile.velocity.X * 0.1f, projectile.velocity.Y * 0.1f, 0, default(Color), 1);
-			}
-			Main.PlaySound(SoundID.Item25, projectile.position);
-		}
 	}
 }
