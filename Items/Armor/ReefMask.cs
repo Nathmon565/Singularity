@@ -2,9 +2,12 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 
+
 namespace Singularity.Items.Armor {
 	[AutoloadEquip(EquipType.Head)]
 	public class ReefMask : ModItem {
+		private int bonusBreath = 0;
+		private int bonusBreathInterval = 3;
 		public override void SetStaticDefaults() {
 			Tooltip.SetDefault("Reduces damage taken by 2%");
 		}
@@ -25,11 +28,22 @@ namespace Singularity.Items.Armor {
 		}
 
 		public override void UpdateArmorSet(Player player) {
-			player.setBonus = "+8% magic critical strike chance";
+			player.setBonus = ("+8% magic critical strike chance"
+			+ "\nLets you move swiftly in liquids"
+			+ "\nGreatly extends underwater breathing");
 			player.magicCrit += 8;
             if (player.wet) {
-                player.moveSpeed +=0.5f;
+                player.moveSpeed +=1.7f;
             }
+			if(player.breath < player.breathMax) {
+				bonusBreath++;
+			} else {
+				bonusBreath = 0;
+			}
+			if(bonusBreath >= bonusBreathInterval && player.breath >0) {
+				player.breathCD--;
+				bonusBreath = 0;
+			}
 		}
 
 		public override void AddRecipes() {

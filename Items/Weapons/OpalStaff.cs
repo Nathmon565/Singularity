@@ -9,7 +9,7 @@ namespace Singularity.Items.Weapons {
 		}
 
 		public override void SetDefaults() {
-			item.damage = 21;
+			item.damage = 16;
 			item.magic = true;
 			item.mana = 7;
 			item.useTime = 28;
@@ -21,7 +21,7 @@ namespace Singularity.Items.Weapons {
 			item.rare = 1;
 			item.UseSound = SoundID.Item20;
 			item.autoReuse = true;
-			item.shoot = 597; //Amber staff
+			item.shoot = mod.ProjectileType("OpalBolt");
 			item.shootSpeed = 9f;
 		}
 

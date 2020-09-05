@@ -18,6 +18,7 @@ namespace Singularity.Items.Armor {
 		}
 		public override void UpdateEquip(Player player) {
 			player.allDamage -= 0.01f;
+			player.accFlipper = true;
 		}
 
 		public override void AddRecipes() {
