@@ -14,6 +14,8 @@ namespace Singularity.Projectiles {
 			projectile.timeLeft = 100;
 			projectile.aiStyle = 2;
 			projectile.alpha = 60;
+			projectile.width = 10;
+			projectile.height = 10;
 		}
 		
 		public override void AI() {

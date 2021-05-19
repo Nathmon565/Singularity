@@ -34,6 +34,7 @@ class SingularityGlobalNPC : GlobalNPC {
 
 		if(npc.type == NPCID.Demon) {
 			if (Main.rand.NextFloat() < 0.11f) { Item.NewItem(npc.getRect(), mod.ItemType("Onyx")); }
+			if (Main.rand.NextFloat() < 0.11f) { Item.NewItem(npc.getRect(), mod.ItemType("DemonBlood"),Main.rand.Next(1,6)); }
 		}
 		if(npc.type == NPCID.Hellbat) {
 			if (Main.rand.NextFloat() < 0.09f) { Item.NewItem(npc.getRect(), mod.ItemType("Onyx")); }
@@ -50,6 +51,9 @@ class SingularityGlobalNPC : GlobalNPC {
 		}
 		if(npc.type == NPCID.WallCreeperWall) {
 			if (Main.rand.NextFloat() < 0.5f) { Item.NewItem(npc.getRect(), mod.ItemType("ToughSilk")); }
+		}
+		if(npc.type == NPCID.Demon) {
+			if (Main.rand.NextFloat() < 0.5f) { Item.NewItem(npc.getRect(), mod.ItemType("DemonBlood")); }
 		}
 	}
 }

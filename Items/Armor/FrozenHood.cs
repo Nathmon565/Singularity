@@ -18,6 +18,10 @@ namespace Singularity.Items.Armor {
 			return false;
 		}
 
+		public override void UpdateEquip(Player player) {
+			player.meleeSpeed += 12f;
+		}
+
 		public override bool IsArmorSet(Item head, Item body, Item legs) {
 			return body.type == mod.ItemType("FrozenBreastplate") && legs.type == mod.ItemType("FrozenLeggings");
 		}

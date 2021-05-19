@@ -5,17 +5,15 @@ using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
 namespace Singularity.Projectiles {
-	public class LodestoneBolt : ModProjectile {
+	public class JadeBolt : ModProjectile {
 
 		public override void SetDefaults() {
 			projectile.friendly = true;
 			projectile.magic = true;
 			projectile.penetrate = 1;
 			projectile.timeLeft = 600;
-			projectile.aiStyle = 29;
+			projectile.aiStyle = 5;
 			projectile.alpha = 60;
-			projectile.width = 16;
-			projectile.height = 16;
 		}
 		
 		public override void AI() {

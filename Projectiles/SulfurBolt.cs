@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
 namespace Singularity.Projectiles {
-	public class LodestoneBolt : ModProjectile {
+	public class SulfurBolt : ModProjectile {
 
 		public override void SetDefaults() {
 			projectile.friendly = true;
