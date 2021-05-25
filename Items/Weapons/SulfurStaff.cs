@@ -21,7 +21,7 @@ namespace Singularity.Items.Weapons {
 			item.rare = 1;
 			item.UseSound = SoundID.Item20;
 			item.autoReuse = true;
-			item.shoot = 597; //Amber staff
+			item.shoot = mod.ProjectileType("SulfurBolt");
 			item.shootSpeed = 9f;
 		}
 

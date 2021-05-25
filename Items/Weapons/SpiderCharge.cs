@@ -6,12 +6,13 @@ namespace Singularity.Items.Weapons {
 	public class SpiderCharge : ModItem {
 		public override void SetStaticDefaults() {
 			Item.staff[item.type] = true;
+			DisplayName.SetDefault("Spider Bolt");
 		}
 
 		public override void SetDefaults() {
-			item.damage = 21;
+			item.damage = 40;
 			item.magic = true;
-			item.mana = 2;
+			item.mana = 12;
 			item.useTime = 28;
 			item.useAnimation = 28;
 			item.useStyle = 4;
@@ -21,13 +22,13 @@ namespace Singularity.Items.Weapons {
 			item.rare = 1;
 			item.UseSound = SoundID.Item20;
 			item.autoReuse = true;
-			item.shoot = mod.ProjectileType("SpiderBolt"); //Amber staff
+			item.shoot = mod.ProjectileType("SpiderBolt");
 			item.shootSpeed = 8f;
 		}
 
 		public override void AddRecipes() {
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.WaterBolt, 10);
+			recipe.AddIngredient(ItemID.WaterBolt);
 			recipe.AddIngredient(null, "ToughSilk", 8);
 			recipe.AddIngredient(ItemID.SpiderFang, 2);
 			recipe.AddTile(TileID.Anvils);
