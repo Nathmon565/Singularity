@@ -18,14 +18,16 @@ namespace Singularity.Projectiles.Minions
 		}
 		public override void SetDefaults()
 		{
+			projectile.tileCollide = true;
 			projectile.width = 20;
 			projectile.height = 38;
 			projectile.friendly = true;
+			projectile.minion = true;
 			projectile.magic = true;
 			projectile.sentry = true; //Sets the weapon as a sentry for sentry accessories to properly work.
 			projectile.timeLeft = Projectile.SentryLifeTime;
 			projectile.ignoreWater = false; //If this is set to false, the projectile will be slowed in water.
-			projectile.tileCollide = false;
+			projectile.tileCollide = true;
 			projectile.penetrate = -1;
 		}
 
@@ -35,37 +37,45 @@ namespace Singularity.Projectiles.Minions
 			return new Color(255, 255, 255, 0) * (1f - projectile.alpha / 255f);
 		}
 
+		public override bool OnTileCollide(Vector2 oldVelocity)
+		{
+			for (int k = 0; k < 25; k++)
+			{
+				int dust = Dust.NewDust(projectile.position, 0, 0, 132, 0, 0);
+				Main.dust[dust].noGravity = true; //Disable the dust gravity.
+				Main.dust[dust].velocity *= 0.8f; //Dust velocity.
+			}
+			return true;
+		}
+
 		public override void AI()
 		{
 			//This AI will function as a static sentry, and will not move. If you would like to know how to do more advanced minion AI, check out PurityWisp.cs.
 
-			for (int k = 0; k < 1; k++) {
-				int dust = Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 132, projectile.oldVelocity.X * 0.5f, projectile.oldVelocity.Y * 0.5f);
-				Main.dust[dust].noGravity = true; //Disable the dust gravity.
-				Main.dust[dust].velocity *= 0.8f; //Dust velocity.
-			}
-
 			int SentryRange = 40; //The sentry's range
 			int Speed = 60; //How fast the sentry can shoot the projectile.
-			float FireVelocity = 15f; //The velocity the sentry's shot projectile will travel. Slows down the closer the NPC is.
-			
-			
+			float FireVelocity = 20f; //The velocity the sentry's shot projectile will travel. Slows down the closer the NPC is.
 			Main.player[projectile.owner].UpdateMaxTurrets(); //This makes the sentry be able to spawn more if your sentry cap is greater than one.
+
 			for (int t = 0; t < Main.maxNPCs; t++)
 			{
 				NPC npc = Main.npc[t];
-				//if (!npc.active || !npc.CanBeChasedBy()) {
-					//return; //Do not check NPCs that don't exist or can't/shouldn't be damaged
-				//}
 
 				float distance = projectile.Distance(npc.Center); //Set the distance from the NPC and the sentry projectile.
-				
+
 				//Convert distance to tile position
-				if (distance / 16 < SentryRange) {
-					projectile.ai[1] = npc.whoAmI;
+				if (distance / 16 < SentryRange && Main.npc[t].active && !Main.npc[t].dontTakeDamage && !Main.npc[t].friendly && Main.npc[t].lifeMax > 5 && Main.npc[t].type != NPCID.TargetDummy && npc.CanBeChasedBy())
+				{
+					bool lineOfSight = Collision.CanHitLine(projectile.position, projectile.width, projectile.height - 16, npc.position, npc.width, npc.height);
+					if (lineOfSight)
+					{
+						projectile.ai[1] = npc.whoAmI;
+					}
 				}
 			}
+			
 			projectile.ai[0]++;
+			
 			int index = (int)projectile.ai[1];
 			if (index < 0 || index > Main.maxNPCs)
 			{
@@ -73,7 +83,7 @@ namespace Singularity.Projectiles.Minions
 			}
 			NPC target = Main.npc[index];
 			if (projectile.ai[0] % Speed == 5) {
-				Vector2 direction = target.Center - projectile.Center; //The direction the projectile will fire.
+				Vector2 direction = target.Center + new Vector2 (0, 16f) - projectile.Center; //The direction the projectile will fire.
 
 				direction.Normalize(); //Normalizes the direction vector.
 				direction.X *= FireVelocity; //Multiply direction by fireVelocity so the sentry can fire the projectile faster the farther the NPC is away.
@@ -83,9 +93,10 @@ namespace Singularity.Projectiles.Minions
 				int damage = 18; //How much damage the projectile shot from the sentry will do.
 				int type = ProjectileID.SnowBallFriendly; //The type of projectile the sentry will shoot. Use ModContent.ProjectileType<>() to fire a modded projectile.
 				if (Main.myPlayer == projectile.owner) {
-					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y, direction.X, direction.Y, type, damage, 3, projectile.owner);
+					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y - 16f, direction.X, direction.Y, type, damage, 3, projectile.owner);
 				}
 			}
+			projectile.ai[1] = -1;
 			//Animate the projectile.
 			projectile.frameCounter++;
 			if (projectile.frameCounter % 10 == 0)
