@@ -4,7 +4,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Singularity.Items.Weapons {
+namespace Singularity.Items.Weapons
+{
 
 	public class SnowmanStaff : ModItem
 	{
@@ -14,7 +15,7 @@ namespace Singularity.Items.Weapons {
 			ItemID.Sets.GamepadWholeScreenUseRange[item.type] = true;
 			ItemID.Sets.LockOnIgnoresCollision[item.type] = true;
 		}
-
+		
 		public override void SetDefaults()
 		{
 			item.damage = 18;
@@ -52,4 +53,4 @@ namespace Singularity.Items.Weapons {
 			recipe.AddRecipe();
 		}
 	}
-	}
+}
