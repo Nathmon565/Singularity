@@ -18,7 +18,7 @@ namespace Singularity.Items.Weapons
 		
 		public override void SetDefaults()
 		{
-			item.damage = 14;
+			item.damage = 12;
 			item.sentry = true;
 			item.mana = 10; //How much mana this weapon takes to use.
 			item.width = 26; //Item width hitbox.

@@ -55,6 +55,12 @@ namespace Singularity.Projectiles.Minions
 			return true;
 		}
 
+		public override bool? CanCutTiles()
+		{
+			return false;
+		}
+
+
 		public override bool MinionContactDamage()
 		{
 			return true;

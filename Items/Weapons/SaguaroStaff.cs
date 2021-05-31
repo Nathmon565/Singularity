@@ -18,7 +18,7 @@ namespace Singularity.Items.Weapons
 		
 		public override void SetDefaults()
 		{
-			item.damage = 10;
+			item.damage = 30;
 			item.sentry = true;
 			item.mana = 10; //How much mana this weapon takes to use.
 			item.width = 26; //Item width hitbox.
@@ -37,6 +37,7 @@ namespace Singularity.Items.Weapons
 
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{
+			damage /= 3;
 			position = Main.MouseWorld;
 			speedY = 1000f;
 			return true;
