@@ -20,7 +20,7 @@ namespace Singularity.Projectiles.Minions
 
 		public override void SetDefaults()
 		{
-			projectile.width = 32;
+			projectile.width = 22;
 			projectile.height = 80;
 			projectile.scale = 1f;
 			projectile.friendly = true;
@@ -46,13 +46,18 @@ namespace Singularity.Projectiles.Minions
 			if (!spawned) {
 				for (int k = 0; k < 25; k++)
 				{
-					int dust = Dust.NewDust(projectile.position + projectile.velocity, 0, 0, 132, 0, 0);
+					int dust = Dust.NewDust(projectile.position + projectile.velocity + new Vector2(8, 40), 0, 0, 2, 0, 0);
 					Main.dust[dust].noGravity = true; //Disable the dust gravity.
-					Main.dust[dust].velocity *= 0.8f; //Dust velocity.
+					Main.dust[dust].velocity *= 2.0f; //Dust velocity.
 				}
 				spawned = true;
             }
 			return true;
+		}
+
+		public override bool? CanCutTiles()
+		{
+			return false;
 		}
 
 		public override bool MinionContactDamage()
@@ -67,7 +72,7 @@ namespace Singularity.Projectiles.Minions
 			projectile.velocity.Y = projectile.velocity.Y + 0.1f; // 0.1f for arrow gravity, 0.4f for knife gravity
 			if (projectile.velocity.Y > 16f && projectile.velocity.Y < 950f) // This check implements "terminal velocity". We don't want the projectile to keep getting faster and faster. Past 16f this projectile will travel through blocks, so this check is useful.
 			{
-				projectile.velocity.Y = 16f;
+			projectile.velocity.Y = 16f;
 			}
 
 			int SentryRange = 70; //The sentry's range
@@ -77,7 +82,7 @@ namespace Singularity.Projectiles.Minions
 
 			Vector2 targetCenter = projectile.position;
 			bool foundTarget = false;
-
+			
 			if (Main.player[projectile.owner].HasMinionAttackTargetNPC)
 			{
 				NPC npc = Main.npc[Main.player[projectile.owner].MinionAttackTargetNPC];
@@ -131,7 +136,7 @@ namespace Singularity.Projectiles.Minions
 				direction.Y *= FireVelocity; //Same as above, but with Y velocity.
 
 				Main.PlaySound(SoundID.Item102, projectile.Center); //Play a sound.
-				int damage = projectile.damage * 3; //How much damage the projectile shot from the sentry will do.
+				int damage = projectile.damage * 6; //How much damage the projectile shot from the sentry will do.
 				int type = ProjectileID.PineNeedleFriendly; //The type of projectile the sentry will shoot. Use ModContent.ProjectileType<>() to fire a modded projectile.
 				if (Main.myPlayer == projectile.owner) {
 					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y - 20f, direction.X, direction.Y, type, damage, 3, projectile.owner);

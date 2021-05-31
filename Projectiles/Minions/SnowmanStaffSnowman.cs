@@ -46,13 +46,18 @@ namespace Singularity.Projectiles.Minions
 			if (!spawned) {
 				for (int k = 0; k < 25; k++)
 				{
-					int dust = Dust.NewDust(projectile.position + projectile.velocity, 0, 0, 132, 0, 0);
+					int dust = Dust.NewDust(projectile.position + projectile.velocity + new Vector2(7, 28), 0, 0, 132, 0, 0);
 					Main.dust[dust].noGravity = true; //Disable the dust gravity.
 					Main.dust[dust].velocity *= 0.8f; //Dust velocity.
 				}
 				spawned = true;
             }
 			return true;
+		}
+
+		public override bool? CanCutTiles()
+		{
+			return false;
 		}
 
 		public override void AI()

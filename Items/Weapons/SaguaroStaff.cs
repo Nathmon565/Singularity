@@ -11,7 +11,7 @@ namespace Singularity.Items.Weapons
 	{
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("Summons a cactus to fire needles at your enemies \n\n'No touchy'");
+			Tooltip.SetDefault("Summons a cactus to fire needles at your enemies \n\nNo touchy");
 			ItemID.Sets.GamepadWholeScreenUseRange[item.type] = true;
 			ItemID.Sets.LockOnIgnoresCollision[item.type] = true;
 		}
@@ -37,8 +37,8 @@ namespace Singularity.Items.Weapons
 
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{
-			damage /= 3;
-			position = Main.MouseWorld;
+			damage /= 6;
+			position = Main.MouseWorld - new Vector2(0, 40);
 			speedY = 1000f;
 			return true;
 		}

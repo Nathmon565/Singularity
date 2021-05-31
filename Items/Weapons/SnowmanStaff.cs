@@ -11,7 +11,7 @@ namespace Singularity.Items.Weapons
 	{
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("Summons a snowman to throw snowballs at your enemies \n\n'Ho ho hol' up'");
+			Tooltip.SetDefault("Summons a snowman to throw snowballs at your enemies \n\nHo ho hol' up");
 			ItemID.Sets.GamepadWholeScreenUseRange[item.type] = true;
 			ItemID.Sets.LockOnIgnoresCollision[item.type] = true;
 		}
@@ -37,7 +37,7 @@ namespace Singularity.Items.Weapons
 
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{
-			position = Main.MouseWorld;
+			position = Main.MouseWorld - new Vector2(0, 28);
 			speedY = 1000f;
 			return true;
 		}
