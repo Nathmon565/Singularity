@@ -29,18 +29,30 @@ namespace Singularity.Projectiles {
 			dust2.velocity = projectile.velocity * 0.9f;
 			dust2.noGravity = true;
 		}
-		public override bool OnTileCollide(Vector2 oldVelocity) {
-            projectile.Kill();
-            return false;
-        }   
-        public override void Kill(int timeLeft) {
-            for (int i = 0; i < 3; i++) {
-                float posX = projectile.position.X * Main.rand.NextFloat(1f, 1f) + Main.rand.NextFloat(-2f, 2f);
-                float posY = projectile.position.Y * Main.rand.NextFloat(1f, 1f) + Main.rand.NextFloat(-5f, -7f);
-	            float speedX = projectile.velocity.X * Main.rand.NextFloat(0f, 0f) + Main.rand.NextFloat(-0.5f, 0.5f);
-	            float speedY = projectile.velocity.Y * Main.rand.NextFloat(0f, 0f) + Main.rand.NextFloat(-4f, -7f); 
-	            Projectile.NewProjectile(posX, posY, speedX, speedY, 280, (int)(projectile.damage * 0.5), 0f, projectile.owner, 0f, 0f);
+		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit) {
+			for (int i = 0; i < 4; i++) {
+			float speedX = projectile.velocity.X * Main.rand.NextFloat(1.1f, 1.3f) + Main.rand.NextFloat(-0.9f, 0.9f);
+			float speedY = projectile.velocity.Y * Main.rand.NextFloat(1.1f, 1.3f) + Main.rand.NextFloat(-0.9f, 0.9f);
+	        Projectile.NewProjectile(projectile.position.X, projectile.position.Y, speedX, speedY, mod.ProjectileType("BloodstoneShard"), (int)(projectile.damage * 0.2), 0f, projectile.owner, 0f, 0f);
 	        }
-        }
+			projectile.Kill();
+		}
+		public override bool OnTileCollide(Vector2 oldVelocity) {
+			for (int i = 0; i < 4; i++) {
+            float speedX = projectile.velocity.X;
+			float speedY = projectile.velocity.Y;
+			if (projectile.velocity.X != oldVelocity.X) {
+			speedX = -oldVelocity.X;
+			speedY = projectile.velocity.Y + Main.rand.NextFloat(-0.5f, 0.5f);
+			}
+			if (projectile.velocity.Y != oldVelocity.Y) {
+			speedY = -oldVelocity.Y;
+			speedX = projectile.velocity.X + Main.rand.NextFloat(-0.5f, 0.5f);
+			}
+	        Projectile.NewProjectile(projectile.position.X, projectile.position.Y, speedX, speedY, mod.ProjectileType("BloodstoneShard"), (int)(projectile.damage * 0.2), 0f, projectile.owner, 0f, 0f);
+	        }
+			projectile.Kill();
+            return false;
+		}
 	}
 }
