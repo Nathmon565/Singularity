@@ -31,7 +31,7 @@ namespace Singularity.Projectiles {
             return false;
         }   
         public override void Kill(int timeLeft) {
-            for (int i = 0; i < 2; i++) {
+            for (int i = 0; i < 4; i++) {
                 float posX = projectile.position.X * Main.rand.NextFloat(1f, 1f) + Main.rand.NextFloat(-1.3f, 1.3f);
                 float posY = projectile.position.Y * Main.rand.NextFloat(1f, 1f) + Main.rand.NextFloat(-80f, -88f) * 6f;
 	            float speedX = projectile.velocity.X * Main.rand.NextFloat(0f, 0f) + Main.rand.NextFloat(-1.2f, 1.2f);

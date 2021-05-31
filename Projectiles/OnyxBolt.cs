@@ -35,7 +35,13 @@ namespace Singularity.Projectiles {
         }   
         public override void Kill(int timeLeft) {
 	        for (int i = 0; i < 1; i++) {
-	            Projectile.NewProjectile(projectile.position.X, projectile.position.Y, 0f, 0f, mod.ProjectileType("OnyxMarker"), (int)(projectile.damage * 1f), 0f, projectile.owner, 0f, 0f);
+			float speed = 10f;
+			float spot = 3f;
+			Projectile.NewProjectile(projectile.Center.X + 0f * spot, projectile.Center.Y + 20f * spot, speed * 0.309f, speed * -0.951f, mod.ProjectileType("OnyxShard"), (int)(projectile.damage*0.3f), 0f, projectile.owner, 0f, 0f);
+			Projectile.NewProjectile(projectile.Center.X + 19.021f * spot, projectile.Center.Y + 6.181f * spot, speed * -0.809f, speed * -0.588f, mod.ProjectileType("OnyxShard"), (int)(projectile.damage*0.3f), 0f, projectile.owner, 0f, 0f);
+			Projectile.NewProjectile(projectile.Center.X - 19.021f * spot, projectile.Center.Y + 6.181f * spot, speed, speed * 0, mod.ProjectileType("OnyxShard"), (int)(projectile.damage*0.3f), 0f, projectile.owner, 0f, 0f);
+			Projectile.NewProjectile(projectile.Center.X - 11.756f * spot, projectile.Center.Y - 16.180f * spot, speed * 0.309f, speed * 0.951f, mod.ProjectileType("OnyxShard"), (int)(projectile.damage*0.3f), 0f, projectile.owner, 0f, 0f);
+			Projectile.NewProjectile(projectile.Center.X + 11.756f * spot, projectile.Center.Y - 16.180f * spot, speed * -0.809f, speed* 0.588f, mod.ProjectileType("OnyxShard"), (int)(projectile.damage*0.3f), 0f, projectile.owner, 0f, 0f);
 			}
         }
 	}
