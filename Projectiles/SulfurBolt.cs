@@ -16,6 +16,8 @@ namespace Singularity.Projectiles {
 			projectile.alpha = 255;
 			projectile.width = 16;
 			projectile.height = 16;
+			projectile.tileCollide = false;
+			projectile.ignoreWater = true;
 		}
 		
 		public override void AI() {
@@ -43,9 +45,5 @@ namespace Singularity.Projectiles {
 			projectile.ai[0] = 0;
 			}
 		}
-		public override bool OnTileCollide(Vector2 oldVelocity) {
-            projectile.Kill();
-            return false;
-        }   
 	}
 }

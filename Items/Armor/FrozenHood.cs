@@ -19,7 +19,7 @@ namespace Singularity.Items.Armor {
 		}
 
 		public override void UpdateEquip(Player player) {
-			player.meleeSpeed += 12f;
+			player.meleeSpeed += 0.02f;
 		}
 
 		public override bool IsArmorSet(Item head, Item body, Item legs) {

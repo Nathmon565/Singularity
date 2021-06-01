@@ -30,7 +30,7 @@ namespace Singularity.Projectiles {
 			Lighting.AddLight(projectile.Center, 0.7f, 0.2f, 0.2f);
         }
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit) {
-            if(Main.rand.NextFloat() < 0.3f){
+            if(Main.rand.NextFloat() < 0.5f){
 		    target.AddBuff(31, 60);
 		}
         }
