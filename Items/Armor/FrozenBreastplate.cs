@@ -15,7 +15,6 @@ namespace Singularity.Items.Armor {
 		}
 		public override void UpdateEquip(Player player) {
 			player.meleeSpeed += 0.02f;
-			player.AddBuff(BuffID.Shine, 2); //shine potion buff
 		}
 
 		public override void AddRecipes() {

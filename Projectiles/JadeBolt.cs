@@ -37,12 +37,12 @@ namespace Singularity.Projectiles {
             return false;
         }   
         public override void Kill(int timeLeft) {
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 2; i++) {
                 float posX = projectile.position.X * Main.rand.NextFloat(1f, 1f) + Main.rand.NextFloat(-2f, 2f);
                 float posY = projectile.position.Y * Main.rand.NextFloat(1f, 1f) + Main.rand.NextFloat(-2f, 2f);
 	            float speedX = projectile.velocity.X * 0.3f + Main.rand.NextFloat(-1.6f, 1.6f);
 	            float speedY = projectile.velocity.Y * 0.3f + Main.rand.NextFloat(-1.6f, 1.6f); 
-	            Projectile.NewProjectile(posX, posY, speedX, speedY, 228, (int)(projectile.damage * 0.7f), 0f, projectile.owner, 0f, 0f);
+	            Projectile.NewProjectile(posX, posY, speedX, speedY, 228, (int)(projectile.damage * 0.3f), 0f, projectile.owner, 0f, 0f);
 	        }
         }
 	}
