@@ -27,7 +27,7 @@ namespace Singularity.Items.Weapons {
 
 		public override void AddRecipes() {
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(null, "IceCubes", 10);
+			recipe.AddIngredient(null, "GlacialBar", 10);
 			recipe.AddIngredient(null, "Opal", 8);
 			recipe.AddTile(TileID.Anvils);
 			recipe.SetResult(this);

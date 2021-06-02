@@ -19,7 +19,7 @@ namespace Singularity.Items.Armor {
 
 		public override void AddRecipes() {
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(null, "IceCubes", 18);
+			recipe.AddIngredient(null, "GlacialBar", 18);
 			recipe.AddTile(TileID.Anvils);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

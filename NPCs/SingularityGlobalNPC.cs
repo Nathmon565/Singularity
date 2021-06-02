@@ -42,8 +42,6 @@ class SingularityGlobalNPC : GlobalNPC {
 
 		if(npc.type == NPCID.Harpy) {
 			if (Main.rand.NextFloat() < 0.09f) { Item.NewItem(npc.getRect(), mod.ItemType("Lodestone")); }
-			//temp
-			if (Main.rand.NextFloat() < 0.09f) { Item.NewItem(npc.getRect(), mod.ItemType("EnchantedBar")); }
 		}
 
 		if(npc.type == NPCID.WallCreeper) {
