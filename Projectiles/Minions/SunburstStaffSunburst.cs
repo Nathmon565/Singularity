@@ -70,9 +70,9 @@ namespace Singularity.Projectiles.Minions
 				projectile.velocity.Y = 16f;
 			}
 
-			int SentryRange = 20; //The sentry's range
-			int Speed = 180; //How fast the sentry can shoot the projectile.
-			float FireVelocity = 20f; //The velocity the sentry's shot projectile will travel. Slows down the closer the NPC is.
+			int SentryRange = 30; //The sentry's range
+			int Speed = 150; //How fast the sentry can shoot the projectile.
+			float FireVelocity = 5f; //The velocity the sentry's shot projectile will travel. Slows down the closer the NPC is.
 			Main.player[projectile.owner].UpdateMaxTurrets(); //This makes the sentry be able to spawn more if your sentry cap is greater than one.
 
 			Vector2 targetCenter = projectile.position;
@@ -132,12 +132,33 @@ namespace Singularity.Projectiles.Minions
 
 				Main.PlaySound(SoundID.Item102, projectile.Center); //Play a sound.
 				int damage = projectile.damage; //How much damage the projectile shot from the sentry will do.
-				int type = ProjectileID.GreekFire1; //The type of projectile the sentry will shoot. Use ModContent.ProjectileType<>() to fire a modded projectile.
+				int type = ProjectileID.TopazBolt; //The type of projectile the sentry will shoot. Use ModContent.ProjectileType<>() to fire a modded projectile.
 				if (Main.myPlayer == projectile.owner) {
-					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y - 20f, 0, FireVelocity, type, damage, 3, projectile.owner);
-					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y - 20f, FireVelocity * 0.966f, FireVelocity * 0.259f, type, damage, 3, projectile.owner);
-					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y - 20f, FireVelocity * 0.866f, FireVelocity * 0.5f, type, damage, 3, projectile.owner);
-					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y - 20f, FireVelocity * 0.707f, FireVelocity * 0.707f, type, damage, 3, projectile.owner);
+					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y, 0, FireVelocity, type, damage, 3, projectile.owner);
+					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y, FireVelocity * 0.966f, FireVelocity * 0.259f, type, damage, 3, projectile.owner);
+					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y, FireVelocity * 0.866f, FireVelocity * 0.5f, type, damage, 3, projectile.owner);
+					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y, FireVelocity * 0.707f, FireVelocity * 0.707f, type, damage, 3, projectile.owner);
+					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y, FireVelocity * 0.5f, FireVelocity * 0.866f, type, damage, 3, projectile.owner);
+					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y, FireVelocity * 0.259f, FireVelocity * 0.966f, type, damage, 3, projectile.owner);
+					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y, FireVelocity, 0, type, damage, 3, projectile.owner);
+					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y, FireVelocity * 0.966f, FireVelocity * -0.259f, type, damage, 3, projectile.owner);
+					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y, FireVelocity * 0.866f, FireVelocity * -0.5f, type, damage, 3, projectile.owner);
+					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y, FireVelocity * 0.707f, FireVelocity * -0.707f, type, damage, 3, projectile.owner);
+					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y, FireVelocity * 0.5f, FireVelocity * -0.866f, type, damage, 3, projectile.owner);
+					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y, FireVelocity * 0.259f, FireVelocity * -0.966f, type, damage, 3, projectile.owner);
+					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y, 0, -FireVelocity, type, damage, 3, projectile.owner);
+					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y, FireVelocity * -0.966f, FireVelocity * -0.259f, type, damage, 3, projectile.owner);
+					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y, FireVelocity * -0.866f, FireVelocity * -0.5f, type, damage, 3, projectile.owner);
+					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y, FireVelocity * -0.707f, FireVelocity * -0.707f, type, damage, 3, projectile.owner);
+					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y, FireVelocity * -0.5f, FireVelocity * -0.866f, type, damage, 3, projectile.owner);
+					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y, FireVelocity * -0.259f, FireVelocity * -0.966f, type, damage, 3, projectile.owner);
+					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y, -FireVelocity, 0, type, damage, 3, projectile.owner);
+					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y, FireVelocity * -0.966f, FireVelocity * 0.259f, type, damage, 3, projectile.owner);
+					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y, FireVelocity * -0.866f, FireVelocity * 0.5f, type, damage, 3, projectile.owner);
+					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y, FireVelocity * -0.707f, FireVelocity * 0.707f, type, damage, 3, projectile.owner);
+					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y, FireVelocity * -0.5f, FireVelocity * 0.866f, type, damage, 3, projectile.owner);
+					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y, FireVelocity * -0.259f, FireVelocity * 0.966f, type, damage, 3, projectile.owner);
+					
 				}
 			}
 			//projectile.ai[1] = -1;
