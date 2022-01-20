@@ -31,18 +31,22 @@ namespace Singularity.Projectiles.Minions
 		{
 			projectile.width = 16;
 			projectile.height = 28;
+			drawOffsetX = -7;
+			drawOriginOffsetY = -35;
 			// Makes the minion go through tiles freely
-			projectile.tileCollide = false;
+			projectile.tileCollide = true;
 
 			// These below are needed for a minion weapon
+			projectile.aiStyle = 67;
 			// Only controls if it deals damage to enemies on contact (more on that later)
 			projectile.friendly = true;
 			// Only determines the damage type
 			projectile.minion = true;
 			// Amount of slots this minion occupies from the total minion slots available to the player (more on that later)
-			projectile.minionSlots = 0.199f;
+			projectile.minionSlots = 0.333f;
 			// Needed so the minion doesn't despawn on collision with enemies or tiles
 			projectile.penetrate = -1;
+			aiType = ProjectileID.OneEyedPirate;
 		}
 
 		// Here you can decide if your minion breaks things like grass or pots
@@ -56,7 +60,7 @@ namespace Singularity.Projectiles.Minions
 		{
 			return true;
 		}
-
+		
 		public override void AI()
 		{
 			Player player = Main.player[projectile.owner];
@@ -75,7 +79,7 @@ namespace Singularity.Projectiles.Minions
 
 			#region General behavior
 			Vector2 idlePosition = player.Center;
-			idlePosition.Y -= 48f; // Go up 48 coordinates (three tiles from the center of the player)
+			idlePosition.Y -= 0f; // Go up 48 coordinates (three tiles from the center of the player)
 
 			// If your minion doesn't aimlessly move around when it's idle, you need to "put" it into the line of other summoned minions
 			// The index is projectile.minionPos
@@ -84,20 +88,19 @@ namespace Singularity.Projectiles.Minions
 
 			// All of this code below this line is adapted from Spazmamini code (ID 388, aiStyle 66)
 
-			// Teleport to player if distance is too big
+			// Teleport to player if is distance too big
 			Vector2 vectorToIdlePosition = idlePosition - projectile.Center;
 			float distanceToIdlePosition = vectorToIdlePosition.Length();
-			if (Main.myPlayer == player.whoAmI && distanceToIdlePosition > 2000f)
-			{
+			if (Main.myPlayer == player.whoAmI && distanceToIdlePosition > 2000f) {
 				// Whenever you deal with non-regular events that change the behavior or position drastically, make sure to only run the code on the owner of the projectile,
 				// and then set netUpdate to true
 				projectile.position = idlePosition;
 				projectile.velocity *= 0.1f;
 				projectile.netUpdate = true;
 			}
-
+			
 			// If your minion is flying, you want to do this independently of any conditions
-			float overlapVelocity = 0.04f;
+			float overlapVelocity = 0.1f;
 			for (int i = 0; i < Main.maxProjectiles; i++)
 			{
 				// Fix overlap with other minions
@@ -107,12 +110,12 @@ namespace Singularity.Projectiles.Minions
 					if (projectile.position.X < other.position.X) projectile.velocity.X -= overlapVelocity;
 					else projectile.velocity.X += overlapVelocity;
 
-					if (projectile.position.Y < other.position.Y) projectile.velocity.Y -= overlapVelocity;
-					else projectile.velocity.Y += overlapVelocity;
+					//if (projectile.position.Y < other.position.Y) projectile.velocity.Y -= overlapVelocity;
+					//else projectile.velocity.Y += overlapVelocity;
 				}
 			}
 			#endregion
-
+			/*
 			#region Find target
 			// Starting search distance
 			float distanceFromTarget = 700f;
@@ -125,7 +128,7 @@ namespace Singularity.Projectiles.Minions
 				NPC npc = Main.npc[player.MinionAttackTargetNPC];
 				float between = Vector2.Distance(npc.Center, projectile.Center);
 				// Reasonable distance away so it doesn't target across multiple screens
-				if (between < 1200f)
+				if (between < 1000f)
 				{
 					distanceFromTarget = between;
 					targetCenter = npc.Center;
@@ -163,7 +166,7 @@ namespace Singularity.Projectiles.Minions
 			// You don't need this assignment if your minion is shooting things instead of dealing contact damage
 			projectile.friendly = foundTarget;
 			#endregion
-
+			
 			#region Movement
 
 			// Default movement parameters (here for attacking)
@@ -213,8 +216,9 @@ namespace Singularity.Projectiles.Minions
 					projectile.velocity.Y = -0.05f;
 				}
 			}
+			
 			#endregion
-
+			*/
 			#region Animation and visuals
 			// So it will lean slightly towards the direction it's moving
 			projectile.rotation = projectile.velocity.X * 0.05f;
@@ -233,8 +237,8 @@ namespace Singularity.Projectiles.Minions
 			}
 
 			// Some visuals here
-			Lighting.AddLight(projectile.Center, Color.White.ToVector3() * 0.78f);
-			projectile.rotation = projectile.velocity.X * 0.05f;
+			//Lighting.AddLight(projectile.Center, Color.White.ToVector3() * 0.78f);
+			//projectile.rotation = projectile.velocity.X * 0.05f;
 			#endregion
 		}
 	}

@@ -20,7 +20,7 @@ namespace Singularity.Items.Weapons
 
 		public override void SetDefaults()
 		{
-			item.damage = 1;
+			item.damage = 3;
 			item.knockBack = 3f;
 			item.mana = 10;
 			item.width = 32;
@@ -46,6 +46,9 @@ namespace Singularity.Items.Weapons
 			player.AddBuff(item.buffType, 2);
 			// Here you can change where the minion is spawned. Most vanilla minions spawn at the cursor position.
 			position = Main.MouseWorld;
+			//int projSpawn = Main.rand.Next(1, 11); //picks a number between 1 and 4
+			Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("ClayManStaffClayMan"), damage, knockBack, item.owner);
+			Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("ClayManStaffClayMan"), damage, knockBack, item.owner);
 			return true;
 		}
 
