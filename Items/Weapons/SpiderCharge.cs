@@ -24,11 +24,6 @@ namespace Singularity.Items.Weapons {
 			item.shoot = mod.ProjectileType("SpiderBolt");
 			item.shootSpeed = 8f;
 		}
-        public override void HoldItem(Player player)
-        {
-            player.itemLocation.Y = player.Center.Y;
-            player.itemLocation.X = player.Center.X;
-        }
 		public override void AddRecipes() {
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(ItemID.WaterBolt);

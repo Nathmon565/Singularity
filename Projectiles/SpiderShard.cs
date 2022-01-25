@@ -14,8 +14,8 @@ namespace Singularity.Projectiles {
 			projectile.timeLeft = 60;
 			projectile.aiStyle = 29;
 			projectile.alpha = 255;
-			projectile.width = 8;
-			projectile.height = 8;
+			projectile.width = 12;
+			projectile.height = 12;
 			projectile.scale = 0.7f;
 		}
 		
