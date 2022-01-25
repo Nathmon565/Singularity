@@ -43,14 +43,14 @@ namespace Singularity.Projectiles {
 		}
         public override void Kill(int timeLeft) {
             for (int i = 0; i < 1; i++) {
-	            Projectile.NewProjectile(projectile.position.X, projectile.position.Y, 3.8f + Main.rand.NextFloat(-0.9f, 0.9f), 9.2f + Main.rand.NextFloat(-0.9f, 0.9f), mod.ProjectileType("SpiderShard"), (int)(projectile.damage), 0f, projectile.owner, 0f, 0f);
-	            Projectile.NewProjectile(projectile.position.X, projectile.position.Y, -3.8f + Main.rand.NextFloat(-0.9f, 0.9f), 9.2f + Main.rand.NextFloat(-0.9f, 0.9f), mod.ProjectileType("SpiderShard"), (int)(projectile.damage), 0f, projectile.owner, 0f, 0f);
-	            Projectile.NewProjectile(projectile.position.X, projectile.position.Y, 3.8f + Main.rand.NextFloat(-0.9f, 0.9f), -9.2f + Main.rand.NextFloat(-0.9f, 0.9f), mod.ProjectileType("SpiderShard"), (int)(projectile.damage), 0f, projectile.owner, 0f, 0f);
-	            Projectile.NewProjectile(projectile.position.X, projectile.position.Y, -3.8f + Main.rand.NextFloat(-0.9f, 0.9f), -9.2f + Main.rand.NextFloat(-0.9f, 0.9f), mod.ProjectileType("SpiderShard"), (int)(projectile.damage), 0f, projectile.owner, 0f, 0f);
-	            Projectile.NewProjectile(projectile.position.X, projectile.position.Y, 9.2f + Main.rand.NextFloat(-0.9f, 0.9f), 3.8f + Main.rand.NextFloat(-0.9f, 0.9f), mod.ProjectileType("SpiderShard"), (int)(projectile.damage), 0f, projectile.owner, 0f, 0f);
-	            Projectile.NewProjectile(projectile.position.X, projectile.position.Y, -9.2f + Main.rand.NextFloat(-0.9f, 0.9f), 3.8f + Main.rand.NextFloat(-0.9f, 0.9f), mod.ProjectileType("SpiderShard"), (int)(projectile.damage), 0f, projectile.owner, 0f, 0f);
-	            Projectile.NewProjectile(projectile.position.X, projectile.position.Y, 9.2f + Main.rand.NextFloat(-0.9f, 0.9f), -3.8f + Main.rand.NextFloat(-0.9f, 0.9f), mod.ProjectileType("SpiderShard"), (int)(projectile.damage), 0f, projectile.owner, 0f, 0f);
-	            Projectile.NewProjectile(projectile.position.X, projectile.position.Y, -9.2f + Main.rand.NextFloat(-0.9f, 0.9f), -3.8f + Main.rand.NextFloat(-0.9f, 0.9f), mod.ProjectileType("SpiderShard"), (int)(projectile.damage), 0f, projectile.owner, 0f, 0f);
+	            Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 3.8f, 9.2f, mod.ProjectileType("SpiderShard"), (int)(projectile.damage), 0f, projectile.owner, 0f, 0f);
+	            Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -3.8f, 9.2f, mod.ProjectileType("SpiderShard"), (int)(projectile.damage), 0f, projectile.owner, 0f, 0f);
+	            Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 3.8f, -9.2f, mod.ProjectileType("SpiderShard"), (int)(projectile.damage), 0f, projectile.owner, 0f, 0f);
+	            Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -3.8f, -9.2f, mod.ProjectileType("SpiderShard"), (int)(projectile.damage), 0f, projectile.owner, 0f, 0f);
+	            Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 9.2f, 3.8f, mod.ProjectileType("SpiderShard"), (int)(projectile.damage), 0f, projectile.owner, 0f, 0f);
+	            Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -9.2f, 3.8f, mod.ProjectileType("SpiderShard"), (int)(projectile.damage), 0f, projectile.owner, 0f, 0f);
+	            Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 9.2f, -3.8f, mod.ProjectileType("SpiderShard"), (int)(projectile.damage), 0f, projectile.owner, 0f, 0f);
+	            Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -9.2f, -3.8f, mod.ProjectileType("SpiderShard"), (int)(projectile.damage), 0f, projectile.owner, 0f, 0f);
 
 	        }
         }

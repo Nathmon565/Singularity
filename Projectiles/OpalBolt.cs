@@ -35,7 +35,7 @@ namespace Singularity.Projectiles {
 	        {
 	    	float speedX = Main.rand.NextFloat(-0.2f, 0.2f);
 	    	float speedY = Main.rand.NextFloat(-2f, -1f); 
-		    Projectile.NewProjectile(projectile.position.X, projectile.position.Y, speedX, speedY, mod.ProjectileType("OpalShard"), (int)(projectile.damage * 0.5), 0f, projectile.owner, 0f, 0f);
+		    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, speedX, speedY, mod.ProjectileType("OpalShard"), (int)(projectile.damage * 0.5), 0f, projectile.owner, 0f, 0f);
         	}
 			if (projectile.ai[0] >= 10f)
 			{
