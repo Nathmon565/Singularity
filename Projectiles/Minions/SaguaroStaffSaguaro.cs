@@ -25,7 +25,7 @@ namespace Singularity.Projectiles.Minions
 			projectile.scale = 1f;
 			projectile.friendly = true;
 			projectile.magic = true;
-			projectile.minion = true;
+			projectile.minion = false;
 			projectile.sentry = true; //Sets the weapon as a sentry for sentry accessories to properly work.
 			projectile.timeLeft = Projectile.SentryLifeTime;
 			projectile.ignoreWater = false; //If this is set to false, the projectile will be slowed in water.

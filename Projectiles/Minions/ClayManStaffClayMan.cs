@@ -46,7 +46,7 @@ namespace Singularity.Projectiles.Minions
 			projectile.minionSlots = 0.333f;
 			// Needed so the minion doesn't despawn on collision with enemies or tiles
 			projectile.penetrate = -1;
-			// aiType = ProjectileID.OneEyedPirate;
+			aiType = ProjectileID.OneEyedPirate;
 		}
 
 		// Here you can decide if your minion breaks things like grass or pots
