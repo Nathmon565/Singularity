@@ -46,7 +46,7 @@ namespace Singularity.Projectiles.Minions
 			projectile.minionSlots = 0.333f;
 			// Needed so the minion doesn't despawn on collision with enemies or tiles
 			projectile.penetrate = -1;
-			aiType = ProjectileID.OneEyedPirate;
+			// aiType = ProjectileID.OneEyedPirate;
 		}
 
 		// Here you can decide if your minion breaks things like grass or pots
@@ -221,19 +221,21 @@ namespace Singularity.Projectiles.Minions
 			*/
 			#region Animation and visuals
 			// So it will lean slightly towards the direction it's moving
-			projectile.rotation = projectile.velocity.X * 0.05f;
+			//projectile.rotation = projectile.velocity.X * 0.05f;
 
 			// This is a simple "loop through all frames from top to bottom" animation
-			int frameSpeed = 5;
+			int frameSpeed = 4;
 			projectile.frameCounter++;
+			if (projectile.velocity.X > 0){
 			if (projectile.frameCounter >= frameSpeed)
 			{
 				projectile.frameCounter = 0;
 				projectile.frame++;
-				if (projectile.frame >= Main.projFrames[projectile.type])
+				if (projectile.frame >= 4)
 				{
 					projectile.frame = 0;
 				}
+			}
 			}
 
 			// Some visuals here

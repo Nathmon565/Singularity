@@ -33,7 +33,7 @@ namespace Singularity.Projectiles {
 			for (int i = 0; i < 4; i++) {
 			float speedX = projectile.velocity.X * Main.rand.NextFloat(1.1f, 1.3f) + Main.rand.NextFloat(-0.9f, 0.9f);
 			float speedY = projectile.velocity.Y * Main.rand.NextFloat(1.1f, 1.3f) + Main.rand.NextFloat(-0.9f, 0.9f);
-	        Projectile.NewProjectile(projectile.position.X, projectile.position.Y, speedX, speedY, mod.ProjectileType("BloodstoneShard"), (int)(projectile.damage * 0.2), 0f, projectile.owner, 0f, 0f);
+	        Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, speedX, speedY, mod.ProjectileType("BloodstoneShard"), (int)(projectile.damage * 0.2), 0f, projectile.owner, 0f, 0f);
 	        }
 			projectile.Kill();
 		}
@@ -49,7 +49,7 @@ namespace Singularity.Projectiles {
 			speedY = -oldVelocity.Y;
 			speedX = projectile.velocity.X + Main.rand.NextFloat(-0.5f, 0.5f);
 			}
-	        Projectile.NewProjectile(projectile.position.X, projectile.position.Y, speedX, speedY, mod.ProjectileType("BloodstoneShard"), (int)(projectile.damage * 0.2), 0f, projectile.owner, 0f, 0f);
+	        Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, speedX, speedY, mod.ProjectileType("BloodstoneShard"), (int)(projectile.damage * 0.2), 0f, projectile.owner, 0f, 0f);
 	        }
 			projectile.Kill();
             return false;

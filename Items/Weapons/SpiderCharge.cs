@@ -5,7 +5,6 @@ using Terraria.ModLoader;
 namespace Singularity.Items.Weapons {
 	public class SpiderCharge : ModItem {
 		public override void SetStaticDefaults() {
-			Item.staff[item.type] = true;
 			DisplayName.SetDefault("Spider Bolt");
 		}
 
@@ -15,7 +14,7 @@ namespace Singularity.Items.Weapons {
 			item.mana = 12;
 			item.useTime = 28;
 			item.useAnimation = 28;
-			item.useStyle = 4;
+			item.useStyle = 5;
 			item.noMelee = true;
 			item.knockBack = 4.75f;
 			item.value = Singularity.ToCopper(0, 0, 30, 0);
@@ -25,7 +24,11 @@ namespace Singularity.Items.Weapons {
 			item.shoot = mod.ProjectileType("SpiderBolt");
 			item.shootSpeed = 8f;
 		}
-
+        public override void HoldItem(Player player)
+        {
+            player.itemLocation.Y = player.Center.Y;
+            player.itemLocation.X = player.Center.X;
+        }
 		public override void AddRecipes() {
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(ItemID.WaterBolt);
