@@ -30,16 +30,16 @@ namespace Singularity.Projectiles {
 			dust2.noGravity = true;
 			Lighting.AddLight(projectile.Center, 0.7f, 0.5f, 1f);			
 			projectile.ai[0] += 1f;
-			if (projectile.ai[0] >= 9f && projectile.ai[0] < 10f  && projectile.owner == Main.myPlayer)
+			if (projectile.ai[0] >= 19f && projectile.ai[0] < 20f  && projectile.owner == Main.myPlayer)
 	        for (int i = 0; i < 1; i++)
 	        {
 	    	float speedX = Main.rand.NextFloat(-0.2f, 0.2f);
 	    	float speedY = Main.rand.NextFloat(-2f, -1f); 
 		    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, speedX, speedY, mod.ProjectileType("OpalShard"), (int)(projectile.damage * 0.5), 0f, projectile.owner, 0f, 0f);
         	}
-			if (projectile.ai[0] >= 10f)
+			if (projectile.ai[0] >= 20f)
 			{
-			projectile.ai[0] = 0;
+			projectile.ai[0] = (Main.rand.Next(0, 19));
 			}
 		}
 		public override bool OnTileCollide(Vector2 oldVelocity) {

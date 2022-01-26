@@ -18,14 +18,14 @@ namespace Singularity.Projectiles {
 			projectile.height = 10;
 			projectile.tileCollide = false;
 		}
-		
+		private const float TrailDensity = 100;
 		public override void AI() {
-        	Vector2 dustPosition = projectile.Center + new Vector2(Main.rand.Next(-2, 2), Main.rand.Next(-2, 2));
-			Dust dust = Dust.NewDustPerfect(dustPosition, 115, null, 100, default(Color), 1f);
-			dust.velocity *= 0f;
+        	Vector2 dustPosition = projectile.Center + new Vector2(Main.rand.Next(-3, 3), Main.rand.Next(-3, 3));
+			Dust dust = Dust.NewDustPerfect(dustPosition, 27, null, 100, default(Color), 1f);
+			dust.velocity *= 0.1f;
 			dust.noGravity = true;
-        	Vector2 dustPosition2 = projectile.Center + new Vector2(Main.rand.Next(-2, 2), Main.rand.Next(-2, 2));
-			Dust dust2 = Dust.NewDustPerfect(dustPosition2, 130, null, 100, default(Color), 1f);
+        	Vector2 dustPosition2 = projectile.Center + new Vector2(Main.rand.Next(-3, 3), Main.rand.Next(-3, 3));
+			Dust dust2 = Dust.NewDustPerfect(dustPosition2, 6, null, 40, default(Color), 1f);
 			dust2.velocity = projectile.velocity * 0f;
 			dust2.noGravity = true;
        }
