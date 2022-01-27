@@ -3,6 +3,7 @@ using Terraria.ModLoader;
 using Terraria;
 using Singularity.Buffs;
 using Terraria.DataStructures;
+using Microsoft.Xna.Framework;
 
 namespace Singularity {
 	class Singularity : Mod {
@@ -16,15 +17,29 @@ namespace Singularity {
 
 	public class CoolModPlayer : ModPlayer {
 		public bool Jellybone;
+		public bool SkellyJellyNecklace;
 
 		public override void ResetEffects() {
 			Jellybone = false;
+			SkellyJellyNecklace = false;
 		}
 
 		public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit,
 			ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource) {
-			if(Jellybone) {
-				if (!player.HasBuff(ModContent.BuffType<JellyboneBuff>()))
+			if(Jellybone && SkellyJellyNecklace) {
+				if (!player.HasBuff(ModContent.BuffType<JellyboneBuff>()) && !player.HasBuff(ModContent.BuffType<ImprovedJellyboneBuff>()))
+				{
+					playSound = false;
+					player.immune = true;
+					//player.immuneAlpha = 0;
+					player.immuneTime = 450;
+					player.AddBuff(ModContent.BuffType<ImprovedJellyboneBuff>(), 2700);
+					Main.PlaySound(SoundID.NPCHit25);
+					return false;
+				}
+			}
+			else if(Jellybone || SkellyJellyNecklace) {
+				if (!player.HasBuff(ModContent.BuffType<JellyboneBuff>()) && !player.HasBuff(ModContent.BuffType<ImprovedJellyboneBuff>()))
 				{
 					playSound = false;
 					player.immune = true;
@@ -34,7 +49,7 @@ namespace Singularity {
 					Main.PlaySound(SoundID.NPCHit25);
 					return false;
 				}
-			}    
+			}  
 			return true;
 			}
 	}
@@ -81,6 +96,46 @@ namespace Singularity {
 					recipe.AddTile(TileID.Anvils);
 					recipe.SetResult(this);
 					recipe.AddRecipe();	
+				}
+			}
+		
+		internal class SkellyJellyNecklace : ModItem
+			{
+				public override void SetStaticDefaults()
+				{
+					DisplayName.SetDefault("Skelly-Jelly Necklace");
+					Tooltip.SetDefault("Provides light under water \n\nIncreases armor penetration by 5 \n\nBecome immune for one hit \n\nTakes 30 seconds to recharge");
+				}
+
+				public override void SetDefaults()
+				{
+					item.width = 24; 
+					item.height = 28;
+					item.value = Singularity.ToCopper(0, 1, 30, 0);
+					item.rare = 2;
+					item.accessory = true;
+				}
+
+				public override void UpdateAccessory(Player player, bool hideVisual)
+				{
+					player.GetModPlayer<CoolModPlayer>().SkellyJellyNecklace = true;
+					player.armorPenetration += 5;
+					void WaterCollision (bool fallThrough, bool ignorePlats)
+					{
+						Lighting.AddLight(player.Center, Color.Pink.ToVector3() * 0.78f);
+					}
+				}
+
+
+				public override void AddRecipes()
+				{
+					ModRecipe recipe = new ModRecipe(mod);
+					recipe.AddIngredient(ItemID.SharkToothNecklace, 1);
+					recipe.AddIngredient(ItemID.JellyfishNecklace, 1);
+					recipe.AddIngredient(null, "Jellybone", 1);
+					recipe.AddTile(TileID.TinkerersWorkbench);
+					recipe.SetResult(this);
+					recipe.AddRecipe();
 				}
 			}
 	}
