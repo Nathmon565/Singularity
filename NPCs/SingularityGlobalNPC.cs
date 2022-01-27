@@ -52,10 +52,9 @@ class SingularityGlobalNPC : GlobalNPC {
 		}
 		if(npc.type == NPCID.Demon) {
 			if (Main.rand.NextFloat() < 0.5f) { Item.NewItem(npc.getRect(), mod.ItemType("DemonBlood")); }
-
+		}
 		if(npc.type == NPCID.CursedSkull) {
 			if (Main.rand.NextFloat() < 0.0153f) { Item.NewItem(npc.getRect(), mod.ItemType("CursedTome")); }
 		}
 	}
-}
 }
