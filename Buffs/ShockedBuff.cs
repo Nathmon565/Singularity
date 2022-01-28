@@ -21,8 +21,14 @@ namespace Singularity.Buffs
 		public override void Update (NPC npc, ref int buffIndex)
 		{
 			if (npc.buffTime[buffIndex] > 0){
-				npc.noGravity = true;
-				npc.life -= 1;
+				//npc.noGravity = true;
+				npc.lifeRegen -= 48;
+				npc.defense /= 2;
+				Vector2 dustPosition = npc.Center + new Vector2(Main.rand.Next(-10, 10), Main.rand.Next(-10, 10));
+				Dust dust = Dust.NewDustPerfect(dustPosition, 185, null, 100, default(Color), 1.2f);
+				Dust dust2 = Dust.NewDustPerfect(dustPosition, 160, null, 100, default(Color), 1.2f);
+				dust.noGravity = true;
+				dust2.noGravity = true;
 			}
 		}
 	}
