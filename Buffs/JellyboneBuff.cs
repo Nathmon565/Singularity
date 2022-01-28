@@ -11,7 +11,7 @@ namespace Singularity.Buffs
 	{
 		public override void SetDefaults()
 		{
-			DisplayName.SetDefault("Shocked");
+			DisplayName.SetDefault("Jelly-Jammed");
 			Description.SetDefault("You must wait before you can become immune again");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = false;
@@ -31,11 +31,11 @@ namespace Singularity.Buffs
 		}
 	}
 
-	public class ImprovedJellyboneBuff : ModBuff
+	public class JellyboneBuff2 : ModBuff
 	{
 		public override void SetDefaults()
 		{
-			DisplayName.SetDefault("Shocked");
+			DisplayName.SetDefault("Jelly-Jammed");
 			Description.SetDefault("You must wait longer before you can become more immune again");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = false;
