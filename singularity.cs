@@ -104,7 +104,7 @@ namespace Singularity {
 				public override void SetStaticDefaults()
 				{
 					DisplayName.SetDefault("Skelly-Jelly Necklace");
-					Tooltip.SetDefault("Provides light under water \n\nIncreases armor penetration by 5 \n\nBecome immune for one hit \n\nTakes 30 seconds to recharge");
+					Tooltip.SetDefault("Generates a very subtle glow which becomes more vibrant underwater \n\nIncreases armor penetration by 5 \n\nBecome immune for one hit \n\nTakes 30 seconds to recharge");
 				}
 
 				public override void SetDefaults()
@@ -120,9 +120,9 @@ namespace Singularity {
 				{
 					player.GetModPlayer<CoolModPlayer>().SkellyJellyNecklace = true;
 					player.armorPenetration += 5;
-					void WaterCollision (bool fallThrough, bool ignorePlats)
-					{
-						Lighting.AddLight(player.Center, Color.Pink.ToVector3() * 0.78f);
+					Lighting.AddLight(player.position, 0.3f, 0.1f, 0.1f);
+					if (player.wet) {
+					Lighting.AddLight(player.position, 1.2f, 0.8f, 0.8f);
 					}
 				}
 

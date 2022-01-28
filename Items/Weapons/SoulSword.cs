@@ -6,6 +6,7 @@ namespace Singularity.Items.Weapons {
 	public class SoulSword : ModItem {
 		public override void SetStaticDefaults() {
 			Tooltip.SetDefault("The soul's ideal blade.");  //The (English) text shown below your weapon's name
+			Item.staff[item.type] = true;
 		}
 
 		public override void SetDefaults() {
@@ -13,7 +14,7 @@ namespace Singularity.Items.Weapons {
 			item.melee = true;
 			item.width = 40;
 			item.height = 40;
-			item.useTime = 25; 
+			item.useTime = 10; 
 			item.useAnimation = 25;
 			item.knockBack = 6;
 			item.value = Singularity.ToCopper(0, 0, 30, 0); 
@@ -21,9 +22,9 @@ namespace Singularity.Items.Weapons {
 			item.UseSound = SoundID.Item1; 
 			item.autoReuse = true;
 			item.crit = 6;
-            item.useStyle = ItemUseStyleID.SwingThrow; 
+            item.useStyle = 5; 
             item.shoot = 660;
-			item.shootSpeed = 12f;
+			item.shootSpeed = 24f;
 		}
 
 		public override void AddRecipes() {
