@@ -103,17 +103,17 @@ namespace Singularity {
 				{
 					ModRecipe recipe = new ModRecipe(mod);
 					recipe.AddIngredient(ItemID.BlueJellyfish, 1);
-					recipe.AddIngredient(ItemID.Bone, 50);
+					recipe.AddIngredient(ItemID.Bone, 40);
 					recipe.AddTile(TileID.Anvils);
 					recipe.SetResult(this);
 					recipe.AddRecipe();
 					recipe.AddIngredient(ItemID.PinkJellyfish, 1);
-					recipe.AddIngredient(ItemID.Bone, 50);
+					recipe.AddIngredient(ItemID.Bone, 40);
 					recipe.AddTile(TileID.Anvils);
 					recipe.SetResult(this);
 					recipe.AddRecipe();
 					recipe.AddIngredient(ItemID.GreenJellyfish, 1);
-					recipe.AddIngredient(ItemID.Bone, 50);
+					recipe.AddIngredient(ItemID.Bone, 40);
 					recipe.AddTile(TileID.Anvils);
 					recipe.SetResult(this);
 					recipe.AddRecipe();	

@@ -6,15 +6,16 @@ using Terraria.ModLoader;
 
 namespace Singularity.Items.Weapons
 {
-	public class Crossbow : ModItem
+	public class MarksmansCrossbow : ModItem
 	{
 		public override void SetStaticDefaults() {
-			Tooltip.SetDefault("This might take a second.");
+			DisplayName.SetDefault("Marksman's Crossbow");
+			Tooltip.SetDefault("Nothing gets past my crossbow.");
 		}
 
 		public override void SetDefaults() {
-			item.damage = 24; // Sets the item's damage. Note that projectiles shot by this weapon will use its and the used ammunition's damage added together.
-			item.crit = 16;
+			item.damage = 240; // Sets the item's damage. Note that projectiles shot by this weapon will use its and the used ammunition's damage added together.
+			item.crit = 36;
 			item.ranged = true; // sets the damage type to ranged
 			item.width = 40; // hitbox width of the item
 			item.height = 20; // hitbox height of the item
@@ -23,13 +24,13 @@ namespace Singularity.Items.Weapons
 			//item.holdStyle = 1;
 			item.useStyle = ItemUseStyleID.HoldingOut; // how you use the item (swinging, holding out, etc)
 			item.noMelee = true; //so the item's animation doesn't do damage
-			item.knockBack = 4; // Sets the item's knockback. Note that projectiles shot by this weapon will use its and the used ammunition's knockback added together.
-			item.value = 50; // how much the item sells for (measured in copper)
-			item.rare = ItemRarityID.White; // the color that the item's name will be in-game
+			item.knockBack = 10; // Sets the item's knockback. Note that projectiles shot by this weapon will use its and the used ammunition's knockback added together.
+			item.value = 5000; // how much the item sells for (measured in copper)
+			item.rare = ItemRarityID.Green; // the color that the item's name will be in-game
 			//item.UseSound = SoundID.Item5; // The sound that this item plays when used.
 			item.autoReuse = true; // if you can hold click to automatically use it again
 			item.shoot = 10; //idk why but all the guns in the vanilla source have this
-			item.shootSpeed = 16f; // the speed of the projectile (measured in pixels per frame)
+			item.shootSpeed = 1000f; // the speed of the projectile (measured in pixels per frame)
 			item.useAmmo = AmmoID.Arrow; // The "ammo Id" of the ammo item that this weapon uses. Note that this is not an item Id, but just a magic value.
 			item.channel = true;
 		}
@@ -37,7 +38,7 @@ namespace Singularity.Items.Weapons
 		public float timer = 0;
 
 		public override bool ConsumeAmmo (Player player){
-			if (timer != 58){
+			if (timer != 178){
 				return false;
 			}
 			else{
@@ -48,19 +49,19 @@ namespace Singularity.Items.Weapons
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack){
 			//item.useAmmo = AmmoID.Arrow;
 			timer ++;
-            if (timer < 58){
+            if (timer < 177){
 				item.autoReuse = true;
 				//item.useAmmo = AmmoID.None;
 			}
-			if (timer == 58){
+			if (timer == 178){
 				item.UseSound = SoundID.Item17;
 			}
-			if (timer == 59){
+			if (timer == 179){
 				item.UseSound = SoundID.Item5;
 				//item.useAmmo = AmmoID.Arrow;
 				item.autoReuse = false;
 			}
-			if (timer >= 60){
+			if (timer >= 180){
 				timer = 0;
 				item.UseSound = null;
 				return true;
@@ -71,9 +72,10 @@ namespace Singularity.Items.Weapons
 		public override void AddRecipes()
 				{
 					ModRecipe recipe = new ModRecipe(mod);
-					recipe.AddIngredient(ItemID.Wood, 12);
+					recipe.AddIngredient(ItemID.IllegalGunParts, 1);
+					recipe.AddIngredient(ItemID.FlintlockPistol, 1);
 					recipe.AddIngredient(ItemID.WhiteString, 1);
-					recipe.AddTile(TileID.WorkBenches);
+					recipe.AddTile(TileID.Anvils);
 					recipe.SetResult(this);
 					recipe.AddRecipe();
 				}
