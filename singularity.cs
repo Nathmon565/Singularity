@@ -19,11 +19,14 @@ namespace Singularity {
 		public bool Jellybone;
 		public bool SkellyJellyNecklace;
 		public bool VialofLightning;
+		public bool ChlorophyteHeart;
+		public bool ChlorophyteHeartActive;
 
 		public override void ResetEffects() {
 			Jellybone = false;
 			SkellyJellyNecklace = false;
 			VialofLightning = false;
+			ChlorophyteHeart = false;
 		}
 
 		public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit,
@@ -57,7 +60,13 @@ namespace Singularity {
 
 		public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore,
             ref PlayerDeathReason damageSource) {
-            
+            if (player.statLife == 0 && ChlorophyteHeart && ChlorophyteHeartActive){
+				ChlorophyteHeartActive = false;
+				player.statLife = player.statLifeMax;
+				playSound = false;
+				return false;
+			}
+			playSound = true;
 			return true;
 			}
 		
@@ -178,6 +187,49 @@ namespace Singularity {
 				public override void UpdateAccessory(Player player, bool hideVisual)
 				{
 					player.GetModPlayer<CoolModPlayer>().VialofLightning = true;
+				}
+			}
+		
+		internal class ChlorophyteHeart : ModItem
+			{
+				public override void SetStaticDefaults()
+				{
+					DisplayName.SetDefault("Chlorophyte Heart");
+					Tooltip.SetDefault("Heals you back to full upon death. Once.");
+				}
+
+				public override void SetDefaults()
+				{
+					item.width = 24; 
+					item.height = 28;
+					item.color = Color.Green;
+					item.value = Singularity.ToCopper(0, 10, 0, 0);
+					item.rare = 8;
+					item.accessory = true;
+				}
+				
+				public int nomber = 10;
+				public override void UpdateAccessory(Player player, bool hideVisual)
+				{
+					player.GetModPlayer<CoolModPlayer>().ChlorophyteHeart = true;
+					if (nomber == 10){
+						player.GetModPlayer<CoolModPlayer>().ChlorophyteHeartActive = true;
+						nomber = 1;
+					}
+				}
+				public override void UpdateEquip (Player player){
+					if (player.GetModPlayer<CoolModPlayer>().ChlorophyteHeartActive == false){
+						item.color = Color.Gray;
+					}	
+				}
+				public override void AddRecipes()
+				{
+					ModRecipe recipe = new ModRecipe(mod);
+					recipe.AddIngredient(ItemID.LifeFruit, 1);
+					recipe.AddIngredient(null, "ChlorophyteSoul", 1);
+					recipe.AddTile(TileID.LihzahrdAltar);
+					recipe.SetResult(this);
+					recipe.AddRecipe();
 				}
 			}
 	}

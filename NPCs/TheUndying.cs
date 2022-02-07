@@ -14,17 +14,17 @@ namespace Singularity.NPCs
 		public override void SetDefaults() {
 			npc.width = 18;
 			npc.height = 40;
-			npc.damage = 40;
+			npc.damage = 60;
 			npc.defense = 20;
 			npc.lifeMax = 10000;
 			npc.HitSound = SoundID.NPCHit1;
 			npc.DeathSound = SoundID.NPCDeath2;
 			npc.value = 60f;
-			npc.knockBackResist = 0.5f;
+			npc.knockBackResist = 0.1f;
 			npc.aiStyle = 3;
 			npc.scale = 2;
-			npc.ai[3] = 1f;
-			//aiType = NPCID.Zombie;
+			npc.ai[0] = 1f;
+			aiType = NPCID.AngryBonesBig;
 			animationType = NPCID.Zombie;
 			banner = Item.NPCtoBanner(NPCID.Zombie);
 			bannerItem = Item.BannerToItem(banner);
@@ -39,19 +39,23 @@ namespace Singularity.NPCs
 				return 0;
 			}
 		}
-
+		
 		public override bool CheckDead(){
-			if (npc.ai[3] != 4f) {
-				npc.ai[3] += 1;
-				npc.damage += npc.damage/2;
+			if (npc.ai[0] != 2f) {
+				npc.ai[0] += 1;
+				npc.damage += npc.damage/4;
 				npc.lifeMax /= 2;
 				npc.life = npc.lifeMax;
+				npc.scale *= 0.75f;
+				npc.width -= 4;
+				npc.height -= 10;
 				return false;
 			}
-			else
+			if (npc.scale <= 1.125)
 			{
 				return true;
 			}
+			return true;
 		}
 
 		public override void HitEffect(int hitDirection, double damage) {
