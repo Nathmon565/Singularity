@@ -22,11 +22,20 @@ namespace Singularity.Items.Weapons {
 			item.value = Singularity.ToCopper(0, 0, 30, 0); 
 			item.rare = ItemRarityID.Blue; 
 			item.UseSound = SoundID.Item1; 
-			item.autoReuse = false;
+			item.autoReuse = true;
 			item.crit = 0;
             item.useStyle = ItemUseStyleID.SwingThrow; 
 			item.shoot = mod.ProjectileType("ReflectionProjectileSpawner");
-			item.shootSpeed = 0f;
+			item.shootSpeed = 12f;
+		}
+		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack) {
+			int numberProjectiles = 1;
+			for (int i = 0; i < numberProjectiles; i++) {
+				Vector2 perturbedSpeed = new Vector2(speedX, speedY); // 30 degree spread.
+				Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockBack, player.whoAmI);
+				Projectile.NewProjectile(position.X, position.Y, -perturbedSpeed.X, -perturbedSpeed.Y, type, damage, knockBack, player.whoAmI);
+			}
+			return false;
 		}
 		
 		public override void AddRecipes() {
