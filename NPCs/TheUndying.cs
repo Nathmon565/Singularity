@@ -20,14 +20,16 @@ namespace Singularity.NPCs
 			npc.HitSound = SoundID.NPCHit1;
 			npc.DeathSound = SoundID.NPCDeath2;
 			npc.value = 60f;
-			npc.knockBackResist = 0.1f;
-			npc.aiStyle = 3;
+			npc.knockBackResist = 0.05f;
+			npc.aiStyle = 22;
 			npc.scale = 2;
-			npc.ai[0] = 1f;
-			aiType = NPCID.AngryBonesBig;
-			animationType = NPCID.Zombie;
-			banner = Item.NPCtoBanner(NPCID.Zombie);
+			//npc.ai[0] = 1f;
+			aiType = NPCID.Wraith;
+			animationType = NPCID.Wraith;
+			banner = Item.NPCtoBanner(NPCID.Wraith);
 			bannerItem = Item.BannerToItem(banner);
+			npc.noTileCollide = true;
+			npc.noGravity = true;
 		}
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo) {
@@ -41,8 +43,8 @@ namespace Singularity.NPCs
 		}
 		
 		public override bool CheckDead(){
-			if (npc.ai[0] != 2f) {
-				npc.ai[0] += 1;
+			if (npc.lifeMax > 5000 & Main.expertMode) {
+				//npc.ai[0] += 1;
 				npc.damage += npc.damage/4;
 				npc.lifeMax /= 2;
 				npc.life = npc.lifeMax;
@@ -51,7 +53,21 @@ namespace Singularity.NPCs
 				npc.height -= 10;
 				return false;
 			}
-			if (npc.scale <= 1.125)
+			if (npc.lifeMax > 2500 & !Main.expertMode) {
+				//npc.ai[0] += 1;
+				npc.damage += npc.damage/4;
+				npc.lifeMax /= 2;
+				npc.life = npc.lifeMax;
+				npc.scale *= 0.75f;
+				npc.width -= 4;
+				npc.height -= 10;
+				return false;
+			}
+			if (npc.lifeMax <= 5000 && Main.expertMode)
+			{
+				return true;
+			}
+			if (npc.lifeMax <= 2500 && !Main.expertMode)
 			{
 				return true;
 			}

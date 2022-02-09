@@ -39,5 +39,14 @@ namespace Singularity.Items.Accessories
         {
 			
         }
+
+		public override void AddRecipes() {
+			ModRecipe recipe = new ModRecipe(mod);
+			recipe.AddIngredient(ItemID.Glass, 40);
+			recipe.AddIngredient(ItemID.HellstoneBar, 8);
+			recipe.AddTile(TileID.GlassKiln);
+			recipe.SetResult(this);
+			recipe.AddRecipe();
+		}
 	}
 }

@@ -66,8 +66,6 @@ namespace Singularity.NPCs
 		public override void SetupShop (Chest shop, ref int nextSlot){
 				shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.PharmakonBrew>());
 				nextSlot++;
-				shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Accessories.CursedTome>());
-				nextSlot++;
 		}
 	}
 }

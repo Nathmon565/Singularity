@@ -244,7 +244,7 @@ namespace Singularity {
 					item.width = 24; 
 					item.height = 28;
 					item.color = Color.Green;
-					item.value = Singularity.ToCopper(0, 10, 0, 0);
+					item.value = Singularity.ToCopper(0, 1, 0, 0);
 					item.rare = 8;
 					item.accessory = true;
 				}
@@ -257,11 +257,26 @@ namespace Singularity {
 						player.GetModPlayer<CoolModPlayer>().ChlorophyteHeartActive = true;
 						nomber = 1;
 					}
+					if (player.GetModPlayer<CoolModPlayer>().ChlorophyteHeartActive == false){
+						for (int i=3; i < 10; i++){
+							if (player.armor[i].Name == "Chlorophyte Heart")
+							{
+								player.armor[i].TurnToAir();
+								break;
+							}
+						}
+					}	
 				}
 				public override void UpdateEquip (Player player){
-					if (player.GetModPlayer<CoolModPlayer>().ChlorophyteHeartActive == false){
-						item.color = Color.Gray;
-					}	
+					/*if (player.GetModPlayer<CoolModPlayer>().ChlorophyteHeartActive == false){
+						for (int i=3; i < 10; i++){
+							if (!player.armor[i].IsAir)
+							{
+								player.armor[i].TurnToAir();
+								break;
+							}
+						}
+					}*/	
 				}
 				public override void AddRecipes()
 				{
