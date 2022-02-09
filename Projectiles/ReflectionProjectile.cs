@@ -1,3 +1,4 @@
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,12 +12,12 @@ namespace Singularity.Projectiles {
 		public override void SetDefaults() {
 			projectile.alpha = 255;
 			projectile.friendly = true;
+			projectile.penetrate = 3;			
 			projectile.width = 60;
 			projectile.height = 60;
 			projectile.scale = 0.83f;
 			projectile.timeLeft = 80;
 			projectile.knockBack = 0f;
-			projectile.penetrate = -20;
 			projectile.tileCollide = false;
 		}
 
@@ -28,17 +29,17 @@ namespace Singularity.Projectiles {
 				projectile.alpha -= 1;
 			}
 			if (projectile.ai[0] > 10f && projectile.ai[0] <= 20f) {
-				projectile.rotation -= 0.1f * (float)projectile.direction;
+				projectile.rotation -= 0.05f * (float)projectile.direction;
 			}
-			if (projectile.ai[0] > 30f) {
-				projectile.rotation += 0.2f * (float)projectile.direction;
-				}
 			if (projectile.ai[0] > 40f) {
+				projectile.rotation += 0.2f * (float)projectile.direction;
+			}
+			if (projectile.ai[0] > 65f) {
 				// Fade out
 				projectile.alpha += 1;
-				if (projectile.alpha > 255) {
-					projectile.alpha = 255;
-				}
+			if (projectile.alpha > 255) {
+				projectile.alpha = 255;
+			}
 			}
 		}
 	}

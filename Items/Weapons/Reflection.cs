@@ -12,12 +12,12 @@ namespace Singularity.Items.Weapons {
 		}
 
 		public override void SetDefaults() {
-            item.damage = 22; 
+            item.damage = 62; 
 			item.melee = true;
 			item.width = 20;
 			item.height = 20;
-			item.useTime = 25; 
-			item.useAnimation = 25;
+			item.useTime = 30; 
+			item.useAnimation = 30;
 			item.knockBack = 6;
 			item.value = Singularity.ToCopper(0, 0, 30, 0); 
 			item.rare = ItemRarityID.Blue; 
@@ -39,27 +39,34 @@ namespace Singularity.Items.Weapons {
 		}
 		
 		public override void AddRecipes() {
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.MagicMirror, 1);
-			recipe.AddIngredient(ItemID.DemoniteBar, 12);
-			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
-			recipe.AddIngredient(ItemID.MagicMirror, 1);
-			recipe.AddIngredient(ItemID.CrimtaneBar, 12);
-			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
-			recipe.AddIngredient(ItemID.IceMirror, 1);
-			recipe.AddIngredient(ItemID.DemoniteBar, 12);
-			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
-			recipe.AddIngredient(ItemID.IceMirror, 1);
-			recipe.AddIngredient(ItemID.CrimtaneBar, 12);
-			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			ModRecipe reflection = new ModRecipe(mod);
+			reflection.AddIngredient(ItemID.HallowedBar, 16);
+			reflection.AddIngredient(ItemID.CrystalShard, 12);
+			reflection.AddIngredient(ItemID.MagicMirror, 1);
+			reflection.AddTile(TileID.Anvils);
+			reflection.SetResult(this);
+			reflection.AddRecipe();
+			ModRecipe reflection2 = new ModRecipe(mod);
+			reflection2.AddIngredient(ItemID.HallowedBar, 16);
+			reflection2.AddIngredient(ItemID.CrystalShard, 12);
+			reflection2.AddIngredient(ItemID.IceMirror, 1);
+			reflection2.AddTile(TileID.Anvils);
+			reflection2.SetResult(this);
+			reflection2.AddRecipe();
+			ModRecipe MagicMirror = new ModRecipe(mod);
+			MagicMirror.AddIngredient(null, "EnchantedBar", 10);
+			MagicMirror.AddIngredient(ItemID.Glass, 25);
+			MagicMirror.AddIngredient(ItemID.RecallPotion, 5);
+			MagicMirror.AddTile(TileID.Anvils);
+			MagicMirror.SetResult(ItemID.MagicMirror);
+			MagicMirror.AddRecipe();
+			ModRecipe IceMirror = new ModRecipe(mod);
+			IceMirror.AddIngredient(null, "GlacialBar", 10);
+			IceMirror.AddIngredient(ItemID.Glass, 25);
+			IceMirror.AddIngredient(ItemID.RecallPotion, 5);
+			IceMirror.AddTile(TileID.Anvils);
+			IceMirror.SetResult(ItemID.IceMirror);
+			IceMirror.AddRecipe();
 		}
 	}
 }

@@ -21,12 +21,14 @@ namespace Singularity {
 		public bool VialofLightning;
 		public bool ChlorophyteHeart;
 		public bool ChlorophyteHeartActive;
+		public bool Ukulele;
 
 		public override void ResetEffects() {
 			Jellybone = false;
 			SkellyJellyNecklace = false;
 			VialofLightning = false;
 			ChlorophyteHeart = false;
+			Ukulele = false;
 		}
 
 		public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit,
@@ -73,13 +75,31 @@ namespace Singularity {
 		public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit) {
 			if(VialofLightning)
 			{
-				target.AddBuff(ModContent.BuffType<ShockedBuff>(), 120);
+				target.AddBuff(ModContent.BuffType<ShockedBuff>(), 60);
+			}
+			if(Ukulele)
+			{
+				target.AddBuff(ModContent.BuffType<ShockedBuff>(), 60);
+				if (Main.rand.Next(6) == 0){
+					float posX = target.Center.X;
+					float posY = target.Center.Y;
+					Projectile.NewProjectile(posX, posY, Main.rand.NextFloat(-10f, 10f), Main.rand.NextFloat(-14f, -14f), mod.ProjectileType("UkuleleBolt"), 30, 1f, player.whoAmI, 0f, 0f);
+				}
 			}
 		}
 		public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit) {
 			if(VialofLightning)
 			{
 				target.AddBuff(ModContent.BuffType<ShockedBuff>(), 120);
+			}
+			if(Ukulele)
+			{
+				target.AddBuff(ModContent.BuffType<ShockedBuff>(), 120);
+				if (Main.rand.Next(3) == 0){
+					float posX = target.Center.X;
+					float posY = target.Center.Y;
+					Projectile.NewProjectile(posX, posY, Main.rand.NextFloat(-10f, 10f), Main.rand.NextFloat(-14f, -14f), mod.ProjectileType("UkuleleBolt"), 30, 1f, player.whoAmI, 0f, 0f);
+				}
 			}
 		}
 	}
@@ -187,6 +207,27 @@ namespace Singularity {
 				public override void UpdateAccessory(Player player, bool hideVisual)
 				{
 					player.GetModPlayer<CoolModPlayer>().VialofLightning = true;
+				}
+			}
+		internal class Ukulele : ModItem
+			{
+				public override void SetStaticDefaults()
+				{
+					DisplayName.SetDefault("Ukulele");
+					Tooltip.SetDefault("...and his music was electric.");
+				}
+
+				public override void SetDefaults()
+				{
+					item.width = 24; 
+					item.height = 28;
+					item.value = Singularity.ToCopper(0, 2, 0, 0);
+					item.rare = 8;
+					item.accessory = true;
+				}
+				public override void UpdateAccessory(Player player, bool hideVisual)
+				{
+					player.GetModPlayer<CoolModPlayer>().Ukulele = true;
 				}
 			}
 		

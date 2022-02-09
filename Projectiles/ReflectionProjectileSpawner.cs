@@ -10,7 +10,7 @@ namespace Singularity.Projectiles {
 
 		public override void SetDefaults() {
 			projectile.alpha = 255;
-			projectile.timeLeft = 21;
+			projectile.timeLeft = 25;
 			projectile.knockBack = 0f;
 			projectile.tileCollide = false;
 		}
@@ -21,17 +21,20 @@ namespace Singularity.Projectiles {
 			float posY = projectile.Center.Y;
 			projectile.ai[0] += 1f;
 			for (int timer=0;timer<22;timer++){
-				if (projectile.ai[0] == 6){
+				if (projectile.ai[0] == 5){
+					Projectile.NewProjectile(posX, posY, projectile.velocity.X * 0.01f, 0, mod.ProjectileType("ReflectionProjectile"), projectile.damage/3, projectile.knockBack * 0.3f, projectile.owner);
+				}
+				if (projectile.ai[0] == 10){
+					Projectile.NewProjectile(posX, posY, projectile.velocity.X * 0.01f, 0, mod.ProjectileType("ReflectionProjectile"), projectile.damage/3, projectile.knockBack * 0.3f, projectile.owner);
+				}
+				if (projectile.ai[0] == 15){
 					Projectile.NewProjectile(posX, posY, projectile.velocity.X * 0.01f, 0, mod.ProjectileType("ReflectionProjectile"), projectile.damage/2, projectile.knockBack * 0.3f, projectile.owner);
 				}
-				if (projectile.ai[0] == 11){
-					Projectile.NewProjectile(posX, posY, projectile.velocity.X * 0.01f, 0, mod.ProjectileType("ReflectionProjectile"), projectile.damage/2, projectile.knockBack * 0.3f, projectile.owner);
+				if (projectile.ai[0] == 20){
+					Projectile.NewProjectile(posX, posY, projectile.velocity.X * 0.01f, 0, mod.ProjectileType("ReflectionProjectile"), projectile.damage, projectile.knockBack * 0.3f, projectile.owner);
 				}
-				if (projectile.ai[0] == 16){
-					Projectile.NewProjectile(posX, posY, projectile.velocity.X * 0.01f, 0, mod.ProjectileType("ReflectionProjectile"), projectile.damage/2, projectile.knockBack * 0.3f, projectile.owner);
-				}
-				if (projectile.ai[0] == 21){
-					Projectile.NewProjectile(posX, posY, projectile.velocity.X * 0.01f, 0, mod.ProjectileType("ReflectionProjectile"), projectile.damage/2, projectile.knockBack * 0.3f, projectile.owner);
+				if (projectile.ai[0] == 25){
+					Projectile.NewProjectile(posX, posY, projectile.velocity.X * 0.01f, 0, mod.ProjectileType("ReflectionProjectile"), projectile.damage, projectile.knockBack * 0.3f, projectile.owner);
 				}
 			}			
 		}

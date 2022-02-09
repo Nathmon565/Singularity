@@ -14,8 +14,8 @@ namespace Singularity.Projectiles {
 			projectile.timeLeft = 12;
 			projectile.aiStyle = 29;
 			projectile.alpha = 255;
-			projectile.width = 10;
-			projectile.height = 10;
+			projectile.width = 16;
+			projectile.height = 16;
 			projectile.tileCollide = false;
 		}
 		private const float TrailDensity = 100;
