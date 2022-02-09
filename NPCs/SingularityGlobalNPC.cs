@@ -60,7 +60,7 @@ class SingularityGlobalNPC : GlobalNPC {
 			if (Main.rand.NextFloat() < 0.02f) { Item.NewItem(npc.getRect(), mod.ItemType("VialofLightning")); }
 		}
 		if(npc.type == mod.NPCType("TheUndying")) {
-			if (Main.rand.NextFloat() < 0.1f) { Item.NewItem(npc.getRect(), mod.ItemType("ChlorophyteSoul")); }
+			if (Main.rand.NextFloat() < 0.5f) { Item.NewItem(npc.getRect(), mod.ItemType("ChlorophyteSoul")); }
 		}
 	}
 }

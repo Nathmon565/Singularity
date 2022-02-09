@@ -243,7 +243,6 @@ namespace Singularity {
 				{
 					item.width = 24; 
 					item.height = 28;
-					item.color = Color.Green;
 					item.value = Singularity.ToCopper(0, 1, 0, 0);
 					item.rare = 8;
 					item.accessory = true;

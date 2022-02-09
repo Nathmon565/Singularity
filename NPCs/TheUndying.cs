@@ -8,7 +8,7 @@ namespace Singularity.NPCs
 	{
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("The Undying");
-			Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Zombie];
+			Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Wraith];
 		}
 
 		public override void SetDefaults() {

@@ -14,18 +14,17 @@ public override void SetStaticDefaults() {
 			projectile.friendly = true;
 			projectile.damage = 30;
 			projectile.ranged = true;
-			projectile.penetrate = 3;
+			projectile.penetrate = 2;
 			projectile.timeLeft = 120;
-			projectile.aiStyle = 29;
+			projectile.aiStyle = 0;
 			projectile.alpha = 255;
 			projectile.width = 16;
 			projectile.height = 16;
 			projectile.tileCollide = false;
-
 		}
 		private const float TrailDensity = 4;
 		public override void AI() {
-        	Vector2 dustPosition2 = projectile.Center;
+			Vector2 dustPosition2 = projectile.Center;
 			Dust dust2 = Dust.NewDustPerfect(dustPosition2, 133, null, 40, default(Color), 1f);
 			dust2.velocity = projectile.velocity * 0f;
 			dust2.noGravity = true;
