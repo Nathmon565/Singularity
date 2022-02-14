@@ -12,7 +12,7 @@ namespace Singularity.Items.Accessories
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cursed Tome");
-			Tooltip.SetDefault("Increases your max number of minions by 1 \n\nIncreases the damage and knockback of your minions \n\nNegates 6 defense");
+			Tooltip.SetDefault("Increases your max number of minions by 1 \nIncreases the damage and knockback of your minions \nNegates 6 defense");
 		}
 		
 		public override void SetDefaults()

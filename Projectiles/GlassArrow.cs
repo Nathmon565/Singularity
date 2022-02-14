@@ -31,20 +31,31 @@ namespace Singularity.Projectiles {
 			aiType = ProjectileID.WoodenArrowFriendly;           //Act exactly like default Bullet
 		}
 		
+		public bool hitEnemy = true;
 		public override bool OnTileCollide(Vector2 oldVelocity) {
+			hitEnemy = false;
 			return true;
 		}
-		
-		public override void Kill(int timeLeft){
-			float speedY = Main.rand.NextFloat(projectile.velocity.Y/2 -5f,projectile.velocity.Y/2 +5f);
-				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X/2f, speedY, mod.ProjectileType("GlassShard"), (int)(projectile.damage), 0f, projectile.owner);
-				speedY = Main.rand.NextFloat(projectile.velocity.Y/2 -5f,projectile.velocity.Y/2 +5f);
-				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X/2f, speedY, mod.ProjectileType("GlassShard"), (int)(projectile.damage), 0f, projectile.owner);
-				speedY = Main.rand.NextFloat(projectile.velocity.Y/2 -5f,projectile.velocity.Y/2 +5f);
-				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X/2f, speedY, mod.ProjectileType("GlassShard"), (int)(projectile.damage), 0f, projectile.owner);
-				speedY = Main.rand.NextFloat(projectile.velocity.Y/2 -5f,projectile.velocity.Y/2 +5f);
-				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X/2f, speedY, mod.ProjectileType("GlassShard"), (int)(projectile.damage), 0f, projectile.owner);
+		public override void OnHitNPC (NPC target, int damage, float knockback, bool crit){
+			hitEnemy = true;
 		}
-		
+		public override void Kill(int timeLeft){
+			Main.PlaySound(new Terraria.Audio.LegacySoundStyle(13, 0).WithVolume(.25f), projectile.Center);
+			if (hitEnemy == true){	
+				float speedY = Main.rand.NextFloat(projectile.velocity.Y/2 -5f,projectile.velocity.Y/2 +5f);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X/2f, speedY, mod.ProjectileType("GlassShard"), (int)(projectile.damage/2), 0f, projectile.owner);
+				speedY = Main.rand.NextFloat(projectile.velocity.Y/2 -5f,projectile.velocity.Y/2 +5f);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X/2f, speedY, mod.ProjectileType("GlassShard"), (int)(projectile.damage/2), 0f, projectile.owner);
+				speedY = Main.rand.NextFloat(projectile.velocity.Y/2 -5f,projectile.velocity.Y/2 +5f);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X/2f, speedY, mod.ProjectileType("GlassShard"), (int)(projectile.damage/2), 0f, projectile.owner);
+				speedY = Main.rand.NextFloat(projectile.velocity.Y/2 -5f,projectile.velocity.Y/2 +5f);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X/2f, speedY, mod.ProjectileType("GlassShard"), (int)(projectile.damage/2), 0f, projectile.owner);
+				speedY = Main.rand.NextFloat(projectile.velocity.Y/2 -5f,projectile.velocity.Y/2 +5f);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X/2f, speedY, mod.ProjectileType("GlassShard"), (int)(projectile.damage/2), 0f, projectile.owner);
+				speedY = Main.rand.NextFloat(projectile.velocity.Y/2 -5f,projectile.velocity.Y/2 +5f);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X/2f, speedY, mod.ProjectileType("GlassShard"), (int)(projectile.damage/2), 0f, projectile.owner);
+				hitEnemy = false;
+			}
+		}
 	}
 }

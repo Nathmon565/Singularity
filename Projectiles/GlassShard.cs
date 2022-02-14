@@ -11,11 +11,12 @@ namespace Singularity.Projectiles {
 			projectile.friendly = true;
 			projectile.ranged = true;
 			projectile.penetrate = 3;
-			projectile.timeLeft = 15;
+			projectile.timeLeft = 20;
 			projectile.aiStyle = 0;
 			projectile.alpha = 0;
-			projectile.width = 6;
-			projectile.height = 6;
+			projectile.width = 3;
+			projectile.height = 3;
+			projectile.scale *= 0.5f;
 		}
 		public override bool OnTileCollide(Vector2 oldVelocity) {
             projectile.Kill();

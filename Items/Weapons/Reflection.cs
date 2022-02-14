@@ -55,14 +55,14 @@ namespace Singularity.Items.Weapons {
 			reflection2.AddRecipe();
 			ModRecipe MagicMirror = new ModRecipe(mod);
 			MagicMirror.AddIngredient(null, "EnchantedBar", 10);
-			MagicMirror.AddIngredient(ItemID.Glass, 25);
+			MagicMirror.AddIngredient(null, "ReinforcedGlass", 10);
 			MagicMirror.AddIngredient(ItemID.RecallPotion, 5);
 			MagicMirror.AddTile(TileID.Anvils);
 			MagicMirror.SetResult(ItemID.MagicMirror);
 			MagicMirror.AddRecipe();
 			ModRecipe IceMirror = new ModRecipe(mod);
 			IceMirror.AddIngredient(null, "GlacialBar", 10);
-			IceMirror.AddIngredient(ItemID.Glass, 25);
+			IceMirror.AddIngredient(null, "ReinforcedGlass", 10);
 			IceMirror.AddIngredient(ItemID.RecallPotion, 5);
 			IceMirror.AddTile(TileID.Anvils);
 			IceMirror.SetResult(ItemID.IceMirror);

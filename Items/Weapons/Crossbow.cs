@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Singularity.Items.Weapons
+/*namespace Singularity.Items.Weapons
 {
 	public class Crossbow : ModItem
 	{
@@ -35,20 +35,21 @@ namespace Singularity.Items.Weapons
 		}
         
 		public float timer = 0;
-
 		public override bool ConsumeAmmo (Player player){
 			if (timer != 58){
-				return false;
+			return false;
 			}
 			else{
-				return true;
+			return true;
 			}
 		}
 
+		public override void HoldItem (Player player){
+			
+		}
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack){
-			//item.useAmmo = AmmoID.Arrow;
 			timer ++;
-            if (timer < 58){
+			if (timer < 58){
 				item.autoReuse = true;
 				//item.useAmmo = AmmoID.None;
 			}
@@ -65,9 +66,10 @@ namespace Singularity.Items.Weapons
 				item.UseSound = null;
 				return true;
 			}
+			//}
+			//xBowHand = 0;
 			return false;
 		}
-
 		public override void AddRecipes()
 				{
 					ModRecipe recipe = new ModRecipe(mod);
@@ -77,7 +79,7 @@ namespace Singularity.Items.Weapons
 					recipe.SetResult(this);
 					recipe.AddRecipe();
 				}
-
+*/
 		/*void FindOwner(int whoAmI){
 			Player player = Main.player[item.owner];
 			player.silence = true;
@@ -216,6 +218,6 @@ namespace Singularity.Items.Weapons
 			// Here we randomly set type to either the original (as defined by the ammo), a vanilla projectile, or a mod projectile.
 			type = Main.rand.Next(new int[] { type, ProjectileID.GoldenBullet, ProjectileType<Projectiles.ExampleBullet>() });
 			return true;
-		}*/
+		}
 	}
-}
+}*/
