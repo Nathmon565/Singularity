@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Singularity.Items.Weapons
+/*namespace Singularity.Items.Weapons
 {
 	public class Crossbone : ModItem
 	{
@@ -222,5 +222,5 @@ namespace Singularity.Items.Weapons
 			type = Main.rand.Next(new int[] { type, ProjectileID.GoldenBullet, ProjectileType<Projectiles.ExampleBullet>() });
 			return true;
 		}*/
-	}
-}
+	//}
+//}

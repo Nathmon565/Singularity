@@ -27,7 +27,7 @@ namespace Singularity.Items.Armor {
 		}
 
 		public override void UpdateArmorSet(Player player) {
-			player.setBonus = "Reflect 50% of damage taken back onto enemies";
+			player.setBonus = "Reflect 500% of damage taken back onto enemies";
 			player.GetModPlayer<CoolModPlayer>().TemperedArmorSet = true;
 		}
 

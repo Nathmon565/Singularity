@@ -72,7 +72,7 @@ namespace Singularity.Projectiles.Minions
 
 			int SentryRange = 30; //The sentry's range
 			int Speed = 150; //How fast the sentry can shoot the projectile.
-			float FireVelocity = 5f; //The velocity the sentry's shot projectile will travel. Slows down the closer the NPC is.
+			float FireVelocity = 8f; //The velocity the sentry's shot projectile will travel. Slows down the closer the NPC is.
 			Main.player[projectile.owner].UpdateMaxTurrets(); //This makes the sentry be able to spawn more if your sentry cap is greater than one.
 
 			Vector2 targetCenter = projectile.position;
@@ -82,7 +82,7 @@ namespace Singularity.Projectiles.Minions
 			{
 				NPC npc = Main.npc[Main.player[projectile.owner].MinionAttackTargetNPC];
 				float between = Vector2.Distance(npc.Center, projectile.Center);
-				bool lineOfSight = Collision.CanHitLine(projectile.position - new Vector2(0, 20), projectile.width, projectile.height, npc.position, npc.width, npc.height);
+				bool lineOfSight = Collision.CanHitLine(projectile.position - new Vector2(0, 20), projectile.width, projectile.height-8, npc.position, npc.width, npc.height);
 				// Reasonable distance away so it doesn't target across multiple screens
 				if ((between < SentryRange * 16) && lineOfSight)
 				{
@@ -132,7 +132,7 @@ namespace Singularity.Projectiles.Minions
 
 				Main.PlaySound(SoundID.Item102, projectile.Center); //Play a sound.
 				int damage = projectile.damage; //How much damage the projectile shot from the sentry will do.
-				int type = ProjectileID.TopazBolt; //The type of projectile the sentry will shoot. Use ModContent.ProjectileType<>() to fire a modded projectile.
+				int type = mod.ProjectileType("SunburstBolt"); //The type of projectile the sentry will shoot. Use ModContent.ProjectileType<>() to fire a modded projectile.
 				if (Main.myPlayer == projectile.owner) {
 					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y, 0, FireVelocity, type, damage, 3, projectile.owner);
 					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y, FireVelocity * 0.966f, FireVelocity * 0.259f, type, damage, 3, projectile.owner);

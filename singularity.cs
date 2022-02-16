@@ -25,6 +25,9 @@ namespace Singularity {
 		public bool Ukulele;
 		public bool Crossbow;
 		public int Crossbowtimer;
+		public bool Crossbone;
+		public int Crossbonetimer;
+
 		public bool AnnealedArmorSet;
 		public bool TemperedArmorSet;
 
@@ -35,6 +38,7 @@ namespace Singularity {
 			ChlorophyteHeart = false;
 			Ukulele = false;
 			Crossbow = false;
+			Crossbone = false;
 			AnnealedArmorSet = false;
 			TemperedArmorSet = false;
 		}
@@ -42,6 +46,9 @@ namespace Singularity {
 		public override void PostItemCheck (){
 			if (Crossbow == false){
 				Crossbowtimer = 0;
+			}
+			if (Crossbone == false){
+				Crossbonetimer = 0;
 			}
 		}
 		public override void OnHitByNPC(NPC npc, int damage, bool crit){
@@ -106,11 +113,11 @@ namespace Singularity {
 		public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit) {
 			if(VialofLightning)
 			{
-				target.AddBuff(ModContent.BuffType<ShockedBuff>(), 60);
+				target.AddBuff(ModContent.BuffType<ShockedBuff>(), 300);
 			}
 			if(Ukulele)
 			{
-				target.AddBuff(ModContent.BuffType<ShockedBuff>(), 60);
+				target.AddBuff(ModContent.BuffType<ShockedBuff>(), 300);
 				if (Main.rand.Next(6) == 0){
 					float posX = target.Center.X;
 					float posY = target.Center.Y;
@@ -260,6 +267,15 @@ namespace Singularity {
 				{
 					player.GetModPlayer<CoolModPlayer>().Ukulele = true;
 				}
+				public override void AddRecipes()
+				{
+					ModRecipe recipe = new ModRecipe(mod);
+					recipe.AddIngredient(null, "LivingLute", 1);
+					recipe.AddIngredient(null, "VialofLightning", 1);
+					recipe.AddTile(TileID.MythrilAnvil);
+					recipe.SetResult(this);
+					recipe.AddRecipe();
+				}
 			}
 		
 		internal class ChlorophyteHeart : ModItem
@@ -395,6 +411,89 @@ namespace Singularity {
 					recipe.AddIngredient(ItemID.Wood, 12);
 					recipe.AddIngredient(ItemID.WhiteString, 1);
 					recipe.AddTile(TileID.WorkBenches);
+					recipe.SetResult(this);
+					recipe.AddRecipe();
+				}
+		}
+		internal class Crossbone : ModItem
+		{
+		public override void SetStaticDefaults() {
+			Tooltip.SetDefault("Cross my heart and hope to perish.");
+		}
+
+		public override void SetDefaults() {
+			item.damage = 36; // Sets the item's damage. Note that projectiles shot by this weapon will use its and the used ammunition's damage added together.
+			item.crit = 16;
+			item.ranged = true; // sets the damage type to ranged
+			item.width = 40; // hitbox width of the item
+			item.height = 20; // hitbox height of the item
+			item.useTime = 1; // The item's use time in ticks (60 ticks == 1 second.)
+			item.useAnimation = 1; // The length of the item's use animation in ticks (60 ticks == 1 second.)
+			//item.holdStyle = 1;
+			item.useStyle = ItemUseStyleID.HoldingOut; // how you use the item (swinging, holding out, etc)
+			item.noMelee = true; //so the item's animation doesn't do damage
+			item.knockBack = 4; // Sets the item's knockback. Note that projectiles shot by this weapon will use its and the used ammunition's knockback added together.
+			item.value = 5000; // how much the item sells for (measured in copper)
+			item.rare = ItemRarityID.Green; // the color that the item's name will be in-game
+			//item.UseSound = SoundID.Item5; // The sound that this item plays when used.
+			item.autoReuse = true; // if you can hold click to automatically use it again
+			item.shoot = 10; //idk why but all the guns in the vanilla source have this
+			item.shootSpeed = 8f; // the speed of the projectile (measured in pixels per frame)
+			item.useAmmo = ItemID.Bone; // The "ammo Id" of the ammo item that this weapon uses. Note that this is not an item Id, but just a magic value.
+			item.channel = true;
+		}
+        
+		public override bool ConsumeAmmo (Player player){
+			if (player.GetModPlayer<CoolModPlayer>().Crossbonetimer != 59){
+			return false;
+			}
+			else{
+			return true;
+			}
+		}
+
+		public override void HoldItem (Player player){
+			player.GetModPlayer<CoolModPlayer>().Crossbone = true;
+			if (player.GetModPlayer<CoolModPlayer>().Crossbonetimer <= 57){
+				item.UseSound = null;
+			}
+		}
+		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack){	
+			if (player.GetModPlayer<CoolModPlayer>().Crossbonetimer == 0){
+				item.UseSound = null;
+				item.autoReuse = false;
+			}
+			player.GetModPlayer<CoolModPlayer>().Crossbonetimer ++;
+			if (player.GetModPlayer<CoolModPlayer>().Crossbonetimer < 58){
+				item.autoReuse = true;
+				item.UseSound = null;
+				//item.useAmmo = AmmoID.None;
+			}
+			if (player.GetModPlayer<CoolModPlayer>().Crossbonetimer == 58){
+				item.UseSound = SoundID.Item17;
+			}
+			if (player.GetModPlayer<CoolModPlayer>().Crossbonetimer == 59){
+				item.UseSound = SoundID.Item5;
+				//item.useAmmo = AmmoID.Arrow;
+				item.autoReuse = false;
+			}
+			if (player.GetModPlayer<CoolModPlayer>().Crossbonetimer >= 60){
+				player.GetModPlayer<CoolModPlayer>().Crossbonetimer = 0;
+				item.UseSound = null;
+				Projectile.NewProjectile(position.X, position.Y, Main.rand.NextFloat(speedX-2, speedX+2), Main.rand.NextFloat(speedY-2, speedY+2), type, damage, knockBack, item.owner);
+				Projectile.NewProjectile(position.X, position.Y, Main.rand.NextFloat(speedX-2, speedX+2), Main.rand.NextFloat(speedY-2, speedY+2), type, damage, knockBack, item.owner);
+				Projectile.NewProjectile(position.X, position.Y, Main.rand.NextFloat(speedX-2, speedX+2), Main.rand.NextFloat(speedY-2, speedY+2), type, damage, knockBack, item.owner);
+				Projectile.NewProjectile(position.X, position.Y, Main.rand.NextFloat(speedX-2, speedX+2), Main.rand.NextFloat(speedY-2, speedY+2), type, damage, knockBack, item.owner);
+				return true;
+			}
+			return false;
+		}
+		public override void AddRecipes()
+				{
+					ModRecipe recipe = new ModRecipe(mod);
+					recipe.AddIngredient(ItemID.Bone, 35);
+					recipe.AddIngredient(ItemID.WhiteString, 1);
+					recipe.AddTile(TileID.Anvils);
 					recipe.SetResult(this);
 					recipe.AddRecipe();
 				}
