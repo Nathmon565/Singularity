@@ -2,7 +2,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 
-namespace Singularity.Items {
+namespace Singularity.Items.UseItems {
 	public class PharmakonBrew : ModItem {
 		
 		public override void SetStaticDefaults()
