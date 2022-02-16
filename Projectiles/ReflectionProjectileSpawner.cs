@@ -17,6 +17,7 @@ namespace Singularity.Projectiles {
 
 		public override void AI(){
 			//projectile.spriteDirection = projectile.direction;
+			Lighting.AddLight(projectile.Center, 0.5f, 0.55f, 0.5f);
 			float posX = projectile.Center.X;
 			float posY = projectile.Center.Y;
 			projectile.ai[0] += 1f;

@@ -16,8 +16,8 @@ namespace Singularity.Items.Weapons {
 			item.melee = true;
 			item.width = 100;
 			item.height = 100;
-			item.useTime = 80; 
-			item.useAnimation = 80;
+			item.useTime = 40; 
+			item.useAnimation = 40;
 			item.knockBack = 60;
 			item.value = Singularity.ToCopper(0, 12, 0, 0); 
 			item.rare = ItemRarityID.LightPurple; 
@@ -55,6 +55,5 @@ namespace Singularity.Items.Weapons {
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}
-		public override bool CanUseItem(Player player) => player.ownedProjectileCounts[ModContent.ProjectileType<ScarabCrusherProjectile>()] <= 0;
 	}
 }

@@ -38,6 +38,9 @@ namespace Singularity.Items.Weapons {
 			}
 			return false;
 		}
+		/*public override void MeleeEffects(Player player, Rectangle hitbox) {
+			Lighting.AddLight(new Vector2(hitbox.X, hitbox.Y), 0.73f, 0.8f, 0.73f);
+		}*/
 		
 		public override void AddRecipes() {
 			ModRecipe reflection = new ModRecipe(mod);

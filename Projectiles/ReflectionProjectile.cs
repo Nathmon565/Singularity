@@ -16,12 +16,13 @@ namespace Singularity.Projectiles {
 			projectile.width = 60;
 			projectile.height = 60;
 			projectile.scale = 0.83f;
-			projectile.timeLeft = 80;
+			projectile.timeLeft = 70;
 			projectile.knockBack = 0f;
 			projectile.tileCollide = false;
 		}
 
 		public override void AI(){
+			Lighting.AddLight(projectile.Center, 0.3f, 0.34f, 0.3f);
 			projectile.spriteDirection = projectile.direction;
 			projectile.ai[0] += 1f;
 			if (projectile.ai[0] > 2f && projectile.ai[0] <= 10f) {
