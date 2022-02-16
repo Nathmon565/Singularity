@@ -21,6 +21,7 @@ namespace Singularity.Items.Weapons {
 			item.UseSound = SoundID.Item1; 
 			item.autoReuse = true;
 			item.crit = 6;
+			item.useTurn = true;
             item.useStyle = ItemUseStyleID.SwingThrow; 
 		}
 

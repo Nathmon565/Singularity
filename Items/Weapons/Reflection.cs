@@ -24,6 +24,7 @@ namespace Singularity.Items.Weapons {
 			item.UseSound = SoundID.Item1; 
 			item.autoReuse = true;
 			item.crit = 0;
+			item.useTurn = true;
             item.useStyle = ItemUseStyleID.SwingThrow; 
 			item.shoot = mod.ProjectileType("ReflectionProjectileSpawner");
 			item.shootSpeed = 12f;
