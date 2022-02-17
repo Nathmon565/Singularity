@@ -12,7 +12,7 @@ namespace Singularity.Items.Weapons {
 		}
 
 		public override void SetDefaults() {
-			item.damage = 15;
+			item.damage = 11;
 			item.ranged = true;
 			item.width = 8;
 			item.height = 8;
@@ -22,16 +22,15 @@ namespace Singularity.Items.Weapons {
 			item.value = 10;
 			item.rare = ItemRarityID.Green;
 			item.shoot = ModContent.ProjectileType<Projectiles.GlassArrow>();   //The projectile shoot when your weapon using this ammo
-			item.shootSpeed = 1f;                  //The speed of the projectile
+			item.shootSpeed = 1.8f;                  //The speed of the projectile
 			item.ammo = AmmoID.Arrow;              //The ammo class this ammo belongs to.
 		}
 
 		public override void AddRecipes() {
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.WoodenArrow, 10);
-			recipe.AddIngredient(null, "ReinforcedGlass", 1);
+			recipe.AddIngredient(null, "ReinforcedGlass", 2);
 			recipe.AddTile(TileID.GlassKiln);
-			recipe.SetResult(this, 10);
+			recipe.SetResult(this, 50);
 			recipe.AddRecipe();
 		}
 	}

@@ -12,13 +12,13 @@ namespace Singularity.Items.Weapons {
 		}
 
 		public override void SetDefaults() {
-            item.damage = 300; 
+            item.damage = 1800; 
 			item.melee = true;
 			item.width = 100;
 			item.height = 100;
 			item.useTime = 40; 
 			item.useAnimation = 40;
-			item.knockBack = 60;
+			item.knockBack = 120;
 			item.value = Singularity.ToCopper(0, 12, 0, 0); 
 			item.rare = ItemRarityID.LightPurple; 
 			item.UseSound = SoundID.Item1; 

@@ -10,17 +10,20 @@ namespace Singularity.Projectiles {
 		public override void SetDefaults() {
 			projectile.friendly = true;
 			projectile.ranged = true;
-			projectile.penetrate = 3;
+			projectile.penetrate = 1;
 			projectile.timeLeft = 20;
-			projectile.aiStyle = 0;
+			projectile.aiStyle = 2;
 			projectile.alpha = 0;
-			projectile.width = 3;
-			projectile.height = 3;
-			projectile.scale *= 0.5f;
+			projectile.width = 5;
+			projectile.height = 5;
+			projectile.scale *= 1f;
 		}
 		public override bool OnTileCollide(Vector2 oldVelocity) {
             projectile.Kill();
             return false;
-        }		
+        }
+		public override void AI() {
+            projectile.rotation += 0.4f * (float)projectile.direction;
+		}		
 	}
 }

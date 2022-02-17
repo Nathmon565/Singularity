@@ -26,35 +26,18 @@ namespace Singularity.Projectiles {
 			//projectile.light = 0.5f;            //How much light emit around the projectile
 			projectile.ignoreWater = false;          //Does the projectile's speed be influenced by water?
 			projectile.tileCollide = true;          //Can the projectile collide with tiles?
-			//projectile.extraUpdates = 2;            //Set to above 0 if you want the projectile to update multiple time in a frame
+			projectile.extraUpdates = 1;            //Set to above 0 if you want the projectile to update multiple time in a frame
 			projectile.arrow = true;
 			aiType = ProjectileID.WoodenArrowFriendly;           //Act exactly like default Bullet
 		}
-		
-		public bool hitEnemy = true;
-		public override bool OnTileCollide(Vector2 oldVelocity) {
-			hitEnemy = false;
-			return true;
-		}
-		public override void OnHitNPC (NPC target, int damage, float knockback, bool crit){
-			hitEnemy = true;
-		}
 		public override void Kill(int timeLeft){
 			Main.PlaySound(new Terraria.Audio.LegacySoundStyle(13, 0).WithVolume(.25f), projectile.Center);
-			if (hitEnemy == true){	
-				float speedY = Main.rand.NextFloat(projectile.velocity.Y/2 -5f,projectile.velocity.Y/2 +5f);
-				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X/2f, speedY, mod.ProjectileType("GlassShard"), (int)(projectile.damage/2), 0f, projectile.owner);
-				speedY = Main.rand.NextFloat(projectile.velocity.Y/2 -5f,projectile.velocity.Y/2 +5f);
-				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X/2f, speedY, mod.ProjectileType("GlassShard"), (int)(projectile.damage/2), 0f, projectile.owner);
-				speedY = Main.rand.NextFloat(projectile.velocity.Y/2 -5f,projectile.velocity.Y/2 +5f);
-				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X/2f, speedY, mod.ProjectileType("GlassShard"), (int)(projectile.damage/2), 0f, projectile.owner);
-				speedY = Main.rand.NextFloat(projectile.velocity.Y/2 -5f,projectile.velocity.Y/2 +5f);
-				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X/2f, speedY, mod.ProjectileType("GlassShard"), (int)(projectile.damage/2), 0f, projectile.owner);
-				speedY = Main.rand.NextFloat(projectile.velocity.Y/2 -5f,projectile.velocity.Y/2 +5f);
-				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X/2f, speedY, mod.ProjectileType("GlassShard"), (int)(projectile.damage/2), 0f, projectile.owner);
-				speedY = Main.rand.NextFloat(projectile.velocity.Y/2 -5f,projectile.velocity.Y/2 +5f);
-				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X/2f, speedY, mod.ProjectileType("GlassShard"), (int)(projectile.damage/2), 0f, projectile.owner);
-				hitEnemy = false;
+			for (int i = 0; i < 6; i++) {
+				float posX = projectile.Center.X * Main.rand.NextFloat(1f, 1f) + Main.rand.NextFloat(-2f, 2f);
+                float posY = projectile.Center.Y * Main.rand.NextFloat(1f, 1f) + Main.rand.NextFloat(-2f, 2f);
+	            float speedX = projectile.velocity.X * 0.3f + Main.rand.NextFloat(-1.6f, 1.6f);
+	            float speedY = projectile.velocity.Y * 0.3f + Main.rand.NextFloat(-0.6f, 2.6f); 
+	            Projectile.NewProjectile(posX, posY, speedX, speedY, mod.ProjectileType("GlassShard"), (int)(projectile.damage * 0.1f), 0f, projectile.owner, 0f, 0f);
 			}
 		}
 	}

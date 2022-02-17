@@ -21,7 +21,7 @@ namespace Singularity.Projectiles.Minions
 		public override void SetDefaults()
 		{
 			projectile.width = 28;
-			projectile.height = 56;
+			projectile.height = 28;
 			//projectile.scale = 1.0f;
 			projectile.friendly = true;
 			projectile.magic = true;
