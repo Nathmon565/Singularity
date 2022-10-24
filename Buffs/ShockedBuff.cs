@@ -9,7 +9,7 @@ namespace Singularity.Buffs
 
 	public class ShockedBuff : ModBuff
 	{
-		public override void SetDefaults()
+		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Shocked");
 			Description.SetDefault("Shocking!");

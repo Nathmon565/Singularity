@@ -17,18 +17,18 @@ namespace Singularity.Items.Accessories
 		
 		public override void SetDefaults()
         {
-            item.width = 24; 
-            item.height = 28;
-            item.value = Singularity.ToCopper(0, 0, 30, 0);
-            item.rare = 2;
-            item.accessory = true;
+            Item.width = 24; 
+            Item.height = 28;
+            Item.value = Singularity.ToCopper(0, 0, 30, 0);
+            Item.rare = 2;
+            Item.accessory = true;
         }
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
         {
 			player.maxMinions += 1;
-			player.minionDamage += 0.1f;
-			player.minionKB += 2;
+			player.GetDamage(DamageClass.Summon) += 0.1f;
+			player.GetKnockback(DamageClass.Summon).Base += 2;
 			player.statDefense -= 6;
         }
 	}

@@ -9,7 +9,7 @@ namespace Singularity.Buffs
 
 	public class PharmakoffBuff : ModBuff
 	{
-		public override void SetDefaults()
+		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Pharmakoff");
 			Description.SetDefault("...and lose it all.");
@@ -20,14 +20,14 @@ namespace Singularity.Buffs
 		public override void Update (Player player, ref int buffIndex)
 		{
 			if (player.buffTime[buffIndex] > 0){
-				player.allDamage /= 2.2f;
+				player.GetDamage(DamageClass.Generic) /= 2.2f;
 				player.statDefense -= player.statDefense/2;
-				player.meleeSpeed -= 0.50f;
-				player.meleeCrit -= 40;
-				player.rangedCrit -= 40;
-				player.magicCrit -= 40;
-				player.thrownCrit -= 40;
-				player.minionKB -= 0.40f;
+				player.GetAttackSpeed(DamageClass.Melee) -= 0.50f;
+				player.GetCritChance(DamageClass.Generic) -= 40;
+				player.GetCritChance(DamageClass.Ranged) -= 40;
+				player.GetCritChance(DamageClass.Magic) -= 40;
+				player.GetCritChance(DamageClass.Throwing) -= 40;
+				player.GetKnockback(DamageClass.Summon).Base -= 0.40f;
 				player.statLifeMax2 -= 80;
 				player.lifeRegen /= 6;
 				player.statManaMax2 -= 80;

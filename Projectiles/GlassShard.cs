@@ -8,22 +8,22 @@ namespace Singularity.Projectiles {
 	public class GlassShard : ModProjectile {
 
 		public override void SetDefaults() {
-			projectile.friendly = true;
-			projectile.ranged = true;
-			projectile.penetrate = 1;
-			projectile.timeLeft = 20;
-			projectile.aiStyle = 2;
-			projectile.alpha = 0;
-			projectile.width = 5;
-			projectile.height = 5;
-			projectile.scale *= 1f;
+			Projectile.friendly = true;
+			Projectile.DamageType = DamageClass.Ranged;
+			Projectile.penetrate = 1;
+			Projectile.timeLeft = 20;
+			Projectile.aiStyle = 2;
+			Projectile.alpha = 0;
+			Projectile.width = 5;
+			Projectile.height = 5;
+			Projectile.scale *= 1f;
 		}
 		public override bool OnTileCollide(Vector2 oldVelocity) {
-            projectile.Kill();
+            Projectile.Kill();
             return false;
         }
 		public override void AI() {
-            projectile.rotation += 0.4f * (float)projectile.direction;
+            Projectile.rotation += 0.4f * (float)Projectile.direction;
 		}		
 	}
 }

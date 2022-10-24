@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,35 +11,34 @@ namespace Singularity.Items.Weapons {
 		}
 
 		public override void SetDefaults() {
-			item.damage = 23;
-			item.useTime = 45;
-			item.useAnimation = 45;
-			item.useStyle = 5;
-			item.ranged = true;
-			item.noMelee = true;
-			item.knockBack = 0.3f;
-			item.value = Singularity.ToCopper(0, 5, 0, 0);
-			item.rare = 1;
-			item.UseSound = SoundID.Item20;
-			item.autoReuse = true;
-			item.shoot = 85; //Flamethrower
-			item.shootSpeed = 5f;
-			item.useAmmo = AmmoID.Gel;
+			Item.damage = 23;
+			Item.useTime = 45;
+			Item.useAnimation = 45;
+			Item.useStyle = 5;
+			Item.DamageType = DamageClass.Ranged;
+			Item.noMelee = true;
+			Item.knockBack = 0.3f;
+			Item.value = Singularity.ToCopper(0, 5, 0, 0);
+			Item.rare = 1;
+			Item.UseSound = SoundID.Item20;
+			Item.autoReuse = true;
+			Item.shoot = 85; //Flamethrower
+			Item.shootSpeed = 5f;
+			Item.useAmmo = AmmoID.Gel;
 		}
 
 		public override void AddRecipes() {
-			ModRecipe recipe = new ModRecipe(mod);
+			Recipe recipe = CreateRecipe();
 			recipe.AddIngredient(ItemID.MeteoriteBar, 15);
 			recipe.AddIngredient(ItemID.IllegalGunParts, 1);
 			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			recipe.Register();
 		}
 
-		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack) {
+		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
 			int numberProjectiles = 4;
 			for (int i = 0; i < numberProjectiles; i++) {
-				Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(30)); // 30 degree spread.
+				Vector2 perturbedSpeed = new Vector2(velocity.X, velocity.Y).RotatedByRandom(MathHelper.ToRadians(30)); // 30 degree spread.
 				Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockBack, player.whoAmI);
 			}
 			return false;

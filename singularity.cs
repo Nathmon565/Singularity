@@ -1,3 +1,4 @@
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
@@ -55,43 +56,42 @@ namespace Singularity {
 			if (AnnealedArmorSet){
 				float damageBonusChance = Main.rand.NextFloat(0,99);
 				if (damageBonusChance >= 90){
-					Main.PlaySound(new Terraria.Audio.LegacySoundStyle(13, 0));
-					player.AddBuff(ModContent.BuffType<AnnealedBuff>(), 300);
+					SoundEngine.PlaySound(new Terraria.Audio.LegacySoundStyle(13, 0));
+					Player.AddBuff(ModContent.BuffType<AnnealedBuff>(), 300);
 				}
 			}
 			if (TemperedArmorSet){
 				if (Main.expertMode){
-					Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("TemperedThorn"), 5*(damage + (3*player.statDefense)/4), 4, player.whoAmI);
+					Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, Mod.Find<ModProjectile>("TemperedThorn").Type, 5*(damage + (3*Player.statDefense)/4), 4, Player.whoAmI);
 				}
 				else{
-					Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("TemperedThorn"), 5*(damage + (player.statDefense)/2), 4, player.whoAmI);
+					Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, Mod.Find<ModProjectile>("TemperedThorn").Type, 5*(damage + (Player.statDefense)/2), 4, Player.whoAmI);
 				}
 			}
 		}
 
-		public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit,
-			ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource) {
+		public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource, ref int cooldownCounter) {
 			if(Jellybone && SkellyJellyNecklace) {
-				if (!player.HasBuff(ModContent.BuffType<JellyboneBuff>()) && !player.HasBuff(ModContent.BuffType<JellyboneBuff2>()))
+				if (!Player.HasBuff(ModContent.BuffType<JellyboneBuff>()) && !Player.HasBuff(ModContent.BuffType<JellyboneBuff2>()))
 				{
 					playSound = false;
-					player.immune = true;
+					Player.immune = true;
 					//player.immuneAlpha = 0;
-					player.immuneTime = 450;
-					player.AddBuff(ModContent.BuffType<JellyboneBuff2>(), 2700);
-					Main.PlaySound(SoundID.NPCHit25);
+					Player.immuneTime = 450;
+					Player.AddBuff(ModContent.BuffType<JellyboneBuff2>(), 2700);
+					SoundEngine.PlaySound(SoundID.NPCHit25);
 					return false;
 				}
 			}
 			else if(Jellybone || SkellyJellyNecklace) {
-				if (!player.HasBuff(ModContent.BuffType<JellyboneBuff>()) && !player.HasBuff(ModContent.BuffType<JellyboneBuff2>()))
+				if (!Player.HasBuff(ModContent.BuffType<JellyboneBuff>()) && !Player.HasBuff(ModContent.BuffType<JellyboneBuff2>()))
 				{
 					playSound = false;
-					player.immune = true;
+					Player.immune = true;
 					//player.immuneAlpha = 0;
-					player.immuneTime = 300;
-					player.AddBuff(ModContent.BuffType<JellyboneBuff>(), 1800);
-					Main.PlaySound(SoundID.NPCHit25);
+					Player.immuneTime = 300;
+					Player.AddBuff(ModContent.BuffType<JellyboneBuff>(), 1800);
+					SoundEngine.PlaySound(SoundID.NPCHit25);
 					return false;
 				}
 			}  
@@ -100,9 +100,9 @@ namespace Singularity {
 
 		public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore,
             ref PlayerDeathReason damageSource) {
-            if (player.statLife == 0 && ChlorophyteHeart && ChlorophyteHeartActive){
+            if (Player.statLife == 0 && ChlorophyteHeart && ChlorophyteHeartActive){
 				ChlorophyteHeartActive = false;
-				player.statLife = player.statLifeMax;
+				Player.statLife = Player.statLifeMax;
 				playSound = false;
 				return false;
 			}
@@ -121,7 +121,7 @@ namespace Singularity {
 				if (Main.rand.Next(6) == 0){
 					float posX = target.Center.X;
 					float posY = target.Center.Y;
-					Projectile.NewProjectile(posX, posY, Main.rand.NextFloat(-10f, 10f), Main.rand.NextFloat(-14f, -14f), mod.ProjectileType("UkuleleBolt"), 30, 1f, player.whoAmI, 0f, 0f);
+					Projectile.NewProjectile(posX, posY, Main.rand.NextFloat(-10f, 10f), Main.rand.NextFloat(-14f, -14f), Mod.Find<ModProjectile>("UkuleleBolt").Type, 30, 1f, Player.whoAmI, 0f, 0f);
 				}
 			}
 		}
@@ -136,7 +136,7 @@ namespace Singularity {
 				if (Main.rand.Next(3) == 0){
 					float posX = target.Center.X;
 					float posY = target.Center.Y;
-					Projectile.NewProjectile(posX, posY, Main.rand.NextFloat(-10f, 10f), Main.rand.NextFloat(-14f, -14f), mod.ProjectileType("UkuleleBolt"), 30, 1f, player.whoAmI, 0f, 0f);
+					Projectile.NewProjectile(posX, posY, Main.rand.NextFloat(-10f, 10f), Main.rand.NextFloat(-14f, -14f), Mod.Find<ModProjectile>("UkuleleBolt").Type, 30, 1f, Player.whoAmI, 0f, 0f);
 				}
 			}
 		}
@@ -153,11 +153,11 @@ namespace Singularity {
 
 				public override void SetDefaults()
 				{
-					item.width = 24; 
-					item.height = 28;
-					item.value = Singularity.ToCopper(0, 0, 30, 0);
-					item.rare = 2;
-					item.accessory = true;
+					Item.width = 24; 
+					Item.height = 28;
+					Item.value = Singularity.ToCopper(0, 0, 30, 0);
+					Item.rare = 2;
+					Item.accessory = true;
 				}
 
 				public override void UpdateAccessory(Player player, bool hideVisual)
@@ -168,22 +168,19 @@ namespace Singularity {
 
 				public override void AddRecipes()
 				{
-					ModRecipe recipe = new ModRecipe(mod);
+					Recipe recipe = CreateRecipe(this.Type, this.Type);
 					recipe.AddIngredient(ItemID.BlueJellyfish, 1);
 					recipe.AddIngredient(ItemID.Bone, 40);
 					recipe.AddTile(TileID.Anvils);
-					recipe.SetResult(this);
-					recipe.AddRecipe();
+					recipe.Register();
 					recipe.AddIngredient(ItemID.PinkJellyfish, 1);
 					recipe.AddIngredient(ItemID.Bone, 40);
 					recipe.AddTile(TileID.Anvils);
-					recipe.SetResult(this);
-					recipe.AddRecipe();
+					recipe.Register();
 					recipe.AddIngredient(ItemID.GreenJellyfish, 1);
 					recipe.AddIngredient(ItemID.Bone, 40);
 					recipe.AddTile(TileID.Anvils);
-					recipe.SetResult(this);
-					recipe.AddRecipe();	
+					recipe.Register();	
 				}
 			}
 		
@@ -197,17 +194,17 @@ namespace Singularity {
 
 				public override void SetDefaults()
 				{
-					item.width = 24; 
-					item.height = 28;
-					item.value = Singularity.ToCopper(0, 1, 30, 0);
-					item.rare = 2;
-					item.accessory = true;
+					Item.width = 24; 
+					Item.height = 28;
+					Item.value = Singularity.ToCopper(0, 1, 30, 0);
+					Item.rare = 2;
+					Item.accessory = true;
 				}
 
 				public override void UpdateAccessory(Player player, bool hideVisual)
 				{
 					player.GetModPlayer<CoolModPlayer>().SkellyJellyNecklace = true;
-					player.armorPenetration += 5;
+					player.GetArmorPenetration(DamageClass.Generic) += 5;
 					Lighting.AddLight(player.position, 0.3f, 0.1f, 0.1f);
 					if (player.wet) {
 					Lighting.AddLight(player.position, 1.2f, 0.8f, 0.8f);
@@ -217,13 +214,12 @@ namespace Singularity {
 
 				public override void AddRecipes()
 				{
-					ModRecipe recipe = new ModRecipe(mod);
+					Recipe recipe = CreateRecipe();
 					recipe.AddIngredient(ItemID.SharkToothNecklace, 1);
 					recipe.AddIngredient(ItemID.JellyfishNecklace, 1);
 					recipe.AddIngredient(null, "Jellybone", 1);
 					recipe.AddTile(TileID.TinkerersWorkbench);
-					recipe.SetResult(this);
-					recipe.AddRecipe();
+					recipe.Register();
 				}
 			}
 		internal class VialofLightning : ModItem
@@ -236,11 +232,11 @@ namespace Singularity {
 
 				public override void SetDefaults()
 				{
-					item.width = 24; 
-					item.height = 28;
-					item.value = Singularity.ToCopper(0, 2, 0, 0);
-					item.rare = 8;
-					item.accessory = true;
+					Item.width = 24; 
+					Item.height = 28;
+					Item.value = Singularity.ToCopper(0, 2, 0, 0);
+					Item.rare = 8;
+					Item.accessory = true;
 				}
 				public override void UpdateAccessory(Player player, bool hideVisual)
 				{
@@ -257,11 +253,11 @@ namespace Singularity {
 
 				public override void SetDefaults()
 				{
-					item.width = 24; 
-					item.height = 28;
-					item.value = Singularity.ToCopper(0, 2, 0, 0);
-					item.rare = 8;
-					item.accessory = true;
+					Item.width = 24; 
+					Item.height = 28;
+					Item.value = Singularity.ToCopper(0, 2, 0, 0);
+					Item.rare = 8;
+					Item.accessory = true;
 				}
 				public override void UpdateAccessory(Player player, bool hideVisual)
 				{
@@ -269,12 +265,11 @@ namespace Singularity {
 				}
 				public override void AddRecipes()
 				{
-					ModRecipe recipe = new ModRecipe(mod);
+					Recipe recipe = CreateRecipe();
 					recipe.AddIngredient(null, "LivingLute", 1);
 					recipe.AddIngredient(null, "VialofLightning", 1);
 					recipe.AddTile(TileID.MythrilAnvil);
-					recipe.SetResult(this);
-					recipe.AddRecipe();
+					recipe.Register();
 				}
 			}
 		
@@ -288,11 +283,11 @@ namespace Singularity {
 
 				public override void SetDefaults()
 				{
-					item.width = 24; 
-					item.height = 28;
-					item.value = Singularity.ToCopper(0, 1, 0, 0);
-					item.rare = 8;
-					item.accessory = true;
+					Item.width = 24; 
+					Item.height = 28;
+					Item.value = Singularity.ToCopper(0, 1, 0, 0);
+					Item.rare = 8;
+					Item.accessory = true;
 				}
 				
 				public int nomber = 10;
@@ -326,12 +321,11 @@ namespace Singularity {
 				}
 				public override void AddRecipes()
 				{
-					ModRecipe recipe = new ModRecipe(mod);
+					Recipe recipe = CreateRecipe();
 					recipe.AddIngredient(ItemID.LifeFruit, 1);
 					recipe.AddIngredient(null, "ChlorophyteSoul", 1);
 					recipe.AddTile(TileID.LihzahrdAltar);
-					recipe.SetResult(this);
-					recipe.AddRecipe();
+					recipe.Register();
 				}
 			}
 	}
@@ -343,28 +337,28 @@ namespace Singularity {
 		}
 
 		public override void SetDefaults() {
-			item.damage = 24; // Sets the item's damage. Note that projectiles shot by this weapon will use its and the used ammunition's damage added together.
-			item.crit = 16;
-			item.ranged = true; // sets the damage type to ranged
-			item.width = 40; // hitbox width of the item
-			item.height = 20; // hitbox height of the item
-			item.useTime = 1; // The item's use time in ticks (60 ticks == 1 second.)
-			item.useAnimation = 1; // The length of the item's use animation in ticks (60 ticks == 1 second.)
+			Item.damage = 24; // Sets the item's damage. Note that projectiles shot by this weapon will use its and the used ammunition's damage added together.
+			Item.crit = 16;
+			Item.DamageType = DamageClass.Ranged; // sets the damage type to ranged
+			Item.width = 40; // hitbox width of the item
+			Item.height = 20; // hitbox height of the item
+			Item.useTime = 1; // The item's use time in ticks (60 ticks == 1 second.)
+			Item.useAnimation = 1; // The length of the item's use animation in ticks (60 ticks == 1 second.)
 			//item.holdStyle = 1;
-			item.useStyle = ItemUseStyleID.HoldingOut; // how you use the item (swinging, holding out, etc)
-			item.noMelee = true; //so the item's animation doesn't do damage
-			item.knockBack = 4; // Sets the item's knockback. Note that projectiles shot by this weapon will use its and the used ammunition's knockback added together.
-			item.value = 50; // how much the item sells for (measured in copper)
-			item.rare = ItemRarityID.White; // the color that the item's name will be in-game
+			Item.useStyle = ItemUseStyleID.Shoot; // how you use the item (swinging, holding out, etc)
+			Item.noMelee = true; //so the item's animation doesn't do damage
+			Item.knockBack = 4; // Sets the item's knockback. Note that projectiles shot by this weapon will use its and the used ammunition's knockback added together.
+			Item.value = 50; // how much the item sells for (measured in copper)
+			Item.rare = ItemRarityID.White; // the color that the item's name will be in-game
 			//item.UseSound = SoundID.Item5; // The sound that this item plays when used.
-			item.autoReuse = true; // if you can hold click to automatically use it again
-			item.shoot = 10; //idk why but all the guns in the vanilla source have this
-			item.shootSpeed = 16f; // the speed of the projectile (measured in pixels per frame)
-			item.useAmmo = AmmoID.Arrow; // The "ammo Id" of the ammo item that this weapon uses. Note that this is not an item Id, but just a magic value.
-			item.channel = true;
+			Item.autoReuse = true; // if you can hold click to automatically use it again
+			Item.shoot = 10; //idk why but all the guns in the vanilla source have this
+			Item.shootSpeed = 16f; // the speed of the projectile (measured in pixels per frame)
+			Item.useAmmo = AmmoID.Arrow; // The "ammo Id" of the ammo item that this weapon uses. Note that this is not an item Id, but just a magic value.
+			Item.channel = true;
 		}
         
-		public override bool ConsumeAmmo (Player player){
+		public override bool CanConsumeAmmo (Item ammo, Player player){
 			if (player.GetModPlayer<CoolModPlayer>().Crossbowtimer != 59){
 			return false;
 			}
@@ -376,43 +370,42 @@ namespace Singularity {
 		public override void HoldItem (Player player){
 			player.GetModPlayer<CoolModPlayer>().Crossbow = true;
 			if (player.GetModPlayer<CoolModPlayer>().Crossbowtimer <= 57){
-				item.UseSound = null;
+				Item.UseSound = null;
 			}
 		}
-		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack){	
+		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback){	
 			if (player.GetModPlayer<CoolModPlayer>().Crossbowtimer == 0){
-				item.UseSound = null;
-				item.autoReuse = false;
+				Item.UseSound = null;
+				Item.autoReuse = false;
 			}
 			player.GetModPlayer<CoolModPlayer>().Crossbowtimer ++;
 			if (player.GetModPlayer<CoolModPlayer>().Crossbowtimer < 58){
-				item.autoReuse = true;
-				item.UseSound = null;
+				Item.autoReuse = true;
+				Item.UseSound = null;
 				//item.useAmmo = AmmoID.None;
 			}
 			if (player.GetModPlayer<CoolModPlayer>().Crossbowtimer == 58){
-				item.UseSound = SoundID.Item17;
+				Item.UseSound = SoundID.Item17;
 			}
 			if (player.GetModPlayer<CoolModPlayer>().Crossbowtimer == 59){
-				item.UseSound = SoundID.Item5;
+				Item.UseSound = SoundID.Item5;
 				//item.useAmmo = AmmoID.Arrow;
-				item.autoReuse = false;
+				Item.autoReuse = false;
 			}
 			if (player.GetModPlayer<CoolModPlayer>().Crossbowtimer >= 60){
 				player.GetModPlayer<CoolModPlayer>().Crossbowtimer = 0;
-				item.UseSound = null;
+				Item.UseSound = null;
 				return true;
 			}
 			return false;
 		}
 		public override void AddRecipes()
 				{
-					ModRecipe recipe = new ModRecipe(mod);
+					Recipe recipe = CreateRecipe();
 					recipe.AddIngredient(ItemID.Wood, 12);
 					recipe.AddIngredient(ItemID.WhiteString, 1);
 					recipe.AddTile(TileID.WorkBenches);
-					recipe.SetResult(this);
-					recipe.AddRecipe();
+					recipe.Register();
 				}
 		}
 		internal class Crossbone : ModItem
@@ -422,28 +415,28 @@ namespace Singularity {
 		}
 
 		public override void SetDefaults() {
-			item.damage = 36; // Sets the item's damage. Note that projectiles shot by this weapon will use its and the used ammunition's damage added together.
-			item.crit = 16;
-			item.ranged = true; // sets the damage type to ranged
-			item.width = 40; // hitbox width of the item
-			item.height = 20; // hitbox height of the item
-			item.useTime = 1; // The item's use time in ticks (60 ticks == 1 second.)
-			item.useAnimation = 1; // The length of the item's use animation in ticks (60 ticks == 1 second.)
+			Item.damage = 36; // Sets the item's damage. Note that projectiles shot by this weapon will use its and the used ammunition's damage added together.
+			Item.crit = 16;
+			Item.DamageType = DamageClass.Ranged; // sets the damage type to ranged
+			Item.width = 40; // hitbox width of the item
+			Item.height = 20; // hitbox height of the item
+			Item.useTime = 1; // The item's use time in ticks (60 ticks == 1 second.)
+			Item.useAnimation = 1; // The length of the item's use animation in ticks (60 ticks == 1 second.)
 			//item.holdStyle = 1;
-			item.useStyle = ItemUseStyleID.HoldingOut; // how you use the item (swinging, holding out, etc)
-			item.noMelee = true; //so the item's animation doesn't do damage
-			item.knockBack = 4; // Sets the item's knockback. Note that projectiles shot by this weapon will use its and the used ammunition's knockback added together.
-			item.value = 5000; // how much the item sells for (measured in copper)
-			item.rare = ItemRarityID.Green; // the color that the item's name will be in-game
+			Item.useStyle = ItemUseStyleID.Shoot; // how you use the item (swinging, holding out, etc)
+			Item.noMelee = true; //so the item's animation doesn't do damage
+			Item.knockBack = 4; // Sets the item's knockback. Note that projectiles shot by this weapon will use its and the used ammunition's knockback added together.
+			Item.value = 5000; // how much the item sells for (measured in copper)
+			Item.rare = ItemRarityID.Green; // the color that the item's name will be in-game
 			//item.UseSound = SoundID.Item5; // The sound that this item plays when used.
-			item.autoReuse = true; // if you can hold click to automatically use it again
-			item.shoot = 10; //idk why but all the guns in the vanilla source have this
-			item.shootSpeed = 8f; // the speed of the projectile (measured in pixels per frame)
-			item.useAmmo = ItemID.Bone; // The "ammo Id" of the ammo item that this weapon uses. Note that this is not an item Id, but just a magic value.
-			item.channel = true;
+			Item.autoReuse = true; // if you can hold click to automatically use it again
+			Item.shoot = 10; //idk why but all the guns in the vanilla source have this
+			Item.shootSpeed = 8f; // the speed of the projectile (measured in pixels per frame)
+			Item.useAmmo = ItemID.Bone; // The "ammo Id" of the ammo item that this weapon uses. Note that this is not an item Id, but just a magic value.
+			Item.channel = true;
 		}
         
-		public override bool ConsumeAmmo (Player player){
+		public override bool CanConsumeAmmo (Item ammo, Player player){
 			if (player.GetModPlayer<CoolModPlayer>().Crossbonetimer != 59){
 			return false;
 			}
@@ -455,47 +448,46 @@ namespace Singularity {
 		public override void HoldItem (Player player){
 			player.GetModPlayer<CoolModPlayer>().Crossbone = true;
 			if (player.GetModPlayer<CoolModPlayer>().Crossbonetimer <= 57){
-				item.UseSound = null;
+				Item.UseSound = null;
 			}
 		}
-		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack){	
+		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback){	
 			if (player.GetModPlayer<CoolModPlayer>().Crossbonetimer == 0){
-				item.UseSound = null;
-				item.autoReuse = false;
+				Item.UseSound = null;
+				Item.autoReuse = false;
 			}
 			player.GetModPlayer<CoolModPlayer>().Crossbonetimer ++;
 			if (player.GetModPlayer<CoolModPlayer>().Crossbonetimer < 58){
-				item.autoReuse = true;
-				item.UseSound = null;
+				Item.autoReuse = true;
+				Item.UseSound = null;
 				//item.useAmmo = AmmoID.None;
 			}
 			if (player.GetModPlayer<CoolModPlayer>().Crossbonetimer == 58){
-				item.UseSound = SoundID.Item17;
+				Item.UseSound = SoundID.Item17;
 			}
 			if (player.GetModPlayer<CoolModPlayer>().Crossbonetimer == 59){
-				item.UseSound = SoundID.Item5;
+				Item.UseSound = SoundID.Item5;
 				//item.useAmmo = AmmoID.Arrow;
-				item.autoReuse = false;
+				Item.autoReuse = false;
 			}
 			if (player.GetModPlayer<CoolModPlayer>().Crossbonetimer >= 60){
 				player.GetModPlayer<CoolModPlayer>().Crossbonetimer = 0;
-				item.UseSound = null;
-				Projectile.NewProjectile(position.X, position.Y, Main.rand.NextFloat(speedX-2, speedX+2), Main.rand.NextFloat(speedY-2, speedY+2), type, damage, knockBack, item.owner);
-				Projectile.NewProjectile(position.X, position.Y, Main.rand.NextFloat(speedX-2, speedX+2), Main.rand.NextFloat(speedY-2, speedY+2), type, damage, knockBack, item.owner);
-				Projectile.NewProjectile(position.X, position.Y, Main.rand.NextFloat(speedX-2, speedX+2), Main.rand.NextFloat(speedY-2, speedY+2), type, damage, knockBack, item.owner);
-				Projectile.NewProjectile(position.X, position.Y, Main.rand.NextFloat(speedX-2, speedX+2), Main.rand.NextFloat(speedY-2, speedY+2), type, damage, knockBack, item.owner);
+				Item.UseSound = null;
+				Projectile.NewProjectile(position.X, position.Y, Main.rand.NextFloat(speedX-2, speedX+2), Main.rand.NextFloat(speedY-2, speedY+2), type, damage, knockBack, Item.playerIndexTheItemIsReservedFor);
+				Projectile.NewProjectile(position.X, position.Y, Main.rand.NextFloat(speedX-2, speedX+2), Main.rand.NextFloat(speedY-2, speedY+2), type, damage, knockBack, Item.playerIndexTheItemIsReservedFor);
+				Projectile.NewProjectile(position.X, position.Y, Main.rand.NextFloat(speedX-2, speedX+2), Main.rand.NextFloat(speedY-2, speedY+2), type, damage, knockBack, Item.playerIndexTheItemIsReservedFor);
+				Projectile.NewProjectile(position.X, position.Y, Main.rand.NextFloat(speedX-2, speedX+2), Main.rand.NextFloat(speedY-2, speedY+2), type, damage, knockBack, Item.playerIndexTheItemIsReservedFor);
 				return true;
 			}
 			return false;
 		}
 		public override void AddRecipes()
 				{
-					ModRecipe recipe = new ModRecipe(mod);
+					Recipe recipe = CreateRecipe();
 					recipe.AddIngredient(ItemID.Bone, 35);
 					recipe.AddIngredient(ItemID.WhiteString, 1);
 					recipe.AddTile(TileID.Anvils);
-					recipe.SetResult(this);
-					recipe.AddRecipe();
+					recipe.Register();
 				}
 		}
 	}

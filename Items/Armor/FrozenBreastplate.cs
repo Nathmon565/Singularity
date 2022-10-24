@@ -9,20 +9,19 @@ namespace Singularity.Items.Armor {
 			Tooltip.SetDefault("2% increased melee speed");
 		}
 		public override void SetDefaults() {
-			item.rare = ItemRarityID.Blue;
-			item.value = Singularity.ToCopper(0, 0, 30, 0);
-			item.defense = 4;
+			Item.rare = ItemRarityID.Blue;
+			Item.value = Singularity.ToCopper(0, 0, 30, 0);
+			Item.defense = 4;
 		}
 		public override void UpdateEquip(Player player) {
-			player.meleeSpeed += 0.02f;
+			player.GetAttackSpeed(DamageClass.Melee) += 0.02f;
 		}
 
 		public override void AddRecipes() {
-			ModRecipe recipe = new ModRecipe(mod);
+			Recipe recipe = CreateRecipe();
 			recipe.AddIngredient(null, "GlacialBar", 18);
 			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			recipe.Register();
 		}
 	}
 }

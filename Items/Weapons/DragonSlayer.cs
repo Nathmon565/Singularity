@@ -9,19 +9,19 @@ namespace Singularity.Items.Weapons {
 		}
 
 		public override void SetDefaults() {
-            item.damage = 300; 
-			item.melee = true;
-			item.width = 96;
-			item.height = 96;
-			item.useTime = 50; 
-			item.useAnimation = 50;
-			item.knockBack = 60;
-			item.value = Singularity.ToCopper(0, 12, 0, 0); 
-			item.rare = ItemRarityID.LightPurple; 
-			item.UseSound = SoundID.Item1; 
-			item.autoReuse = false;
-			item.crit = 6;
-            item.useStyle = ItemUseStyleID.SwingThrow; 
+            Item.damage = 300; 
+			Item.DamageType = DamageClass.Melee/* tModPorter Suggestion: Consider MeleeNoSpeed for no attack speed scaling */;
+			Item.width = 96;
+			Item.height = 96;
+			Item.useTime = 50; 
+			Item.useAnimation = 50;
+			Item.knockBack = 60;
+			Item.value = Singularity.ToCopper(0, 12, 0, 0); 
+			Item.rare = ItemRarityID.LightPurple; 
+			Item.UseSound = SoundID.Item1; 
+			Item.autoReuse = false;
+			Item.crit = 6;
+            Item.useStyle = ItemUseStyleID.Swing; 
 		}
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit) {
 			// Add the Onfire buff to the NPC for 1 second when the weapon hits an NPC
@@ -30,12 +30,11 @@ namespace Singularity.Items.Weapons {
 		}
 
 		public override void AddRecipes() {
-			ModRecipe recipe = new ModRecipe(mod);
+			Recipe recipe = CreateRecipe();
 			recipe.AddIngredient(ItemID.BreakerBlade);
 			recipe.AddIngredient(ItemID.BrokenHeroSword);
 			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			recipe.Register();
 		}
 	}
 }

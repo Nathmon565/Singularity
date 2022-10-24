@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
@@ -12,25 +13,25 @@ namespace Singularity.Items.Weapons {
 		}
 
 		public override void SetDefaults() {
-            item.damage = 27; 
-			item.melee = true;
-			item.width = 20;
-			item.height = 20;
-			item.useTime = 24; 
-			item.useAnimation = 24;
-			item.knockBack = 1;
-			item.value = Singularity.ToCopper(0, 0, 30, 0); 
-			item.rare = ItemRarityID.White; 
-			item.UseSound = SoundID.Item1; 
-			item.autoReuse = true;
-			item.crit = 0;
-			item.useTurn = true;
-            item.useStyle = ItemUseStyleID.SwingThrow;
+            Item.damage = 27; 
+			Item.DamageType = DamageClass.Melee/* tModPorter Suggestion: Consider MeleeNoSpeed for no attack speed scaling */;
+			Item.width = 20;
+			Item.height = 20;
+			Item.useTime = 24; 
+			Item.useAnimation = 24;
+			Item.knockBack = 1;
+			Item.value = Singularity.ToCopper(0, 0, 30, 0); 
+			Item.rare = ItemRarityID.White; 
+			Item.UseSound = SoundID.Item1; 
+			Item.autoReuse = true;
+			Item.crit = 0;
+			Item.useTurn = true;
+            Item.useStyle = ItemUseStyleID.Swing;
 		}
 		public bool shatterTime = false;
 		public override void OnHitNPC (Player player, NPC target, int damage, float knockBack, bool crit){
 			if (shatterTime == true){
-				Main.PlaySound(new Terraria.Audio.LegacySoundStyle(13, 0).WithVolume(2));
+				SoundEngine.PlaySound(SoundID.Shatter);
 				for (int i=0; i < 49; i++){
 						if (player.inventory[i].Name == "Glass Shattersword")
 						{
@@ -42,24 +43,22 @@ namespace Singularity.Items.Weapons {
 			}
 			float shatterChance = Main.rand.NextFloat(0,99);
 			if (shatterChance >98){
-				item.damage *=5;
+				Item.damage *=5;
 				shatterTime = true;
 			}
 		}
 		
 		public override void AddRecipes() {
-			ModRecipe recipe = new ModRecipe(mod);
+			Recipe recipe = CreateRecipe();
 			recipe.AddIngredient(ItemID.Glass, 30);
 			recipe.AddIngredient(ItemID.DemoniteBar, 7);
 			recipe.AddTile(TileID.GlassKiln);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
-			ModRecipe recipe2 = new ModRecipe(mod);
+			recipe.Register();
+			Recipe recipe2 = CreateRecipe();
 			recipe2.AddIngredient(ItemID.Glass, 30);
 			recipe2.AddIngredient(ItemID.CrimtaneBar, 7);
 			recipe2.AddTile(TileID.GlassKiln);
-			recipe2.SetResult(this);
-			recipe2.AddRecipe();
+			recipe2.Register();
 		}
 	}
 }

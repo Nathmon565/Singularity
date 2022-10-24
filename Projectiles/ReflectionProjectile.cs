@@ -10,36 +10,36 @@ namespace Singularity.Projectiles {
 		}
 
 		public override void SetDefaults() {
-			projectile.alpha = 255;
-			projectile.friendly = true;
-			projectile.penetrate = 3;			
-			projectile.width = 60;
-			projectile.height = 60;
-			projectile.scale = 0.83f;
-			projectile.timeLeft = 70;
-			projectile.knockBack = 0f;
-			projectile.tileCollide = false;
+			Projectile.alpha = 255;
+			Projectile.friendly = true;
+			Projectile.penetrate = 3;			
+			Projectile.width = 60;
+			Projectile.height = 60;
+			Projectile.scale = 0.83f;
+			Projectile.timeLeft = 70;
+			Projectile.knockBack = 0f;
+			Projectile.tileCollide = false;
 		}
 
 		public override void AI(){
-			Lighting.AddLight(projectile.Center, 0.3f, 0.34f, 0.3f);
-			projectile.spriteDirection = projectile.direction;
-			projectile.ai[0] += 1f;
-			if (projectile.ai[0] > 2f && projectile.ai[0] <= 10f) {
+			Lighting.AddLight(Projectile.Center, 0.3f, 0.34f, 0.3f);
+			Projectile.spriteDirection = Projectile.direction;
+			Projectile.ai[0] += 1f;
+			if (Projectile.ai[0] > 2f && Projectile.ai[0] <= 10f) {
 				// Fade in
-				projectile.alpha -= 1;
+				Projectile.alpha -= 1;
 			}
-			if (projectile.ai[0] > 10f && projectile.ai[0] <= 20f) {
-				projectile.rotation -= 0.05f * (float)projectile.direction;
+			if (Projectile.ai[0] > 10f && Projectile.ai[0] <= 20f) {
+				Projectile.rotation -= 0.05f * (float)Projectile.direction;
 			}
-			if (projectile.ai[0] > 40f) {
-				projectile.rotation += 0.2f * (float)projectile.direction;
+			if (Projectile.ai[0] > 40f) {
+				Projectile.rotation += 0.2f * (float)Projectile.direction;
 			}
-			if (projectile.ai[0] > 65f) {
+			if (Projectile.ai[0] > 65f) {
 				// Fade out
-				projectile.alpha += 1;
-			if (projectile.alpha > 255) {
-				projectile.alpha = 255;
+				Projectile.alpha += 1;
+			if (Projectile.alpha > 255) {
+				Projectile.alpha = 255;
 			}
 			}
 		}

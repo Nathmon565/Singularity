@@ -9,7 +9,7 @@ namespace Singularity.Buffs
 
 	public class ClayManStaffBuff : ModBuff
 	{
-		public override void SetDefaults()
+		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Clay Man");
 			Description.SetDefault("The Clay Men will fight for you");

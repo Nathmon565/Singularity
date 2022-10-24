@@ -1,6 +1,7 @@
 ﻿using Singularity.Projectiles.Minions;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -12,44 +13,43 @@ namespace Singularity.Items.Weapons
 		public override void SetStaticDefaults()
 		{
 			Tooltip.SetDefault("Summons a sentry that shoots out sunbeams in every direction");
-			ItemID.Sets.GamepadWholeScreenUseRange[item.type] = true;
-			ItemID.Sets.LockOnIgnoresCollision[item.type] = true;
+			ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true;
+			ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
 		}
 		
 		public override void SetDefaults()
 		{
-			item.damage = 22;
-			item.sentry = true;
-			item.mana = 10; //How much mana this weapon takes to use.
-			item.width = 26; //Item width hitbox.
-			item.height = 28; //Item height hitbox.
-			item.useTime = 36;
-			item.useAnimation = 36;
-			item.useStyle = ItemUseStyleID.SwingThrow;
-			item.summon = true;
-			item.noMelee = true; //Restricts this weapon dealing melee damage.
-			item.knockBack = 6;
-			item.value = Item.buyPrice(0, 1, 0, 0); //How much this item is sold for.
-			item.rare = ItemRarityID.Orange;
-			item.UseSound = SoundID.Item83;
-			item.shoot = ModContent.ProjectileType<SunburstStaffSunburst>();
+			Item.damage = 22;
+			Item.sentry = true;
+			Item.mana = 10; //How much mana this weapon takes to use.
+			Item.width = 26; //Item width hitbox.
+			Item.height = 28; //Item height hitbox.
+			Item.useTime = 36;
+			Item.useAnimation = 36;
+			Item.useStyle = ItemUseStyleID.Swing;
+			Item.DamageType = DamageClass.Summon;
+			Item.noMelee = true; //Restricts this weapon dealing melee damage.
+			Item.knockBack = 6;
+			Item.value = Item.buyPrice(0, 1, 0, 0); //How much this item is sold for.
+			Item.rare = ItemRarityID.Orange;
+			Item.UseSound = SoundID.Item83;
+			Item.shoot = ModContent.ProjectileType<SunburstStaffSunburst>();
 		}
 
-		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
 			position = Main.MouseWorld - new Vector2(0, 28);
-			speedY = 1000f;
+			velocity.Y = 1000f;
 			return true;
 		}
 
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe(mod);
+			Recipe recipe = CreateRecipe();
 			recipe.AddIngredient(ItemID.HellstoneBar, 12);
 			recipe.AddIngredient(ItemID.FallenStar, 24);
 			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			recipe.Register();
 		}
 	}
 }

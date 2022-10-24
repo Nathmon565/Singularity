@@ -11,33 +11,33 @@ namespace Singularity.Projectiles {
 public override void SetStaticDefaults() {
 }
 		public override void SetDefaults() {
-			projectile.friendly = true;
-			projectile.damage = 30;
-			projectile.ranged = true;
-			projectile.penetrate = 2;
-			projectile.timeLeft = 120;
-			projectile.aiStyle = 0;
-			projectile.alpha = 255;
-			projectile.width = 16;
-			projectile.height = 16;
-			projectile.tileCollide = false;
+			Projectile.friendly = true;
+			Projectile.damage = 30;
+			Projectile.DamageType = DamageClass.Ranged;
+			Projectile.penetrate = 2;
+			Projectile.timeLeft = 120;
+			Projectile.aiStyle = 0;
+			Projectile.alpha = 255;
+			Projectile.width = 16;
+			Projectile.height = 16;
+			Projectile.tileCollide = false;
 		}
 		private const float TrailDensity = 4;
 		public override void AI() {
-			Vector2 dustPosition2 = projectile.Center;
+			Vector2 dustPosition2 = Projectile.Center;
 			Dust dust2 = Dust.NewDustPerfect(dustPosition2, 133, null, 40, default(Color), 1f);
-			dust2.velocity = projectile.velocity * 0f;
+			dust2.velocity = Projectile.velocity * 0f;
 			dust2.noGravity = true;
-			if (projectile.localAI[0] == 0f) {
-				AdjustMagnitude(ref projectile.velocity);
-				projectile.localAI[0] = 1f;
+			if (Projectile.localAI[0] == 0f) {
+				AdjustMagnitude(ref Projectile.velocity);
+				Projectile.localAI[0] = 1f;
 			}
 			Vector2 move = Vector2.Zero;
 			float distance = 400f;
 			bool target = false;
 			for (int k = 0; k < 200; k++) {
 				if (Main.npc[k].active && !Main.npc[k].friendly) {
-					Vector2 newMove = Main.npc[k].Center - projectile.Center;
+					Vector2 newMove = Main.npc[k].Center - Projectile.Center;
 					float distanceTo = (float)Math.Sqrt(newMove.X * newMove.X + newMove.Y * newMove.Y);
 					if (distanceTo < distance) {
 						move = newMove;
@@ -48,8 +48,8 @@ public override void SetStaticDefaults() {
 			}
 			if (target) {
 				AdjustMagnitude(ref move);
-				projectile.velocity = (10 * projectile.velocity + move) / 11f;
-				AdjustMagnitude(ref projectile.velocity);
+				Projectile.velocity = (10 * Projectile.velocity + move) / 11f;
+				AdjustMagnitude(ref Projectile.velocity);
 			}
        }
 	   private void AdjustMagnitude(ref Vector2 vector) {
@@ -60,8 +60,8 @@ public override void SetStaticDefaults() {
 		}
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit) {
 			//target.immune[projectile.owner] = 20;
-			projectile.velocity.Y = -30f;
-			projectile.velocity.X = (Main.rand.Next(-20, 20));
+			Projectile.velocity.Y = -30f;
+			Projectile.velocity.X = (Main.rand.Next(-20, 20));
 			int k = 0;
 		}
 	}

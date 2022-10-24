@@ -9,16 +9,16 @@ namespace Singularity.Projectiles {
 		}
 
 		public override void SetDefaults() {
-			projectile.width = 60;
-			projectile.height = 60;
-			projectile.melee = true;
-			projectile.alpha = 255;
-			projectile.timeLeft = 30;
-			projectile.knockBack = 4f;
-			projectile.tileCollide = false;
-			projectile.penetrate = 1;
-			projectile.friendly = true;
-			projectile.hostile = false;
+			Projectile.width = 60;
+			Projectile.height = 60;
+			Projectile.DamageType = DamageClass.Melee;
+			Projectile.alpha = 255;
+			Projectile.timeLeft = 30;
+			Projectile.knockBack = 4f;
+			Projectile.tileCollide = false;
+			Projectile.penetrate = 1;
+			Projectile.friendly = true;
+			Projectile.hostile = false;
 		}
 
 		public override void AI(){	

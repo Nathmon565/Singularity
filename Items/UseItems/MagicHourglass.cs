@@ -10,19 +10,19 @@ namespace Singularity.Items.UseItems
 	// It may prove a useful guide for ModItems with similar behaviors.
 	public class MagicHourglass : ModItem
 	{
-        		public override void SetStaticDefaults() {
+				public override void SetStaticDefaults() {
 			Tooltip.SetDefault("Flip the hourglass to return home");  //The (English) text shown below your weapon's name
 		}
 		public override void SetDefaults() {
-			item.scale = 0.5f;
-            item.useStyle = 5;
-			item.UseSound = SoundID.Item6;
-			item.rare = 1;
+			Item.scale = 0.5f;
+            Item.useStyle = 5;
+			Item.UseSound = SoundID.Item6;
+			Item.rare = 1;
 
 		}
 
 		// UseStyle is called each frame that the item is being actively used.
-		public override void UseStyle(Player player) {
+		public override void UseStyle(Player player, Rectangle heldItemFrame) {
 			// Each frame, make some dust
 			if (Main.rand.NextBool()) {
 				int dust = Dust.NewDust(player.position, player.width, player.height, 57, 0f, 0f, 0, default(Color), 1.5f);
@@ -32,9 +32,9 @@ namespace Singularity.Items.UseItems
 			}
 			// This sets up the itemTime correctly.
 			if (player.itemTime == 0) {
-				player.itemTime = (int)(item.useTime / PlayerHooks.TotalUseTimeMultiplier(player, item));
+				player.itemTime = (int)(Item.useTime / PlayerLoader.TotalUseTimeMultiplier(player, Item));
 			}
-			else if (player.itemTime == (int)(item.useTime / PlayerHooks.TotalUseTimeMultiplier(player, item)) / 2) {
+			else if (player.itemTime == (int)(Item.useTime / PlayerLoader.TotalUseTimeMultiplier(player, Item)) / 2) {
 				// This code runs once halfway through the useTime of the item. You'll notice with magic mirrors you are still holding the item for a little bit after you've teleported.
 
 				// Make dust 70 times for a cool effect.

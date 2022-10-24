@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,33 +11,33 @@ namespace Singularity.Projectiles.Minions
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Saguaro"); //The english name of the projectile
-			Main.projFrames[projectile.type] = 1;
-			ProjectileID.Sets.MinionTargettingFeature[projectile.type] = true;
+			Main.projFrames[Projectile.type] = 1;
+			ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
 
-			Main.projPet[projectile.type] = true;
-			ProjectileID.Sets.MinionSacrificable[projectile.type] = true;
-			ProjectileID.Sets.Homing[projectile.type] = true;
+			Main.projPet[Projectile.type] = true;
+			ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
+			ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
 		}
 
 		public override void SetDefaults()
 		{
-			projectile.width = 22;
-			projectile.height = 80;
-			projectile.scale = 1f;
-			projectile.friendly = true;
-			projectile.magic = true;
-			projectile.minion = false;
-			projectile.sentry = true; //Sets the weapon as a sentry for sentry accessories to properly work.
-			projectile.timeLeft = Projectile.SentryLifeTime;
-			projectile.ignoreWater = false; //If this is set to false, the projectile will be slowed in water.
-			projectile.tileCollide = true;
-			projectile.penetrate = -1;
+			Projectile.width = 22;
+			Projectile.height = 80;
+			Projectile.scale = 1f;
+			Projectile.friendly = true;
+			Projectile.DamageType = DamageClass.Magic;
+			Projectile.minion = false;
+			Projectile.sentry = true; //Sets the weapon as a sentry for sentry accessories to properly work.
+			Projectile.timeLeft = Projectile.SentryLifeTime;
+			Projectile.ignoreWater = false; //If this is set to false, the projectile will be slowed in water.
+			Projectile.tileCollide = true;
+			Projectile.penetrate = -1;
 		}
 
 		public override Color? GetAlpha(Color lightColor)
 		{
 			return Color.White;
-			return new Color(255, 255, 255, 0) * (1f - projectile.alpha / 255f);
+			return new Color(255, 255, 255, 0) * (1f - Projectile.alpha / 255f);
 		}
 
 		bool spawned = false;
@@ -46,7 +47,7 @@ namespace Singularity.Projectiles.Minions
 			if (!spawned) {
 				for (int k = 0; k < 25; k++)
 				{
-					int dust = Dust.NewDust(projectile.position + projectile.velocity + new Vector2(8, 40), 0, 0, 2, 0, 0);
+					int dust = Dust.NewDust(Projectile.position + Projectile.velocity + new Vector2(8, 40), 0, 0, 2, 0, 0);
 					Main.dust[dust].noGravity = true; //Disable the dust gravity.
 					Main.dust[dust].velocity *= 2.0f; //Dust velocity.
 				}
@@ -69,31 +70,31 @@ namespace Singularity.Projectiles.Minions
 		{
 			//This AI will function as a static sentry, and will not move. If you would like to know how to do more advanced minion AI, check out PurityWisp.cs.
 
-			projectile.velocity.Y = projectile.velocity.Y + 0.1f; // 0.1f for arrow gravity, 0.4f for knife gravity
-			if (projectile.velocity.Y > 16f && projectile.velocity.Y < 950f) // This check implements "terminal velocity". We don't want the projectile to keep getting faster and faster. Past 16f this projectile will travel through blocks, so this check is useful.
+			Projectile.velocity.Y = Projectile.velocity.Y + 0.1f; // 0.1f for arrow gravity, 0.4f for knife gravity
+			if (Projectile.velocity.Y > 16f && Projectile.velocity.Y < 950f) // This check implements "terminal velocity". We don't want the projectile to keep getting faster and faster. Past 16f this projectile will travel through blocks, so this check is useful.
 			{
-			projectile.velocity.Y = 16f;
+			Projectile.velocity.Y = 16f;
 			}
 
 			int SentryRange = 70; //The sentry's range
 			int Speed = 180; //How fast the sentry can shoot the projectile.
 			float FireVelocity = 30f; //The velocity the sentry's shot projectile will travel. Slows down the closer the NPC is.
-			Main.player[projectile.owner].UpdateMaxTurrets(); //This makes the sentry be able to spawn more if your sentry cap is greater than one.
+			Main.player[Projectile.owner].UpdateMaxTurrets(); //This makes the sentry be able to spawn more if your sentry cap is greater than one.
 
-			Vector2 targetCenter = projectile.position;
+			Vector2 targetCenter = Projectile.position;
 			bool foundTarget = false;
 			
-			if (Main.player[projectile.owner].HasMinionAttackTargetNPC)
+			if (Main.player[Projectile.owner].HasMinionAttackTargetNPC)
 			{
-				NPC npc = Main.npc[Main.player[projectile.owner].MinionAttackTargetNPC];
-				float between = Vector2.Distance(npc.Center, projectile.Center);
-				bool lineOfSight = Collision.CanHitLine(projectile.position - new Vector2(0, 20), projectile.width, projectile.height, npc.position, npc.width, npc.height);
+				NPC npc = Main.npc[Main.player[Projectile.owner].MinionAttackTargetNPC];
+				float between = Vector2.Distance(npc.Center, Projectile.Center);
+				bool lineOfSight = Collision.CanHitLine(Projectile.position - new Vector2(0, 20), Projectile.width, Projectile.height, npc.position, npc.width, npc.height);
 				// Reasonable distance away so it doesn't target across multiple screens
 				if ((between < SentryRange * 16) && lineOfSight)
 				{
 					targetCenter = npc.Center;
 					foundTarget = true;
-					projectile.ai[1] = npc.whoAmI;
+					Projectile.ai[1] = npc.whoAmI;
 				}
 			}
 			if (!foundTarget)
@@ -102,55 +103,55 @@ namespace Singularity.Projectiles.Minions
 				{
 					NPC npc = Main.npc[t];
 
-					float distance = projectile.Distance(npc.Center); //Set the distance from the NPC and the sentry projectile.
+					float distance = Projectile.Distance(npc.Center); //Set the distance from the NPC and the sentry projectile.
 
 					//Convert distance to tile position
 					if (distance / 16 < SentryRange && Main.npc[t].active && !Main.npc[t].dontTakeDamage && !Main.npc[t].friendly && Main.npc[t].lifeMax > 5 && Main.npc[t].type != NPCID.TargetDummy && npc.CanBeChasedBy())
 					{
-						float between = Vector2.Distance(npc.Center, projectile.Center);
-						bool closest = Vector2.Distance(projectile.Center, targetCenter) > between;
-						bool lineOfSight = Collision.CanHitLine(projectile.position - new Vector2 (0, 20), projectile.width, projectile.height, npc.position, npc.width, npc.height);
+						float between = Vector2.Distance(npc.Center, Projectile.Center);
+						bool closest = Vector2.Distance(Projectile.Center, targetCenter) > between;
+						bool lineOfSight = Collision.CanHitLine(Projectile.position - new Vector2 (0, 20), Projectile.width, Projectile.height, npc.position, npc.width, npc.height);
 						if ((closest || !foundTarget) && lineOfSight)
 						{
 							foundTarget = true;
 							targetCenter = npc.Center;
-							projectile.ai[1] = npc.whoAmI;
+							Projectile.ai[1] = npc.whoAmI;
 						}
 					}
 				}
 			}
 			
-			projectile.ai[0]++;
+			Projectile.ai[0]++;
 			
-			int index = (int)projectile.ai[1];
+			int index = (int)Projectile.ai[1];
 			if (index < 0 || index > Main.maxNPCs || !foundTarget)
 			{
 				return; //We have not found a suitable NPC to shoot at, do not execute any further code (Make sure that any non-shoot related code is above this)
 			}
 			NPC target = Main.npc[index];
-			if (projectile.ai[0] % Speed == 5) {
-				Vector2 direction = target.Center + new Vector2 (0, 20f) - projectile.Center; //The direction the projectile will fire.
+			if (Projectile.ai[0] % Speed == 5) {
+				Vector2 direction = target.Center + new Vector2 (0, 20f) - Projectile.Center; //The direction the projectile will fire.
 
 				direction.Normalize(); //Normalizes the direction vector.
 				direction.X *= FireVelocity; //Multiply direction by fireVelocity so the sentry can fire the projectile faster the farther the NPC is away.
 				direction.Y *= FireVelocity; //Same as above, but with Y velocity.
 
-				Main.PlaySound(SoundID.Item102, projectile.Center); //Play a sound.
-				int damage = projectile.damage * 6; //How much damage the projectile shot from the sentry will do.
+				SoundEngine.PlaySound(SoundID.Item102, Projectile.Center); //Play a sound.
+				int damage = Projectile.damage * 6; //How much damage the projectile shot from the sentry will do.
 				int type = ProjectileID.PineNeedleFriendly; //The type of projectile the sentry will shoot. Use ModContent.ProjectileType<>() to fire a modded projectile.
-				if (Main.myPlayer == projectile.owner) {
-					Projectile.NewProjectile(projectile.Center.X - 4f, projectile.Center.Y - 20f, direction.X, direction.Y, type, damage, 3, projectile.owner);
+				if (Main.myPlayer == Projectile.owner) {
+					Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.position, Projectile.velocity, type, damage, 3, Projectile.owner);
 				}
 			}
 			//projectile.ai[1] = -1;
 			//Animate the projectile.
-			projectile.frameCounter++;
-			if (projectile.frameCounter % 10 == 0)
+			Projectile.frameCounter++;
+			if (Projectile.frameCounter % 10 == 0)
 			{
-				projectile.frame++;
-				projectile.frameCounter = 0;
-				if (projectile.frame >= 4)
-					projectile.frame = 0;
+				Projectile.frame++;
+				Projectile.frameCounter = 0;
+				if (Projectile.frame >= 4)
+					Projectile.frame = 0;
 			}
 		}
 	}

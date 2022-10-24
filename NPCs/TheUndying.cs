@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Utilities;
 
 namespace Singularity.NPCs
 {
@@ -8,32 +9,32 @@ namespace Singularity.NPCs
 	{
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("The Undying");
-			Main.npcFrameCount[npc.type] = Main.npcFrameCount[NPCID.Wraith];
+			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Wraith];
 		}
 
 		public override void SetDefaults() {
-			npc.width = 18;
-			npc.height = 40;
-			npc.damage = 60;
-			npc.defense = 20;
-			npc.lifeMax = 10000;
-			npc.HitSound = SoundID.NPCHit1;
-			npc.DeathSound = SoundID.NPCDeath2;
-			npc.value = 60f;
-			npc.knockBackResist = 0.05f;
-			npc.aiStyle = 22;
-			npc.scale = 2;
+			NPC.width = 18;
+			NPC.height = 40;
+			NPC.damage = 60;
+			NPC.defense = 20;
+			NPC.lifeMax = 10000;
+			NPC.HitSound = SoundID.NPCHit1;
+			NPC.DeathSound = SoundID.NPCDeath2;
+			NPC.value = 60f;
+			NPC.knockBackResist = 0.05f;
+			NPC.aiStyle = 22;
+			NPC.scale = 2;
 			//npc.ai[0] = 1f;
-			aiType = NPCID.Wraith;
-			animationType = NPCID.Wraith;
-			banner = Item.NPCtoBanner(NPCID.Wraith);
-			bannerItem = Item.BannerToItem(banner);
-			npc.noTileCollide = true;
-			npc.noGravity = true;
+			AIType = NPCID.Wraith;
+			AnimationType = NPCID.Wraith;
+			Banner = Item.NPCtoBanner(NPCID.Wraith);
+			BannerItem = Item.BannerToItem(Banner);
+			NPC.noTileCollide = true;
+			NPC.noGravity = true;
 		}
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo) {
-			if (spawnInfo.planteraDefeated){
+			if (spawnInfo.PlanteraDefeated){
 				return SpawnCondition.HardmodeJungle.Chance * SpawnCondition.UndergroundJungle.Chance * 0.1f;
 			}
 			else
@@ -43,31 +44,31 @@ namespace Singularity.NPCs
 		}
 		
 		public override bool CheckDead(){
-			if (npc.lifeMax > 5000 & Main.expertMode) {
+			if (NPC.lifeMax > 5000 & Main.expertMode) {
 				//npc.ai[0] += 1;
-				npc.damage += npc.damage/4;
-				npc.lifeMax /= 2;
-				npc.life = npc.lifeMax;
-				npc.scale *= 0.75f;
-				npc.width -= 4;
-				npc.height -= 10;
+				NPC.damage += NPC.damage/4;
+				NPC.lifeMax /= 2;
+				NPC.life = NPC.lifeMax;
+				NPC.scale *= 0.75f;
+				NPC.width -= 4;
+				NPC.height -= 10;
 				return false;
 			}
-			if (npc.lifeMax > 2500 & !Main.expertMode) {
+			if (NPC.lifeMax > 2500 & !Main.expertMode) {
 				//npc.ai[0] += 1;
-				npc.damage += npc.damage/4;
-				npc.lifeMax /= 2;
-				npc.life = npc.lifeMax;
-				npc.scale *= 0.75f;
-				npc.width -= 4;
-				npc.height -= 10;
+				NPC.damage += NPC.damage/4;
+				NPC.lifeMax /= 2;
+				NPC.life = NPC.lifeMax;
+				NPC.scale *= 0.75f;
+				NPC.width -= 4;
+				NPC.height -= 10;
 				return false;
 			}
-			if (npc.lifeMax <= 5000 && Main.expertMode)
+			if (NPC.lifeMax <= 5000 && Main.expertMode)
 			{
 				return true;
 			}
-			if (npc.lifeMax <= 2500 && !Main.expertMode)
+			if (NPC.lifeMax <= 2500 && !Main.expertMode)
 			{
 				return true;
 			}
@@ -77,7 +78,7 @@ namespace Singularity.NPCs
 		public override void HitEffect(int hitDirection, double damage) {
 			for (int i = 0; i < 10; i++) {
 				int dustType = Main.rand.Next(139, 143);
-				int dustIndex = Dust.NewDust(npc.position, npc.width, npc.height, dustType);
+				int dustIndex = Dust.NewDust(NPC.position, NPC.width, NPC.height, dustType);
 				Dust dust = Main.dust[dustIndex];
 				dust.velocity.X = dust.velocity.X + Main.rand.Next(-50, 51) * 0.01f;
 				dust.velocity.Y = dust.velocity.Y + Main.rand.Next(-50, 51) * 0.01f;

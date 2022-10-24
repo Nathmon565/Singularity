@@ -7,11 +7,11 @@ namespace Singularity.Tiles
 {
 	public class EnchantedOre : ModTile
 	{
-		public override void SetDefaults()
+		public override void SetStaticDefaults()
 		{
 			TileID.Sets.Ore[Type] = true;
 			Main.tileSpelunker[Type] = true; // The tile will be affected by spelunker highlighting
-			Main.tileValue[Type] = 410; // Metal Detector value, see https://terraria.gamepedia.com/Metal_Detector
+			Main.tileOreFinderPriority[Type] = 410; // Metal Detector value, see https://terraria.gamepedia.com/Metal_Detector
 			Main.tileMergeDirt[Type] = true;
 			Main.tileSolid[Type] = true;
 			Main.tileBlockLight[Type] = true;
@@ -20,10 +20,10 @@ namespace Singularity.Tiles
 			name.SetDefault("EnchantedOre");
 			AddMapEntry(new Color(157, 188, 242), name);
 
-			dustType = 84;
-			drop = ModContent.ItemType<Items.Placeable.EnchantedOre>();
-			soundType = SoundID.Tink;
-			soundStyle = 1;
+			DustType = 84;
+			ItemDrop = ModContent.ItemType<Items.Placeable.EnchantedOre>();
+			HitSound = SoundID.Tink;
+			//soundStyle/* tModPorter Note: Removed. Integrate into HitSound */ = 1;
 			//mineResist = 4f;
 			//minPick = 200;
 		}

@@ -7,28 +7,28 @@ namespace Singularity.Items.Armor {
 	public class TemperedGlassBreastplate : ModItem {
 		public override void SetStaticDefaults() {
 			Tooltip.SetDefault("6% increased damage");
+			ArmorIDs.Body.Sets.HidesTopSkin[Item.bodySlot] = true;
 		}
 		public override void SetDefaults() {
-			item.rare = ItemRarityID.Blue;
-			item.value = Singularity.ToCopper(0, 4, 0, 0);
-			item.defense = 14;
+			Item.rare = ItemRarityID.Blue;
+			Item.value = Singularity.ToCopper(0, 4, 0, 0);
+			Item.defense = 14;
 		}
 
-		public override bool DrawBody() {
-			return false;
-		}
+		//public override bool DrawBody()/* tModPorter Note: Removed. In SetStaticDefaults, use ArmorIDs.Body.Sets.HidesTopSkin[Item.bodySlot] = true if you returned false */ {
+			//return false;
+		//}
 
 		public override void UpdateEquip(Player player) {
-			player.allDamage += 0.06f;
+			player.GetDamage(DamageClass.Generic) += 0.06f;
 		}
 
 		public override void AddRecipes() {
-			ModRecipe recipe = new ModRecipe(mod);
+			Recipe recipe = CreateRecipe();
 			recipe.AddIngredient(null, "ReinforcedGlass", 20);
 			recipe.AddIngredient(ItemID.FrostCore, 1);
 			recipe.AddTile(TileID.AdamantiteForge);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			recipe.Register();
 		}
 	}
 }

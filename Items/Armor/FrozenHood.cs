@@ -7,23 +7,24 @@ namespace Singularity.Items.Armor {
 	public class FrozenHood : ModItem {
 		public override void SetStaticDefaults() {
 			Tooltip.SetDefault("2% increased melee speed");
+			ArmorIDs.Head.Sets.DrawHead[Item.headSlot] = false;
 		}
 		public override void SetDefaults() {
-			item.rare = ItemRarityID.Blue;
-			item.value = Singularity.ToCopper(0, 0, 30, 0);
-			item.defense = 3;
+			Item.rare = ItemRarityID.Blue;
+			Item.value = Singularity.ToCopper(0, 0, 30, 0);
+			Item.defense = 3;
 		}
 
-		public override bool DrawHead() {
-			return false;
-		}
+		//public override bool DrawHead()/* tModPorter Note: Removed. In SetStaticDefaults, use ArmorIDs.Head.Sets.DrawHead[Item.headSlot] = false if you returned false */ {
+			//return false;
+		//}
 
 		public override void UpdateEquip(Player player) {
-			player.meleeSpeed += 0.02f;
+			player.GetAttackSpeed(DamageClass.Melee) += 0.02f;
 		}
 
 		public override bool IsArmorSet(Item head, Item body, Item legs) {
-			return body.type == mod.ItemType("FrozenBreastplate") && legs.type == mod.ItemType("FrozenLeggings");
+			return body.type == Mod.Find<ModItem>("FrozenBreastplate").Type && legs.type == Mod.Find<ModItem>("FrozenLeggings").Type;
 		}
 
 		public override void UpdateArmorSet(Player player) {
@@ -32,11 +33,10 @@ namespace Singularity.Items.Armor {
 		}
 
 		public override void AddRecipes() {
-			ModRecipe recipe = new ModRecipe(mod);
+			Recipe recipe = CreateRecipe();
 			recipe.AddIngredient(null, "GlacialBar", 12);
 			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			recipe.Register();
 		}
 	}
 }

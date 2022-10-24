@@ -8,20 +8,20 @@ namespace Singularity.Projectiles {
 	public class HealStaffBolt : ModProjectile {
 
 		public override void SetDefaults() {
-			projectile.friendly = false;
-			projectile.hostile = true;
-			projectile.magic = true;
-			projectile.penetrate = 1;
-			projectile.timeLeft = 600;
-			projectile.aiStyle = 29;
-			projectile.alpha = 255;
-			projectile.width = 16;
-			projectile.height = 16;
+			Projectile.friendly = false;
+			Projectile.hostile = true;
+			Projectile.DamageType = DamageClass.Magic;
+			Projectile.penetrate = 1;
+			Projectile.timeLeft = 600;
+			Projectile.aiStyle = 29;
+			Projectile.alpha = 255;
+			Projectile.width = 16;
+			Projectile.height = 16;
 		}
 		
 		public override bool CanHitPlayer(Player target)	
 		{
-			if (projectile.owner == Main.myPlayer)
+			if (Projectile.owner == Main.myPlayer)
 			{
 				return false;
 			}
@@ -30,15 +30,15 @@ namespace Singularity.Projectiles {
 		
 		public override void AI() 
 		{
-			Lighting.AddLight(projectile.Center, 0.6f, 0.5f, 0.9f);
-            projectile.rotation += 0.4f * (float)projectile.direction;
-			Vector2 dustPosition = projectile.Center + new Vector2(Main.rand.Next(-4, 5), Main.rand.Next(-4, 5));
+			Lighting.AddLight(Projectile.Center, 0.6f, 0.5f, 0.9f);
+            Projectile.rotation += 0.4f * (float)Projectile.direction;
+			Vector2 dustPosition = Projectile.Center + new Vector2(Main.rand.Next(-4, 5), Main.rand.Next(-4, 5));
 			Dust dust = Dust.NewDustPerfect(dustPosition, 273, null, 100, default(Color), 1.2f);
 			dust.velocity *= 0.1f;
 			dust.noGravity = true;
-			Vector2 dustPosition2 = projectile.Center + new Vector2(Main.rand.Next(-4, 4), Main.rand.Next(-4, 4));
+			Vector2 dustPosition2 = Projectile.Center + new Vector2(Main.rand.Next(-4, 4), Main.rand.Next(-4, 4));
 			Dust dust2 = Dust.NewDustPerfect(dustPosition2, 61, null, 100, default(Color), 1.6f);
-			dust2.velocity = projectile.velocity * 0.9f;
+			dust2.velocity = Projectile.velocity * 0.9f;
 			dust2.noGravity = true;
 		} 
 
@@ -46,26 +46,26 @@ namespace Singularity.Projectiles {
 		}
 		public override void OnHitPlayer (Player target, int damage, bool crit)
 		{
-			if (projectile.owner != Main.myPlayer){
+			if (Projectile.owner != Main.myPlayer){
 				target.statLife += 40;
 				target.HealEffect(40,true);
 			}
 		}
 
 		public override bool OnTileCollide(Vector2 oldVelocity) {
-            projectile.Kill();
+            Projectile.Kill();
             for (int i = 0; i < 3; i++) {
 			}
             return false;
         } 
 		public override void Kill(int timeLeft) {
             for (int i = 0; i < 2; i++) {
-                float posX = projectile.Center.X * Main.rand.NextFloat(1f, 1f) + Main.rand.NextFloat(-2f, 2f);
-                float posY = projectile.Center.Y * Main.rand.NextFloat(1f, 1f) + Main.rand.NextFloat(-2f, 2f);
-	            float speedX = projectile.velocity.X * 0.3f + Main.rand.NextFloat(-1.6f, 1.6f);
-	            float speedY = projectile.velocity.Y * 0.3f + Main.rand.NextFloat(-1.6f, 1.6f); 
-	            Projectile.NewProjectile(posX, posY, speedX, speedY, 228, (int)(projectile.damage * 0.3f), 0f, projectile.owner, 0f, 0f);
-	        }
+                float posX = Projectile.Center.X * Main.rand.NextFloat(1f, 1f) + Main.rand.NextFloat(-2f, 2f);
+                float posY = Projectile.Center.Y * Main.rand.NextFloat(1f, 1f) + Main.rand.NextFloat(-2f, 2f);
+	            float speedX = Projectile.velocity.X * 0.3f + Main.rand.NextFloat(-1.6f, 1.6f);
+	            float speedY = Projectile.velocity.Y * 0.3f + Main.rand.NextFloat(-1.6f, 1.6f); 
+	            Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.position, Projectile.velocity, 228, (int)(Projectile.damage * 0.3f), 0f, Projectile.owner, 0f, 0f);
+			}
         }
 
 	}

@@ -9,21 +9,20 @@ namespace Singularity.Items.Armor {
 			Tooltip.SetDefault("12% increased damage");
 		}
 		public override void SetDefaults() {
-			item.rare = ItemRarityID.Blue;
-			item.value = Singularity.ToCopper(0, 4, 0, 0);
-			item.defense = 8;
+			Item.rare = ItemRarityID.Blue;
+			Item.value = Singularity.ToCopper(0, 4, 0, 0);
+			Item.defense = 8;
 		}
 		public override void UpdateEquip(Player player) {
-			player.allDamage += 0.12f;
+			player.GetDamage(DamageClass.Generic) += 0.12f;
 		}
 
 		public override void AddRecipes() {
-			ModRecipe recipe = new ModRecipe(mod);
+			Recipe recipe = CreateRecipe();
 			recipe.AddIngredient(null, "ReinforcedGlass", 20);
 			recipe.AddIngredient(ItemID.AncientBattleArmorMaterial, 1);
 			recipe.AddTile(TileID.AdamantiteForge);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			recipe.Register();
 		}
 	}
 }

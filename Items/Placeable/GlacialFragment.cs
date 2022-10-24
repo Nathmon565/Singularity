@@ -7,22 +7,22 @@ namespace Singularity.Items.Placeable
 	{
 		public override void SetStaticDefaults()
 		{
-			ItemID.Sets.SortingPriorityMaterials[item.type] = 58;
+			ItemID.Sets.SortingPriorityMaterials[Item.type] = 58;
 		}
 
 		public override void SetDefaults()
 		{
-			item.useStyle = ItemUseStyleID.SwingThrow;
-			item.useTurn = true;
-			item.useAnimation = 15;
-			item.useTime = 10;
-			item.autoReuse = true;
-			item.maxStack = 999;
-			item.consumable = true;
-			item.createTile = ModContent.TileType<Tiles.GlacialFragment>();
-			item.width = 12;
-			item.height = 12;
-			item.value = 3000;
+			Item.useStyle = ItemUseStyleID.Swing;
+			Item.useTurn = true;
+			Item.useAnimation = 15;
+			Item.useTime = 10;
+			Item.autoReuse = true;
+			Item.maxStack = 999;
+			Item.consumable = true;
+			Item.createTile = ModContent.TileType<Tiles.GlacialFragment>();
+			Item.width = 12;
+			Item.height = 12;
+			Item.value = 3000;
 		}
 	}
 }

@@ -9,29 +9,28 @@ namespace Singularity.Items.Weapons {
 		}
 
 		public override void SetDefaults() {
-			item.damage = 40;
-			item.magic = true;
-			item.mana = 12;
-			item.useTime = 28;
-			item.useAnimation = 28;
-			item.useStyle = 5;
-			item.noMelee = true;
-			item.knockBack = 4.75f;
-			item.value = Singularity.ToCopper(0, 0, 30, 0);
-			item.rare = 1;
-			item.UseSound = SoundID.Item20;
-			item.autoReuse = true;
-			item.shoot = mod.ProjectileType("SpiderBolt");
-			item.shootSpeed = 8f;
+			Item.damage = 40;
+			Item.DamageType = DamageClass.Magic;
+			Item.mana = 12;
+			Item.useTime = 28;
+			Item.useAnimation = 28;
+			Item.useStyle = 5;
+			Item.noMelee = true;
+			Item.knockBack = 4.75f;
+			Item.value = Singularity.ToCopper(0, 0, 30, 0);
+			Item.rare = 1;
+			Item.UseSound = SoundID.Item20;
+			Item.autoReuse = true;
+			Item.shoot = Mod.Find<ModProjectile>("SpiderBolt").Type;
+			Item.shootSpeed = 8f;
 		}
 		public override void AddRecipes() {
-			ModRecipe recipe = new ModRecipe(mod);
+			Recipe recipe = CreateRecipe();
 			recipe.AddIngredient(ItemID.WaterBolt);
 			recipe.AddIngredient(null, "ToughSilk", 8);
 			recipe.AddIngredient(ItemID.SpiderFang, 2);
 			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			recipe.Register();
 		}
 	}
 }

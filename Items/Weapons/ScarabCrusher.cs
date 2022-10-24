@@ -12,19 +12,19 @@ namespace Singularity.Items.Weapons {
 		}
 
 		public override void SetDefaults() {
-            item.damage = 1800; 
-			item.melee = true;
-			item.width = 100;
-			item.height = 100;
-			item.useTime = 40; 
-			item.useAnimation = 40;
-			item.knockBack = 120;
-			item.value = Singularity.ToCopper(0, 12, 0, 0); 
-			item.rare = ItemRarityID.LightPurple; 
-			item.UseSound = SoundID.Item1; 
-			item.autoReuse = false;
-			item.crit = 6;
-            item.useStyle = ItemUseStyleID.SwingThrow; 
+            Item.damage = 1800; 
+			Item.DamageType = DamageClass.Melee/* tModPorter Suggestion: Consider MeleeNoSpeed for no attack speed scaling */;
+			Item.width = 100;
+			Item.height = 100;
+			Item.useTime = 40; 
+			Item.useAnimation = 40;
+			Item.knockBack = 120;
+			Item.value = Singularity.ToCopper(0, 12, 0, 0); 
+			Item.rare = ItemRarityID.LightPurple; 
+			Item.UseSound = SoundID.Item1; 
+			Item.autoReuse = false;
+			Item.crit = 6;
+            Item.useStyle = ItemUseStyleID.Swing; 
             //item.noMelee = true;
 			//item.channel = true;
             //item.noUseGraphic = true;
@@ -48,12 +48,11 @@ namespace Singularity.Items.Weapons {
 		}*/
 
 		public override void AddRecipes() {
-			ModRecipe recipe = new ModRecipe(mod);
+			Recipe recipe = CreateRecipe();
 			recipe.AddIngredient(ItemID.BreakerBlade);
 			recipe.AddIngredient(ItemID.BrokenHeroSword);
 			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			recipe.Register();
 		}
 	}
 }

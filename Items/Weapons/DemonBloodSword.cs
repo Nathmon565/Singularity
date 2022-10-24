@@ -9,29 +9,28 @@ namespace Singularity.Items.Weapons {
 		}
 
 		public override void SetDefaults() {
-            item.damage = 50; 
-			item.melee = true;
-			item.width = 40;
-			item.height = 40;
-			item.useTime = 20; 
-			item.useAnimation = 20;
-			item.knockBack = 6;
-			item.value = Singularity.ToCopper(0, 0, 30, 0); 
-			item.rare = ItemRarityID.LightRed; 
-			item.UseSound = SoundID.Item1; 
-			item.autoReuse = true;
-			item.crit = 6;
-			item.useTurn = true;
-            item.useStyle = ItemUseStyleID.SwingThrow; 
+            Item.damage = 50; 
+			Item.DamageType = DamageClass.Melee/* tModPorter Suggestion: Consider MeleeNoSpeed for no attack speed scaling */;
+			Item.width = 40;
+			Item.height = 40;
+			Item.useTime = 20; 
+			Item.useAnimation = 20;
+			Item.knockBack = 6;
+			Item.value = Singularity.ToCopper(0, 0, 30, 0); 
+			Item.rare = ItemRarityID.LightRed; 
+			Item.UseSound = SoundID.Item1; 
+			Item.autoReuse = true;
+			Item.crit = 6;
+			Item.useTurn = true;
+            Item.useStyle = ItemUseStyleID.Swing; 
 		}
 
 		public override void AddRecipes() {
-			ModRecipe recipe = new ModRecipe(mod);
+			Recipe recipe = CreateRecipe();
 			recipe.AddIngredient(ItemID.HellstoneBar, 10);
 			recipe.AddIngredient(null, "DemonBlood", 8);
 			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			recipe.Register();
 		}
 	}
 }

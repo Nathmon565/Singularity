@@ -17,14 +17,14 @@ namespace Singularity.Items.Accessories
 		
 		public override void SetDefaults()
         {
-            item.width = 24; 
-            item.height = 28;
-            item.value = Singularity.ToCopper(0, 0, 30, 0);
-            item.rare = 3;
-            item.accessory = true;
+            Item.width = 24; 
+            Item.height = 28;
+            Item.value = Singularity.ToCopper(0, 0, 30, 0);
+            Item.rare = 3;
+            Item.accessory = true;
         }
 
-		public override bool CanEquipAccessory (Player player, int slot){
+		public override bool CanEquipAccessory (Player player, int slot, bool modded)/* tModPorter Suggestion: Consider using new hook CanAccessoryBeEquippedWith */{
 			return true;
 		}
 		public override void UpdateEquip (Player player){
@@ -32,7 +32,7 @@ namespace Singularity.Items.Accessories
 			if (player.statLife >= player.statLifeMax2){
 				player.statLife = player.statLifeMax2;
 			}
-			player.allDamage *=2;
+			player.GetDamage(DamageClass.Generic) *=2;
 		}
 		
 		public override void UpdateAccessory(Player player, bool hideVisual)
@@ -41,12 +41,11 @@ namespace Singularity.Items.Accessories
         }
 
 		public override void AddRecipes() {
-			ModRecipe recipe = new ModRecipe(mod);
+			Recipe recipe = CreateRecipe();
 			recipe.AddIngredient(ItemID.Glass, 40);
 			recipe.AddIngredient(ItemID.HellstoneBar, 8);
 			recipe.AddTile(TileID.GlassKiln);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			recipe.Register();
 		}
 	}
 }
