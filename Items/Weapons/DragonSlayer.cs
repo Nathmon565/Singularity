@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 namespace Singularity.Items.Weapons {
 	public class DragonSlayer : ModItem {
 		public override void SetStaticDefaults() {
-			Tooltip.SetDefault("It was too big to be called a sword.\nMassive, thick, heavy, and far too rough.\nIndeed, it was a heap of raw iron.");  //The (English) text shown below your weapon's name
+			// Tooltip.SetDefault("It was too big to be called a sword.\nMassive, thick, heavy, and far too rough.\nIndeed, it was a heap of raw iron.");  //The (English) text shown below your weapon's name
 		}
 
 		public override void SetDefaults() {
@@ -23,7 +23,7 @@ namespace Singularity.Items.Weapons {
 			Item.crit = 6;
             Item.useStyle = ItemUseStyleID.Swing; 
 		}
-		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit) {
+		public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone) {
 			// Add the Onfire buff to the NPC for 1 second when the weapon hits an NPC
 			// 60 frames = 1 second
 			target.AddBuff(189, 180);

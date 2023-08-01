@@ -6,7 +6,7 @@ namespace Singularity.Items.Armor {
 	[AutoloadEquip(EquipType.Legs)]
 	public class TemperedGlassLeggings : ModItem {
 		public override void SetStaticDefaults() {
-			Tooltip.SetDefault("6% increased damge");
+			// Tooltip.SetDefault("6% increased damge");
 			ArmorIDs.Legs.Sets.HidesBottomSkin[Item.legSlot] = true;
 		}
 		public override void SetDefaults() {

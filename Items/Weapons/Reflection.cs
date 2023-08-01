@@ -8,7 +8,7 @@ using Singularity.Projectiles;
 namespace Singularity.Items.Weapons {
 	public class Reflection : ModItem {
 		public override void SetStaticDefaults() {
-			Tooltip.SetDefault("SwordrowS");  //The (English) text shown below your weapon's name
+			// Tooltip.SetDefault("SwordrowS");  //The (English) text shown below your weapon's name
 			Item.staff[Item.type] = true;
 		}
 

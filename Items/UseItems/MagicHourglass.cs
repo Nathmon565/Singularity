@@ -11,7 +11,7 @@ namespace Singularity.Items.UseItems
 	public class MagicHourglass : ModItem
 	{
 				public override void SetStaticDefaults() {
-			Tooltip.SetDefault("Flip the hourglass to return home");  //The (English) text shown below your weapon's name
+			// Tooltip.SetDefault("Flip the hourglass to return home");  //The (English) text shown below your weapon's name
 		}
 		public override void SetDefaults() {
 			Item.scale = 0.5f;

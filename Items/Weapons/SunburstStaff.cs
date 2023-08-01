@@ -12,7 +12,7 @@ namespace Singularity.Items.Weapons
 	{
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("Summons a sentry that shoots out sunbeams in every direction");
+			// Tooltip.SetDefault("Summons a sentry that shoots out sunbeams in every direction");
 			ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true;
 			ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
 		}

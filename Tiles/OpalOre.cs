@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Singularity.Tiles
@@ -16,12 +17,12 @@ namespace Singularity.Tiles
 			Main.tileSolid[Type] = true;
 			Main.tileBlockLight[Type] = true;
 
-			ModTranslation name = CreateMapEntryName();
-			name.SetDefault("OpalOre");
+			LocalizedText name = CreateMapEntryName();
+			// name.SetDefault("OpalOre");
 			AddMapEntry(new Color(157, 188, 242), name);
 
 			DustType = 84;
-			ItemDrop = ModContent.ItemType<Items.Opal>();
+			ItemDrop/* tModPorter Note: Removed. Tiles and walls will drop the item which places them automatically. Use RegisterItemDrop to alter the automatic drop if necessary. */ = ModContent.ItemType<Items.Opal>();
 			HitSound = SoundID.Tink;
 			//soundStyle/* tModPorter Note: Removed. Integrate into HitSound */ = 1;
 			//mineResist = 4f;

@@ -11,8 +11,8 @@ namespace Singularity.Buffs
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Shocked");
-			Description.SetDefault("Shocking!");
+			// DisplayName.SetDefault("Shocked");
+			// Description.SetDefault("Shocking!");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = false;
 			Main.debuff[Type] = true;

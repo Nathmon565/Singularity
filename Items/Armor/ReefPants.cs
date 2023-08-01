@@ -6,7 +6,7 @@ namespace Singularity.Items.Armor {
 	[AutoloadEquip(EquipType.Legs)]
 	public class ReefPants : ModItem {
 		public override void SetStaticDefaults() {
-			Tooltip.SetDefault("Reduces damage taken by 1%");
+			// Tooltip.SetDefault("Reduces damage taken by 1%");
 			ArmorIDs.Legs.Sets.HidesBottomSkin[Item.legSlot] = true;
 		}
 		public override void SetDefaults() {

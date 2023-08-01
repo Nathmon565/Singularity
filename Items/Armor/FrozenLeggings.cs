@@ -6,7 +6,7 @@ namespace Singularity.Items.Armor {
 	[AutoloadEquip(EquipType.Legs)]
 	public class FrozenLeggings : ModItem {
 		public override void SetStaticDefaults() {
-			Tooltip.SetDefault("2% increased melee speed");
+			// Tooltip.SetDefault("2% increased melee speed");
 			ArmorIDs.Legs.Sets.HidesBottomSkin[Item.legSlot] = true;
 		}
 		public override void SetDefaults() {

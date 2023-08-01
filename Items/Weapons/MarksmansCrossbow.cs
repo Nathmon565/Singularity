@@ -10,8 +10,8 @@ namespace Singularity.Items.Weapons
 	public class MarksmansCrossbow : ModItem
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Marksman's Crossbow");
-			Tooltip.SetDefault("Nothing gets past my crossbow.");
+			// DisplayName.SetDefault("Marksman's Crossbow");
+			// Tooltip.SetDefault("Nothing gets past my crossbow.");
 		}
 
 		public override void SetDefaults() {

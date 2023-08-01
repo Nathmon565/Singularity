@@ -10,8 +10,8 @@ namespace Singularity.Items.Weapons
 	public class SharpshootersCrossbow : ModItem
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Sharpshooter's Crossbow");
-			Tooltip.SetDefault("One shot...one kill...");
+			// DisplayName.SetDefault("Sharpshooter's Crossbow");
+			// Tooltip.SetDefault("One shot...one kill...");
 		}
 
 		public override void SetDefaults() {

@@ -6,7 +6,7 @@ namespace Singularity.Items.Armor {
 	[AutoloadEquip(EquipType.Body)]
 	public class FrozenBreastplate : ModItem {
 		public override void SetStaticDefaults() {
-			Tooltip.SetDefault("2% increased melee speed");
+			// Tooltip.SetDefault("2% increased melee speed");
 		}
 		public override void SetDefaults() {
 			Item.rare = ItemRarityID.Blue;

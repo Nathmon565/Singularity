@@ -10,7 +10,7 @@ namespace Singularity.Projectiles.Minions
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Sunburst Sentry"); //The english name of the projectile
+			// DisplayName.SetDefault("Sunburst Sentry"); //The english name of the projectile
 			Main.projFrames[Projectile.type] = 1;
 			ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
 

@@ -8,8 +8,8 @@ using Terraria.ModLoader;
 namespace Singularity.Items {
 	public class ChlorophyteSoul : ModItem {
 		public override void SetStaticDefaults(){
-			DisplayName.SetDefault("Soul of Chlorophyte");
-			Tooltip.SetDefault("'The essence of regenerative creatures'");
+			// DisplayName.SetDefault("Soul of Chlorophyte");
+			// Tooltip.SetDefault("'The essence of regenerative creatures'");
 			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 4));
 			ItemID.Sets.AnimatesAsSoul[Item.type] = true;
 			ItemID.Sets.ItemIconPulse[Item.type] = true;

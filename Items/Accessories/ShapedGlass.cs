@@ -11,8 +11,8 @@ namespace Singularity.Items.Accessories
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Shaped Glass");
-			Tooltip.SetDefault("Doubles your damage \nHalves your health");
+			// DisplayName.SetDefault("Shaped Glass");
+			// Tooltip.SetDefault("Doubles your damage \nHalves your health");
 		}
 		
 		public override void SetDefaults()

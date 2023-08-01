@@ -12,7 +12,7 @@ namespace Singularity.NPCs
 		//public override string Texture => "Terraria/NPC_" + NPCID.SkeletonMerchant;
 
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Lunatic Dealer");
+			// DisplayName.SetDefault("Lunatic Dealer");
 			Main.npcFrameCount[NPC.type] = 25;
 			NPCID.Sets.ExtraFramesCount[NPC.type] = 9;
 			NPCID.Sets.AttackFrameCount[NPC.type] = 4;
@@ -79,10 +79,10 @@ namespace Singularity.NPCs
 		public override void SetChatButtons (ref string button, ref string button2){
 			button = "Shop";
 		}
-		public override void OnChatButtonClicked (bool firstButton, ref bool shop){
+		public override void OnChatButtonClicked (bool firstButton, ref string shopName){
 			shop = true;
 		}
-		public override void SetupShop (Chest shop, ref int nextSlot){
+		public override void ModifyActiveShop (string shopName, Item[] items){
 				shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.UseItems.PharmakonBrew>());
 				nextSlot++;
 		}

@@ -9,7 +9,7 @@ namespace Singularity.Items.Armor {
 		private int bonusBreath = 0;
 		private int bonusBreathInterval = 3;
 		public override void SetStaticDefaults() {
-			Tooltip.SetDefault("Reduces damage taken by 2%");
+			// Tooltip.SetDefault("Reduces damage taken by 2%");
 			ArmorIDs.Head.Sets.DrawHead[Item.headSlot] = false;
 		}
 		public override void SetDefaults() {

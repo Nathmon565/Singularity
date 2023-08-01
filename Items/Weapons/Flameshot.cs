@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 namespace Singularity.Items.Weapons {
 	public class Flameshot : ModItem {
 		public override void SetStaticDefaults() {
-			Tooltip.SetDefault("Uses gel for ammo");
+			// Tooltip.SetDefault("Uses gel for ammo");
 		}
 
 		public override void SetDefaults() {

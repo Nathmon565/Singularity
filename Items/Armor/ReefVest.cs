@@ -6,7 +6,7 @@ namespace Singularity.Items.Armor {
 	[AutoloadEquip(EquipType.Body)]
 	public class ReefVest : ModItem {
 		public override void SetStaticDefaults() {
-			Tooltip.SetDefault("Reduces damage taken by 2%");
+			// Tooltip.SetDefault("Reduces damage taken by 2%");
 		}
 		public override void SetDefaults() {
 			Item.rare = ItemRarityID.Blue;

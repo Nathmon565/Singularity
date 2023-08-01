@@ -9,7 +9,7 @@ namespace Singularity.Items.Weapons {
 	public class GlassShattersword : ModItem {
 		public override void SetStaticDefaults() {
 			//DisplayName.SetDefault("Glass Shattersword");
-			Tooltip.SetDefault("Has a chance to shatter on hit... \nBe Carfeul!");  //The (English) text shown below your weapon's name
+			// Tooltip.SetDefault("Has a chance to shatter on hit... \nBe Carfeul!");  //The (English) text shown below your weapon's name
 		}
 
 		public override void SetDefaults() {
@@ -29,7 +29,7 @@ namespace Singularity.Items.Weapons {
             Item.useStyle = ItemUseStyleID.Swing;
 		}
 		public bool shatterTime = false;
-		public override void OnHitNPC (Player player, NPC target, int damage, float knockBack, bool crit){
+		public override void OnHitNPC (Player player, NPC target, NPC.HitInfo hit, int damageDone){
 			if (shatterTime == true){
 				SoundEngine.PlaySound(SoundID.Shatter);
 				for (int i=0; i < 49; i++){

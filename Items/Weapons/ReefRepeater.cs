@@ -9,7 +9,7 @@ namespace Singularity.Items.Weapons
 	public class ReefRepeater : ModItem
 	{
 		public override void SetStaticDefaults() {
-			Tooltip.SetDefault("You might want a stronger arrow.");
+			// Tooltip.SetDefault("You might want a stronger arrow.");
 		}
 
 		public override void SetDefaults() {

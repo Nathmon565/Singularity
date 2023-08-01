@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 namespace Singularity.Items.Weapons {
 	public class DemonBloodSword : ModItem {
 		public override void SetStaticDefaults() {
-			Tooltip.SetDefault("A family heirloom.");  //The (English) text shown below your weapon's name
+			// Tooltip.SetDefault("A family heirloom.");  //The (English) text shown below your weapon's name
 		}
 
 		public override void SetDefaults() {

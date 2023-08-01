@@ -12,7 +12,7 @@ namespace Singularity.Items.Weapons
 	{
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("Summons a snowman to throw snowballs at your enemies \n\nHo ho hol' up");
+			// Tooltip.SetDefault("Summons a snowman to throw snowballs at your enemies \n\nHo ho hol' up");
 			ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true;
 			ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
 		}

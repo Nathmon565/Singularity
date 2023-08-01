@@ -16,7 +16,7 @@ namespace Singularity
 {
     public class SingularityWorld : ModSystem
     {
-        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
+        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
         {
             int shiniesIndex = tasks.FindIndex(x => x.Name.Equals("Random Gems"));
             if(shiniesIndex != -1)

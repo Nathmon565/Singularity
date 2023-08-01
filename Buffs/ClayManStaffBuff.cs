@@ -11,8 +11,8 @@ namespace Singularity.Buffs
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Clay Man");
-			Description.SetDefault("The Clay Men will fight for you");
+			// DisplayName.SetDefault("Clay Man");
+			// Description.SetDefault("The Clay Men will fight for you");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}

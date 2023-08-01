@@ -6,7 +6,7 @@ namespace Singularity.Items.Armor {
 	[AutoloadEquip(EquipType.Head)]
 	public class FrozenHood : ModItem {
 		public override void SetStaticDefaults() {
-			Tooltip.SetDefault("2% increased melee speed");
+			// Tooltip.SetDefault("2% increased melee speed");
 			ArmorIDs.Head.Sets.DrawHead[Item.headSlot] = false;
 		}
 		public override void SetDefaults() {

@@ -6,7 +6,7 @@ namespace Singularity.Items.Armor {
 	[AutoloadEquip(EquipType.Head)]
 	public class AnnealedGlassHelmet : ModItem {
 		public override void SetStaticDefaults() {
-			Tooltip.SetDefault("12% increased damage");
+			// Tooltip.SetDefault("12% increased damage");
 			ArmorIDs.Head.Sets.DrawHead[Item.headSlot] = false;
 		}
 		public override void SetDefaults() {

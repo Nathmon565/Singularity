@@ -13,8 +13,8 @@ namespace Singularity.Items.Weapons
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Clay Man Staff");
-			Tooltip.SetDefault("Summons Clay Men to fight for you");
+			// DisplayName.SetDefault("Clay Man Staff");
+			// Tooltip.SetDefault("Summons Clay Men to fight for you");
 			ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true; // This lets the player target anywhere on the whole screen while using a controller.
 			ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
 		}

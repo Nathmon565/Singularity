@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 namespace Singularity.Items.Weapons {
 	public class SoulSword : ModItem {
 		public override void SetStaticDefaults() {
-			Tooltip.SetDefault("The soul's ideal blade.");  //The (English) text shown below your weapon's name
+			// Tooltip.SetDefault("The soul's ideal blade.");  //The (English) text shown below your weapon's name
 			Item.staff[Item.type] = true;
 		}
 

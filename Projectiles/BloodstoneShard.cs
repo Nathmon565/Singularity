@@ -29,7 +29,7 @@ namespace Singularity.Projectiles {
 			dust2.noGravity = true;
 			Lighting.AddLight(Projectile.Center, 0.7f, 0.2f, 0.2f);
         }
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit) {
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
             if(Main.rand.NextFloat() < 0.5f){
 		    target.AddBuff(31, 60);
 		}

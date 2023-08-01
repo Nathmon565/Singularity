@@ -58,7 +58,7 @@ public override void SetStaticDefaults() {
 				vector *= 30f / magnitude;
 			}
 		}
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit) {
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
 			//target.immune[projectile.owner] = 20;
 			Projectile.velocity.Y = -30f;
 			Projectile.velocity.X = (Main.rand.Next(-20, 20));

@@ -44,7 +44,7 @@ namespace Singularity.Projectiles {
 
 		public void HealEffect(int HealAmount, bool brodcast){
 		}
-		public override void OnHitPlayer (Player target, int damage, bool crit)
+		public override void OnHitPlayer (Player target, Player.HurtInfo info)
 		{
 			if (Projectile.owner != Main.myPlayer){
 				target.statLife += 40;

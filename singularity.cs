@@ -52,7 +52,7 @@ namespace Singularity {
 				Crossbonetimer = 0;
 			}
 		}
-		public override void OnHitByNPC(NPC npc, int damage, bool crit){
+		public override void OnHitByNPC(NPC npc, Player.HurtInfo hurtInfo){
 			if (AnnealedArmorSet){
 				float damageBonusChance = Main.rand.NextFloat(0,99);
 				if (damageBonusChance >= 90){
@@ -70,7 +70,7 @@ namespace Singularity {
 			}
 		}
 
-		public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource, ref int cooldownCounter) {
+		public override void ModifyHurt(ref Player.HurtModifiers modifiers)/* tModPorter Override ImmuneTo, FreeDodge or ConsumableDodge instead to prevent taking damage */ {
 			if(Jellybone && SkellyJellyNecklace) {
 				if (!Player.HasBuff(ModContent.BuffType<JellyboneBuff>()) && !Player.HasBuff(ModContent.BuffType<JellyboneBuff2>()))
 				{
@@ -110,7 +110,7 @@ namespace Singularity {
 			return true;
 			}
 		
-		public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit) {
+		public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)/* tModPorter If you don't need the Projectile, consider using OnHitNPC instead */ {
 			if(VialofLightning)
 			{
 				target.AddBuff(ModContent.BuffType<ShockedBuff>(), 300);
@@ -125,7 +125,7 @@ namespace Singularity {
 				}
 			}
 		}
-		public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit) {
+		public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)/* tModPorter If you don't need the Item, consider using OnHitNPC instead */ {
 			if(VialofLightning)
 			{
 				target.AddBuff(ModContent.BuffType<ShockedBuff>(), 120);
@@ -147,8 +147,8 @@ namespace Singularity {
 			{
 				public override void SetStaticDefaults()
 				{
-					DisplayName.SetDefault("Jellybone");
-					Tooltip.SetDefault("Become immune for one hit \n\nTakes 30 seconds to recharge");
+					// DisplayName.SetDefault("Jellybone");
+					// Tooltip.SetDefault("Become immune for one hit \n\nTakes 30 seconds to recharge");
 				}
 
 				public override void SetDefaults()
@@ -188,8 +188,8 @@ namespace Singularity {
 			{
 				public override void SetStaticDefaults()
 				{
-					DisplayName.SetDefault("Skelly-Jelly Necklace");
-					Tooltip.SetDefault("Generates a very subtle glow which becomes more vibrant underwater \n\nIncreases armor penetration by 5 \n\nBecome immune for one hit \n\nTakes 30 seconds to recharge");
+					// DisplayName.SetDefault("Skelly-Jelly Necklace");
+					// Tooltip.SetDefault("Generates a very subtle glow which becomes more vibrant underwater \n\nIncreases armor penetration by 5 \n\nBecome immune for one hit \n\nTakes 30 seconds to recharge");
 				}
 
 				public override void SetDefaults()
@@ -226,8 +226,8 @@ namespace Singularity {
 			{
 				public override void SetStaticDefaults()
 				{
-					DisplayName.SetDefault("Vial of Lightning");
-					Tooltip.SetDefault("Inflicts Shocked on hit");
+					// DisplayName.SetDefault("Vial of Lightning");
+					// Tooltip.SetDefault("Inflicts Shocked on hit");
 				}
 
 				public override void SetDefaults()
@@ -247,8 +247,8 @@ namespace Singularity {
 			{
 				public override void SetStaticDefaults()
 				{
-					DisplayName.SetDefault("Ukulele");
-					Tooltip.SetDefault("...and his music was electric.");
+					// DisplayName.SetDefault("Ukulele");
+					// Tooltip.SetDefault("...and his music was electric.");
 				}
 
 				public override void SetDefaults()
@@ -277,8 +277,8 @@ namespace Singularity {
 			{
 				public override void SetStaticDefaults()
 				{
-					DisplayName.SetDefault("Chlorophyte Heart");
-					Tooltip.SetDefault("Heals you back to full upon death. Once.");
+					// DisplayName.SetDefault("Chlorophyte Heart");
+					// Tooltip.SetDefault("Heals you back to full upon death. Once.");
 				}
 
 				public override void SetDefaults()
@@ -333,7 +333,7 @@ namespace Singularity {
 		internal class Crossbow : ModItem
 		{
 		public override void SetStaticDefaults() {
-			Tooltip.SetDefault("This might take a second.");
+			// Tooltip.SetDefault("This might take a second.");
 		}
 
 		public override void SetDefaults() {
@@ -411,7 +411,7 @@ namespace Singularity {
 		internal class Crossbone : ModItem
 		{
 		public override void SetStaticDefaults() {
-			Tooltip.SetDefault("Cross my heart and hope to perish.");
+			// Tooltip.SetDefault("Cross my heart and hope to perish.");
 		}
 
 		public override void SetDefaults() {

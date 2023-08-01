@@ -23,16 +23,16 @@ namespace Singularity.Projectiles {
 			Projectile.tileCollide = true;
 =======
 >>>>>>> Stashed changes
-			projectile.friendly = true;
-			projectile.magic = true;
-			projectile.penetrate = 3;
-			projectile.timeLeft = 600;
-			projectile.aiStyle = 29;
-			projectile.alpha = 100;
-			projectile.scale *= 1;
-			projectile.width = 20;
-			projectile.height = 20;
-			projectile.tileCollide = true;
+			Projectile.friendly = true;
+			Projectile.DamageType = DamageClass.Magic;
+			Projectile.penetrate = 3;
+			Projectile.timeLeft = 600;
+			Projectile.aiStyle = 29;
+			Projectile.alpha = 100;
+			Projectile.scale *= 1;
+			Projectile.width = 20;
+			Projectile.height = 20;
+			Projectile.tileCollide = true;
 <<<<<<< Updated upstream
 =======
 >>>>>>> 1e6f01a5fa3e9140dbb48cf9cbc4101cd15fc073

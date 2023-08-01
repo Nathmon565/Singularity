@@ -11,8 +11,8 @@ namespace Singularity.Buffs
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Shattering Fury");
-			Description.SetDefault("50% increased damage");
+			// DisplayName.SetDefault("Shattering Fury");
+			// Description.SetDefault("50% increased damage");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = false;
 			Main.debuff[Type] = false;

@@ -6,7 +6,7 @@ namespace Singularity.Items.Armor {
 	[AutoloadEquip(EquipType.Body)]
 	public class GlassBreastplate : ModItem {
 		public override void SetStaticDefaults() {
-			Tooltip.SetDefault("8% increased damage");
+			// Tooltip.SetDefault("8% increased damage");
 		}
 		public override void SetDefaults() {
 			Item.rare = ItemRarityID.Blue;

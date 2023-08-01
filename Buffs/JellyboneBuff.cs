@@ -12,8 +12,8 @@ namespace Singularity.Buffs
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Jelly-Jammed");
-			Description.SetDefault("You must wait before you can become immune again");
+			// DisplayName.SetDefault("Jelly-Jammed");
+			// Description.SetDefault("You must wait before you can become immune again");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = false;
 			Main.debuff[Type] = true;
@@ -36,8 +36,8 @@ namespace Singularity.Buffs
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Jelly-Jammed");
-			Description.SetDefault("You must wait longer before you can become more immune again");
+			// DisplayName.SetDefault("Jelly-Jammed");
+			// Description.SetDefault("You must wait longer before you can become more immune again");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = false;
 			Main.debuff[Type] = true;

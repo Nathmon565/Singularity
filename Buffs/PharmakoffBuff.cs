@@ -11,8 +11,8 @@ namespace Singularity.Buffs
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Pharmakoff");
-			Description.SetDefault("...and lose it all.");
+			// DisplayName.SetDefault("Pharmakoff");
+			// Description.SetDefault("...and lose it all.");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = false;
 			Main.debuff[Type] = true;

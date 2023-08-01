@@ -12,7 +12,7 @@ namespace Singularity.Items.Weapons
 	{
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("Summons a cactus to fire needles at your enemies \n\nNo touchy");
+			// Tooltip.SetDefault("Summons a cactus to fire needles at your enemies \n\nNo touchy");
 			ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true;
 			ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
 		}

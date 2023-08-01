@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 namespace Singularity.Items.Weapons {
 	public class SpiderCharge : ModItem {
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Spider Bolt");
+			// DisplayName.SetDefault("Spider Bolt");
 		}
 
 		public override void SetDefaults() {

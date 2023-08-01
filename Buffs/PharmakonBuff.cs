@@ -11,8 +11,8 @@ namespace Singularity.Buffs
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Pharmakon");
-			Description.SetDefault("Gain great strength...");
+			// DisplayName.SetDefault("Pharmakon");
+			// Description.SetDefault("Gain great strength...");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = false;
 			Main.debuff[Type] = true;

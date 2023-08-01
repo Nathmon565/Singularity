@@ -10,7 +10,7 @@ namespace Singularity.Items.Weapons
 	public class GlassRepeater : ModItem
 	{
 		public override void SetStaticDefaults() {
-			Tooltip.SetDefault("Don't drop it!");
+			// Tooltip.SetDefault("Don't drop it!");
 		}
 
 		public override void SetDefaults() {

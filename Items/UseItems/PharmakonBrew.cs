@@ -7,7 +7,7 @@ namespace Singularity.Items.UseItems {
 		
 		public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Improves your stats greatly... \nAt a cost.");
+            // Tooltip.SetDefault("Improves your stats greatly... \nAt a cost.");
         }
 
         public override void SetDefaults()

@@ -8,7 +8,7 @@ namespace Singularity.Items.Weapons {
 	public class LivingLute : ModItem {
 		public override void SetStaticDefaults() {
 			Item.staff[Item.type] = true;
-			Tooltip.SetDefault("The most lively lute that ever lived.");
+			// Tooltip.SetDefault("The most lively lute that ever lived.");
 		}
 
 		public override void SetDefaults() {

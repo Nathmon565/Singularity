@@ -8,7 +8,7 @@ namespace Singularity.NPCs
 	public class TheUndying : ModNPC
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("The Undying");
+			// DisplayName.SetDefault("The Undying");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Wraith];
 		}
 
@@ -34,7 +34,7 @@ namespace Singularity.NPCs
 		}
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo) {
-			if (spawnInfo.PlanteraDefeated){
+			if (spawnInfo.PlanteraDefeated/* tModPorter Note: Removed. Use (NPC.downedPlantBoss && Main.hardMode) instead */){
 				return SpawnCondition.HardmodeJungle.Chance * SpawnCondition.UndergroundJungle.Chance * 0.1f;
 			}
 			else
@@ -75,7 +75,7 @@ namespace Singularity.NPCs
 			return true;
 		}
 
-		public override void HitEffect(int hitDirection, double damage) {
+		public override void HitEffect(NPC.HitInfo hit) {
 			for (int i = 0; i < 10; i++) {
 				int dustType = Main.rand.Next(139, 143);
 				int dustIndex = Dust.NewDust(NPC.position, NPC.width, NPC.height, dustType);

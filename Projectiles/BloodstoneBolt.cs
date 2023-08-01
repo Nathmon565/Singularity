@@ -29,7 +29,7 @@ namespace Singularity.Projectiles {
 			dust2.velocity = Projectile.velocity * 0.9f;
 			dust2.noGravity = true;
 		}
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit) {
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
 			for (int i = 0; i < 4; i++) {
 			float speedX = Projectile.velocity.X * Main.rand.NextFloat(1.1f, 1.3f) + Main.rand.NextFloat(-0.9f, 0.9f);
 			float speedY = Projectile.velocity.Y * Main.rand.NextFloat(1.1f, 1.3f) + Main.rand.NextFloat(-0.9f, 0.9f);

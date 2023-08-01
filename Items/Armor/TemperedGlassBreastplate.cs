@@ -6,7 +6,7 @@ namespace Singularity.Items.Armor {
 	[AutoloadEquip(EquipType.Body)]
 	public class TemperedGlassBreastplate : ModItem {
 		public override void SetStaticDefaults() {
-			Tooltip.SetDefault("6% increased damage");
+			// Tooltip.SetDefault("6% increased damage");
 			ArmorIDs.Body.Sets.HidesTopSkin[Item.bodySlot] = true;
 		}
 		public override void SetDefaults() {

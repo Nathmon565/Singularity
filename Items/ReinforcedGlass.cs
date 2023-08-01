@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 namespace Singularity.Items {
 	public class ReinforcedGlass : ModItem {
 		public override void SetStaticDefaults(){
-			Tooltip.SetDefault("Used for crafting more 'safe' glass items.");
+			// Tooltip.SetDefault("Used for crafting more 'safe' glass items.");
 		}
 		public override void SetDefaults() {
 			Item.maxStack = 99;

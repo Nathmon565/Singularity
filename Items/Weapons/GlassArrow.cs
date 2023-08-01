@@ -8,7 +8,7 @@ namespace Singularity.Items.Weapons {
 	public class GlassArrow : ModItem
 	{
 		public override void SetStaticDefaults() {
-			Tooltip.SetDefault("Tends to shatter on impact.");
+			// Tooltip.SetDefault("Tends to shatter on impact.");
 		}
 
 		public override void SetDefaults() {
