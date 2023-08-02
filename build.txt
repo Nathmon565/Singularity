@@ -1,3 +1,3 @@
 displayName = Singularity
-version = 0.1.1
 author = Nathmon565
+version = 0.1
