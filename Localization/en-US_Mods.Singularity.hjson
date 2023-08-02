@@ -1,2 +1,17 @@
 Items: {
+	PearlStaff: {
+		DisplayName: Pearl Staff
+		Tooltip: ""
+	}
+
+	OnyxStaff: {
+		DisplayName: Onyx Staff
+		Tooltip: ""
+	}
+}
+
+Projectiles: {
+	PearlBolt.DisplayName: Pearl Bolt
+	OnyxBolt.DisplayName: Onyx Bolt
+	OnyxShard.DisplayName: Onyx Shard
 }
