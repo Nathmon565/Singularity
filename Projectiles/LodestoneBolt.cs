@@ -35,8 +35,8 @@ namespace Singularity.Projectiles {
 			dust.velocity *= 0.1f;
 			dust.noGravity = true;
 			for (int i = 0; i < 4; i++) {
-				float posX = Projectile.position.X * Main.rand.NextFloat(1f, 1f) + Main.rand.NextFloat(-1.3f, 1.3f);
-				float posY = Projectile.position.Y * Main.rand.NextFloat(1f, 1f) + Main.rand.NextFloat(-80f, -88f) * 6f;
+				float posX = Projectile.position.X * Main.rand.NextFloat(1f, 1f) + Main.rand.NextFloat(-50.3f, 50.3f);
+				float posY = Projectile.position.Y * Main.rand.NextFloat(1f, 1f) + Main.rand.NextFloat(-80f, -120f) * 6f;
 				float speedX = Projectile.velocity.X * Main.rand.NextFloat(0f, 0f) + Main.rand.NextFloat(-1.2f, 1.2f);
 				float speedY = Projectile.velocity.Y * Main.rand.NextFloat(0f, 0f) + Main.rand.NextFloat(12f, 10f) * 1.2f; 
 				Projectile.NewProjectile(Projectile.GetSource_FromThis(), posX, posY, speedX, speedY, 9, (int)(Projectile.damage), 0f, Projectile.owner, 0f, 0f);

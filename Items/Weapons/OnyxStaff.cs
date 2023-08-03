@@ -10,12 +10,12 @@ namespace Singularity.Items.Weapons {
 		public override void SetDefaults() {
 			Item.damage = 40;
 			Item.DamageType = DamageClass.Magic;
-			Item.mana = 20;
+			Item.mana = 12;
 			Item.useTime = 28;
 			Item.useAnimation = 28;
 			Item.useStyle = 5;
 			Item.noMelee = true;
-			Item.knockBack = 4.75f;
+			Item.knockBack = 1.75f;
 			Item.value = Singularity.ToCopper(0, 0, 30, 0);
 			Item.rare = 1;
 			Item.UseSound = SoundID.Item20;

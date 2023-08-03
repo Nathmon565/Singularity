@@ -13,6 +13,21 @@ Items: {
 		DisplayName: Lodestone Staff
 		Tooltip: ""
 	}
+
+	GlassBreastplate: {
+		DisplayName: Glass Breastplate
+		Tooltip: 8% increased damage
+	}
+
+	GlassHelmet: {
+		DisplayName: Glass Helmet
+		Tooltip: 8% increased damage
+	}
+
+	GlassLeggings: {
+		DisplayName: Glass Leggings
+		Tooltip: 8% increased damage
+	}
 }
 
 Projectiles: {
