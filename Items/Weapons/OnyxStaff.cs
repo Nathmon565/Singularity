@@ -21,8 +21,8 @@ namespace Singularity.Items.Weapons {
 			Item.rare = 1;
 			Item.UseSound = SoundID.Item20;
 			Item.autoReuse = true;
-			Item.shoot = Mod.Find<ModProjectile>("OnyxBolt").Type; //Amber staff
+			Item.shoot = Mod.Find<ModProjectile>("OnyxBolt").Type;
 			Item.shootSpeed = 9f;
 		}
-    }
+	}
 }

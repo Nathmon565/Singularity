@@ -25,5 +25,5 @@ namespace Singularity.Items.Weapons {
 			Item.shoot = Mod.Find<ModProjectile>("PearlBolt").Type;
 			Item.shootSpeed = 7f;
 		}
-    }
+	}
 }
