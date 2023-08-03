@@ -8,10 +8,16 @@ Items: {
 		DisplayName: Onyx Staff
 		Tooltip: ""
 	}
+
+	LodestoneStaff: {
+		DisplayName: Lodestone Staff
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
 	PearlBolt.DisplayName: Pearl Bolt
 	OnyxBolt.DisplayName: Onyx Bolt
 	OnyxShard.DisplayName: Onyx Shard
+	LodestoneBolt.DisplayName: Lodestone Bolt
 }

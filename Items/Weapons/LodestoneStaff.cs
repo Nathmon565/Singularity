@@ -3,14 +3,14 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Singularity.Items.Weapons {
-	public class OnyxStaff : ModItem {
+	public class LodestoneStaff : ModItem {
 		public override void SetStaticDefaults() {
 			Item.staff[Item.type] = true;
 		}
 		public override void SetDefaults() {
-			Item.damage = 40;
+			Item.damage = 21;
 			Item.DamageType = DamageClass.Magic;
-			Item.mana = 20;
+			Item.mana = 7;
 			Item.useTime = 28;
 			Item.useAnimation = 28;
 			Item.useStyle = 5;
@@ -20,7 +20,7 @@ namespace Singularity.Items.Weapons {
 			Item.rare = 1;
 			Item.UseSound = SoundID.Item20;
 			Item.autoReuse = true;
-			Item.shoot = Mod.Find<ModProjectile>("OnyxBolt").Type;
+			Item.shoot = Mod.Find<ModProjectile>("LodestoneBolt").Type; 
 			Item.shootSpeed = 9f;
 		}
 	}

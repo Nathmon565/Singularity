@@ -6,7 +6,6 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Singularity.Projectiles {
 	public class OnyxBolt : ModProjectile {
-
 		public override void SetDefaults() {
 			Projectile.friendly = true;
 			Projectile.DamageType = DamageClass.Magic;
@@ -17,7 +16,6 @@ namespace Singularity.Projectiles {
 			Projectile.width = 16;
 			Projectile.height = 16;
 		}
-
 		public override void AI() {
 			Lighting.AddLight(Projectile.Center, 0.6f, 0.5f, 0.9f);
 			Vector2 dustPosition = Projectile.Center + new Vector2(Main.rand.Next(-5, 5), Main.rand.Next(-5, 5));
