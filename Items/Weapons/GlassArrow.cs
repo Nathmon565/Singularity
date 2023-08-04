@@ -22,7 +22,7 @@ namespace Singularity.Items.Weapons {
 			Item.value = 10;
 			Item.rare = ItemRarityID.Green;
 			Item.shoot = ModContent.ProjectileType<Projectiles.GlassArrow>();   //The projectile shoot when your weapon using this ammo
-			Item.shootSpeed = 7f;                  //The speed of the projectile
+			Item.shootSpeed = 6f;                  //The speed of the projectile
 			Item.ammo = AmmoID.Arrow;              //The ammo class this ammo belongs to.
 		}
     }

@@ -48,6 +48,11 @@ Items: {
 		DisplayName: Glass Arrow
 		Tooltip: Tends to shatter on impact
 	}
+
+	GlassRepeater: {
+		DisplayName: Glass Repeater
+		Tooltip: Wooden arrows turn into glass arrows
+	}
 }
 
 Projectiles: {
