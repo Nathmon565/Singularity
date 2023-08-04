@@ -16,17 +16,37 @@ Items: {
 
 	GlassBreastplate: {
 		DisplayName: Glass Breastplate
-		Tooltip: 8% increased damage
+		Tooltip: 4% increased damage
 	}
 
 	GlassHelmet: {
 		DisplayName: Glass Helmet
-		Tooltip: 8% increased damage
+		Tooltip: 4% increased damage
 	}
 
 	GlassLeggings: {
 		DisplayName: Glass Leggings
-		Tooltip: 8% increased damage
+		Tooltip: 4% increased damage
+	}
+
+	JadeStaff: {
+		DisplayName: Jade Staff
+		Tooltip: ""
+	}
+
+	BloodstoneStaff: {
+		DisplayName: Bloodstone Staff
+		Tooltip: ""
+	}
+
+	SulfurStaff: {
+		DisplayName: Sulfur Staff
+		Tooltip: ""
+	}
+
+	GlassArrow: {
+		DisplayName: Glass Arrow
+		Tooltip: Tends to shatter on impact
 	}
 }
 
@@ -35,4 +55,10 @@ Projectiles: {
 	OnyxBolt.DisplayName: Onyx Bolt
 	OnyxShard.DisplayName: Onyx Shard
 	LodestoneBolt.DisplayName: Lodestone Bolt
+	JadeBolt.DisplayName: Jade Bolt
+	BloodstoneBolt.DisplayName: Bloodstone Bolt
+	BloodstoneShard.DisplayName: Bloodstone Shard
+	SulfurBolt.DisplayName: Sulfur Bolt
+	GlassArrow.DisplayName: Glass Arrow
+	GlassShard.DisplayName: Glass Shard
 }

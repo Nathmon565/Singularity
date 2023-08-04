@@ -36,11 +36,11 @@ namespace Singularity.Projectiles {
 				float speed = 10f;
 				float spot = 3f;
 				//Projectile.NewProjectile(Projectile.Center.X, Projectile.Center.Y, Projectile.velocity.X * Main.rand.NextFloat(0.15f, 1.6f), Projectile.velocity.Y * Main.rand.NextFloat(0.15f, 1.5f), ModContent.ProjectileType<OnyxShard>(), (int)(Projectile.damage / 1.2f), 3, Main.myPlayer);
-				Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X + 0f * spot, Projectile.Center.Y + 20f * spot, speed * 0.309f, speed * -0.951f, Mod.Find<ModProjectile>("OnyxShard").Type, (int)(Projectile.damage*0.5f), 0, Projectile.owner, 0f, 0f);
-				Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X + 19.021f * spot, Projectile.Center.Y + 6.181f * spot, speed * -0.809f, speed * -0.588f, Mod.Find<ModProjectile>("OnyxShard").Type, (int)(Projectile.damage*0.5f), 0, Projectile.owner, 0f, 0f);
-				Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X - 19.021f * spot, Projectile.Center.Y + 6.181f * spot, speed, speed * 0, Mod.Find<ModProjectile>("OnyxShard").Type, (int)(Projectile.damage*0.5f), 0, Projectile.owner, 0f, 0f);
-				Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X - 11.756f * spot, Projectile.Center.Y - 16.180f * spot, speed * 0.309f, speed * 0.951f, Mod.Find<ModProjectile>("OnyxShard").Type, (int)(Projectile.damage*0.5f), 0, Projectile.owner, 0f, 0f);
-				Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X + 11.756f * spot, Projectile.Center.Y - 16.180f * spot, speed * -0.809f, speed* 0.588f, Mod.Find<ModProjectile>("OnyxShard").Type, (int)(Projectile.damage*0.53f), 0, Projectile.owner, 0f, 0f);
+				Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X + 0f * spot, Projectile.Center.Y + 20f * spot, speed * 0.309f, speed * -0.951f, Mod.Find<ModProjectile>("OnyxShard").Type, (int)(Projectile.damage), 0, Projectile.owner, 0f, 0f);
+				Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X + 19.021f * spot, Projectile.Center.Y + 6.181f * spot, speed * -0.809f, speed * -0.588f, Mod.Find<ModProjectile>("OnyxShard").Type, (int)(Projectile.damage), 0, Projectile.owner, 0f, 0f);
+				Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X - 19.021f * spot, Projectile.Center.Y + 6.181f * spot, speed, speed * 0, Mod.Find<ModProjectile>("OnyxShard").Type, (int)(Projectile.damage), 0, Projectile.owner, 0f, 0f);
+				Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X - 11.756f * spot, Projectile.Center.Y - 16.180f * spot, speed * 0.309f, speed * 0.951f, Mod.Find<ModProjectile>("OnyxShard").Type, (int)(Projectile.damage), 0, Projectile.owner, 0f, 0f);
+				Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X + 11.756f * spot, Projectile.Center.Y - 16.180f * spot, speed * -0.809f, speed* 0.588f, Mod.Find<ModProjectile>("OnyxShard").Type, (int)(Projectile.damage), 0, Projectile.owner, 0f, 0f);
 			}
 		}
 	}

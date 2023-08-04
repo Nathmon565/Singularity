@@ -12,7 +12,7 @@ namespace Singularity.Items.Armor {
 		public override void SetDefaults() {
 			Item.rare = ItemRarityID.Blue;
 			Item.value = Singularity.ToCopper(0, 0, 30, 0);
-			Item.defense = 1;
+			Item.defense = 2;
 		}
 
 		//public override bool DrawHead()/* tModPorter Note: Removed. In SetStaticDefaults, use ArmorIDs.Head.Sets.DrawHead[Item.headSlot] = false if you returned false */ {
@@ -20,7 +20,7 @@ namespace Singularity.Items.Armor {
 		//}
 
 		public override void UpdateEquip(Player player) {
-			player.GetDamage(DamageClass.Generic) += 0.08f;
+			player.GetDamage(DamageClass.Generic) += 0.04f;
 		}
 
 		public override bool IsArmorSet(Item head, Item body, Item legs) {
@@ -28,7 +28,7 @@ namespace Singularity.Items.Armor {
 		}
 
 		public override void UpdateArmorSet(Player player) {
-			player.setBonus = "16% increased damage \n-2 defense";
+			player.setBonus = "8% increased damage \n-2 defense";
 			player.GetDamage(DamageClass.Generic) += 0.16f;
 			player.statDefense -= 2;
 		}

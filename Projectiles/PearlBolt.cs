@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -35,7 +36,7 @@ namespace Singularity.Projectiles {
 			if (Projectile.ai[0] >= 34f && Projectile.ai[0] < 35f) {
 				Projectile.velocity.X = Projectile.velocity.X * 2f;
 				Projectile.velocity.Y = Projectile.velocity.Y * 2f;
-				Projectile.damage = Projectile.damage + 7;
+				Projectile.damage = (int) Math.Round(Projectile.damage * 1.5f);
 				Projectile.penetrate = Projectile.penetrate + 3;
 			}
 			if (Projectile.ai[0] >= 35) {
