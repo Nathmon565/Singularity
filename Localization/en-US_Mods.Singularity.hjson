@@ -68,6 +68,11 @@ Items: {
 			Ho ho hol' up
 			'''
 	}
+
+	SaguaroStaff: {
+		DisplayName: Saguaro Staff
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -84,4 +89,5 @@ Projectiles: {
 	OpalBolt.DisplayName: Opal Bolt
 	OpalShard.DisplayName: Opal Shard
 	SnowmanStaffSnowman.DisplayName: Snowman Staff Snowman
+	SaguaroStaffSaguaro.DisplayName: Saguaro Staff Saguaro
 }

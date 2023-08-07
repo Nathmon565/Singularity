@@ -8,17 +8,16 @@ using Terraria.ModLoader;
 namespace Singularity.Items.Weapons
 {
 
-	public class SnowmanStaff : ModItem
+	public class SaguaroStaff : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			// Tooltip.SetDefault("Summons a snowman to throw snowballs at your enemies \n\nHo ho hol' up");
 			ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true;
 			ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
 		}
         public override void SetDefaults()
 		{
-			Item.damage = 12;
+			Item.damage = 30;
             Item.sentry = true;
 			Item.mana = 10; //How much mana this weapon takes to use.
 			Item.width = 26; //Item width hitbox.
@@ -28,15 +27,16 @@ namespace Singularity.Items.Weapons
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.DamageType = DamageClass.Summon;
 			Item.noMelee = true; //Restricts this weapon dealing melee damage.
-			Item.knockBack = 6;
+			Item.knockBack = 0;
 			Item.value = Item.buyPrice(0, 0, 50, 0); //How much this item is sold for.
 			Item.rare = ItemRarityID.Green;
 			Item.UseSound = SoundID.Item83;
-            Item.shoot = ModContent.ProjectileType<SnowmanStaffSnowman>();
+            Item.shoot = ModContent.ProjectileType<SaguaroStaffSaguaro>();
 		}
         
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
+            damage /= 6;
             position = Main.MouseWorld - new Vector2(0, 28);   //this make so the projectile will spawn at the mouse cursor position
             velocity.Y = 1000f;
             Projectile.NewProjectile(Item.GetSource_FromThis(), position, velocity, type, damage, knockback);
@@ -48,7 +48,7 @@ namespace Singularity.Items.Weapons
             return true;
         }*/
     }
-    public class SnowmanStaffSnowman : ModProjectile
+    public class SaguaroStaffSaguaro : ModProjectile
     {
         public override void SetStaticDefaults()
         {
@@ -60,8 +60,8 @@ namespace Singularity.Items.Weapons
         }
         public override void SetDefaults()
 		{
-			Projectile.width = 28;
-			Projectile.height = 56;
+			Projectile.width = 22;
+			Projectile.height = 80;
 			//projectile.scale = 1.0f;
 			Projectile.friendly = true;
             //Projectile.usesLocalNPCImmunity = true;
@@ -84,9 +84,9 @@ namespace Singularity.Items.Weapons
 			if (!spawned) {
 				for (int k = 0; k < 25; k++)
 				{
-					int dust = Dust.NewDust(Projectile.position + Projectile.velocity + new Vector2(7, 28), 0, 0, 132, 0, 0);
+					int dust = Dust.NewDust(Projectile.position + Projectile.velocity + new Vector2(8, 40), 0, 0, 2, 0, 0);
 					Main.dust[dust].noGravity = true; //Disable the dust gravity.
-					Main.dust[dust].velocity *= 0.8f; //Dust velocity.
+					Main.dust[dust].velocity *= 2.0f; //Dust velocity.
 				}
 				spawned = true;
             }
@@ -103,7 +103,7 @@ namespace Singularity.Items.Weapons
 		}
         public override bool MinionContactDamage()
 		{
-			return false;
+			return true;
 		}
         private int timer;
         public override void AI()
@@ -116,9 +116,9 @@ namespace Singularity.Items.Weapons
 				Projectile.velocity.Y = 16f;
 			}
 
-			int SentryRange = 40; //The sentry's range
-			int Speed = 60; //How fast the sentry can shoot the projectile.
-			float FireVelocity = 20f; //The velocity the sentry's shot projectile will travel. Slows down the closer the NPC is.
+			int SentryRange = 70; //The sentry's range
+			int Speed = 180; //How fast the sentry can shoot the projectile.
+			float FireVelocity = 30f; //The velocity the sentry's shot projectile will travel. Slows down the closer the NPC is.
 			Player player = Main.player[Projectile.owner];
             player.UpdateMaxTurrets(); //This makes the sentry be able to spawn more if your sentry cap is greater than one.
             timer++;
@@ -173,15 +173,15 @@ namespace Singularity.Items.Weapons
                 }
                 NPC target = Main.npc[index];
                 if (Projectile.ai[0] % Speed == 5) {
-                    Vector2 direction = target.Center + new Vector2 (0, 20f) - Projectile.Center; //The direction the projectile will fire.
+                    Vector2 direction = target.Center + new Vector2 (0, 40f) - Projectile.Center; //The direction the projectile will fire.
 
                     direction.Normalize(); //Normalizes the direction vector.
                     direction.X *= FireVelocity; //Multiply direction by fireVelocity so the sentry can fire the projectile faster the farther the NPC is away.
                     direction.Y *= FireVelocity; //Same as above, but with Y velocity.
 
                     Terraria.Audio.SoundEngine.PlaySound(SoundID.Item102, Projectile.Center); //Play a sound.
-                    int damage = Projectile.damage; //How much damage the projectile shot from the sentry will do.
-                    int type = ProjectileID.SnowBallFriendly; //The type of projectile the sentry will shoot. Use ModContent.ProjectileType<>() to fire a modded projectile.
+                    int damage = Projectile.damage * 6; //How much damage the projectile shot from the sentry will do.
+                    int type = ProjectileID.PineNeedleFriendly; //The type of projectile the sentry will shoot. Use ModContent.ProjectileType<>() to fire a modded projectile.
                     if (Main.myPlayer == Projectile.owner) {
                         Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.position, new Vector2(direction.X,direction.Y), type, damage, 3, Projectile.owner);
                     }

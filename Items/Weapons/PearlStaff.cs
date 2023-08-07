@@ -11,6 +11,7 @@ namespace Singularity.Items.Weapons {
 
         public override void SetDefaults() {
 			Item.damage = 11;
+			Item.crit = 8;
 			Item.DamageType = DamageClass.Magic;
 			Item.mana = 6;
 			Item.useTime = 25;
