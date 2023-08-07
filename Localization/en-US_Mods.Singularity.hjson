@@ -53,6 +53,21 @@ Items: {
 		DisplayName: Glass Repeater
 		Tooltip: Wooden arrows turn into glass arrows
 	}
+
+	OpalStaff: {
+		DisplayName: Opal Staff
+		Tooltip: ""
+	}
+
+	SnowmanStaff: {
+		DisplayName: Snowman Staff
+		Tooltip:
+			'''
+			Summons a snowman to throw snowballs at your enemies 
+
+			Ho ho hol' up
+			'''
+	}
 }
 
 Projectiles: {
@@ -66,4 +81,7 @@ Projectiles: {
 	SulfurBolt.DisplayName: Sulfur Bolt
 	GlassArrow.DisplayName: Glass Arrow
 	GlassShard.DisplayName: Glass Shard
+	OpalBolt.DisplayName: Opal Bolt
+	OpalShard.DisplayName: Opal Shard
+	SnowmanStaffSnowman.DisplayName: Snowman Staff Snowman
 }

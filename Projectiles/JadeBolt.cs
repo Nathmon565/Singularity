@@ -42,7 +42,7 @@ namespace Singularity.Projectiles {
                 float posY = Projectile.Center.Y * Main.rand.NextFloat(1f, 1f) + Main.rand.NextFloat(-2f, 2f);
 	            float speedX = Projectile.velocity.X * 0.3f + Main.rand.NextFloat(-1.6f, 1.6f);
 	            float speedY = Projectile.velocity.Y * 0.3f + Main.rand.NextFloat(-1.6f, 1.6f); 
-	            Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.position, Projectile.velocity, 228, (int)(Projectile.damage * 0.5f), 0f, Projectile.owner, 0f, 0f);
+	            Projectile.NewProjectile(Projectile.GetSource_FromThis(), new Vector2 (posX,posY), new Vector2 (speedX,speedY), 228, (int)(Projectile.damage * 0.3f), 0f, Projectile.owner, 0f, 0f);
 			}
         }
 	}

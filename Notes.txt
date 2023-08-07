@@ -5,3 +5,5 @@ Vial of Lightning: dropped by frankenstein, electrified debuff to enemies
 => Ukelele, arcs lightning on hit, electrified debuff to enemies
 
 Sunburst Staff == 57 dust
+
+snowman staff instead of just shooting will have a snowball form above its head and get larger with dust/powder goin g inward towards it until it fires

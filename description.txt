@@ -1,5 +1,5 @@
 Singularity is an open source mod, made for fun.
 
 Credits:
-Programming: Nathmon565, Shogurt
+Programming: Nathmon565, Shogurt, GantherTumtums
 Art: GantherTumtums
