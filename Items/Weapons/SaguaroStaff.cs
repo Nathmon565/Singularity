@@ -173,7 +173,7 @@ namespace Singularity.Items.Weapons
                 }
                 NPC target = Main.npc[index];
                 if (Projectile.ai[0] % Speed == 5) {
-                    Vector2 direction = target.Center + new Vector2 (0, 40f) - Projectile.Center; //The direction the projectile will fire.
+                    Vector2 direction = target.Center + new Vector2 (0, 20f) - Projectile.Center; //The direction the projectile will fire.
 
                     direction.Normalize(); //Normalizes the direction vector.
                     direction.X *= FireVelocity; //Multiply direction by fireVelocity so the sentry can fire the projectile faster the farther the NPC is away.
@@ -183,7 +183,7 @@ namespace Singularity.Items.Weapons
                     int damage = Projectile.damage * 6; //How much damage the projectile shot from the sentry will do.
                     int type = ProjectileID.PineNeedleFriendly; //The type of projectile the sentry will shoot. Use ModContent.ProjectileType<>() to fire a modded projectile.
                     if (Main.myPlayer == Projectile.owner) {
-                        Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.position, new Vector2(direction.X,direction.Y), type, damage, 3, Projectile.owner);
+                        Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.position + new Vector2 (0, 20f), new Vector2(direction.X,direction.Y), type, damage, 3, Projectile.owner);
                     }
                 }
             }

@@ -71,6 +71,21 @@ Items: {
 
 	SaguaroStaff: {
 		DisplayName: Saguaro Staff
+		Tooltip:
+			'''
+			Summons a cactus to fire needles at your enemies 
+
+			No touchy
+			'''
+	}
+
+	Crossbow: {
+		DisplayName: Crossbow
+		Tooltip: This might take a while
+	}
+
+	Crossbone: {
+		DisplayName: Crossbone
 		Tooltip: ""
 	}
 }
