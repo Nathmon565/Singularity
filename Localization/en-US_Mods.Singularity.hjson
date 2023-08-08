@@ -88,6 +88,11 @@ Items: {
 		DisplayName: Crossbone
 		Tooltip: ""
 	}
+
+	SunburstStaff: {
+		DisplayName: Sunburst Staff
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -105,4 +110,6 @@ Projectiles: {
 	OpalShard.DisplayName: Opal Shard
 	SnowmanStaffSnowman.DisplayName: Snowman Staff Snowman
 	SaguaroStaffSaguaro.DisplayName: Saguaro Staff Saguaro
+	SunburstStaffSunburst.DisplayName: Sunburst Staff Sunburst
+	SunburstBolt.DisplayName: Sunburst Bolt
 }
