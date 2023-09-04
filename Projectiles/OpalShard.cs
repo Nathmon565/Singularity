@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
@@ -20,19 +21,18 @@ namespace Singularity.Projectiles {
 		
 		public override void AI() {
 			Lighting.AddLight(Projectile.Center, 0.6f, 0.5f, 0.7f);
-            Vector2 dustPosition = Projectile.Center + new Vector2(Main.rand.Next(-5, 5), Main.rand.Next(-5, 5));
-			Dust dust = Dust.NewDustPerfect(dustPosition, 135, null, 100, default(Color), 1f);
-			dust.velocity *= 0.2f;
+			Vector2 dustPosition = Projectile.Center + new Vector2(Main.rand.Next(-2, 2), Main.rand.Next(-2, 2));
+			Dust dust = Dust.NewDustPerfect(dustPosition, 92, null, 100, default(Color), 1f);
+			dust.velocity = Projectile.velocity * 0.9f;
 			dust.noGravity = true;
-            Vector2 dustPosition2 = Projectile.Center + new Vector2(Main.rand.Next(-4, 4), Main.rand.Next(-4, 4));
-			Dust dust2 = Dust.NewDustPerfect(dustPosition2, 135, null, 100, default(Color), 1f);
-			dust2.velocity = Projectile.velocity * 0.9f;
-			dust2.noGravity = true;
-			Lighting.AddLight(Projectile.Center, 0.7f, 0.5f, 1f);	        }
-		
+			Lighting.AddLight(Projectile.Center, 0.7f, 0.5f, 1f);
+		}
 		public override bool OnTileCollide(Vector2 oldVelocity) {
-            Projectile.Kill();
-            return false;
-        }   
+				Projectile.Kill();
+				return false;
+		}
+		public override void Kill(int timeLeft) {
+			SoundEngine.PlaySound(SoundID.Item50, Projectile.Center);
+		}
 	}
 }

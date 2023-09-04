@@ -21,9 +21,9 @@ namespace Singularity.Projectiles {
 			Projectile.scale *= 1.25f;
 		}
 		public override bool OnTileCollide(Vector2 oldVelocity) {
-            Projectile.Kill();
-            return false;
-        }
+         Projectile.Kill();
+         return false;
+      }
 		public override void AI() {
             Projectile.rotation += 0.4f * (float)Projectile.direction;
 		}		

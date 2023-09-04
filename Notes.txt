@@ -7,4 +7,5 @@ Vial of Lightning: dropped by frankenstein, electrified debuff to enemies
 Sunburst Staff == 57 dust
 
 snowman staff instead of just shooting will have a snowball form above its head and get larger with dust/powder goin g inward towards it until it fires
-black pearl staff and pink pearl staff later game with more crit chance
+black pearl staff and pink pearl staff later game with more crit chance, also slower velocity in startup but faster in boost
+galaxy pearl staff early hardmode (crystal shards) combined with crystal serpent and sky fracture post mech (soul of sight)
